@@ -105,7 +105,7 @@ namespace Death_is_Dead
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-
+            spriteBatch.Draw(Ressources.Player,new Vector2(500,500),new Color(0,100,100));
 
 
             switch (CurrentGameState)
