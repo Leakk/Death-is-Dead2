@@ -94,7 +94,7 @@ namespace Death_is_Dead
                 if (position.X < 0)
                     position.X = 0;
                 Hitbox.X = (int)position.X;
-                Hitbox.Y = (int)position.Y;
+                Hitbox.Y = (int)position.Y; 
 
             
         }
