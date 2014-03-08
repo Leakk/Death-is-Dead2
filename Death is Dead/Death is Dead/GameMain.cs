@@ -13,6 +13,9 @@ namespace Death_is_Dead
         //Fields
 
         private Player player;
+        static Rectangle[] rect = new Rectangle[5] { new Rectangle(300, 300, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height) };
+
+        Map map = new Map(rect);
 
         //Constructors
 
@@ -26,16 +29,32 @@ namespace Death_is_Dead
         //Methods
 
         //Update & Draw
-
         public void Update()
         {
-            player.Update(Keyboard.GetState());
+            player.Update(Keyboard.GetState(), rect);
+            for (int i = 0; i < player.Tirs.Length; i++)
+            {
+                if (player.Tirs[i] != null)
+                {
+                    if (player.Tirs[i].position.X > 700)
+                        player.Tirs[i] = null;
+                    else
+                        player.Tirs[i].Update();
+                }
+            }
         }
 
         public void Draw(SpriteBatch sb)
         {
-            player.Draw(sb);
-        }
 
+            map.Draw(sb);
+            sb.Draw(Ressources.plateforme, rect[0], Color.Red);
+            player.Draw(sb);
+            foreach (Projectile tir in player.Tirs)
+            {
+                if (tir != null && tir.position.X < 700)
+                    tir.Draw(sb);
+            }
+        }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
+
 namespace Death_is_Dead
 {
     class cButton
@@ -26,12 +27,13 @@ namespace Death_is_Dead
 
             /* la divison par 8 en Width et par 30 en height est a régler en fonction de la taille de la fenetre */
 
-            size = new Vector2(graphics.Viewport.Width / 8, graphics.Viewport.Height / 20);
+            size = new Vector2(graphics.Viewport.Width / 4, graphics.Viewport.Height /12);
 
         }
 
         bool down;
         public bool isClicked;
+        public bool isClickedprec;
 
         public void Udapte(MouseState mouse)
         {
@@ -40,19 +42,28 @@ namespace Death_is_Dead
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
             if (mouseRectangle.Intersects(rectangle))
             {
-
+                
+               
                 if (colour.A == 255) down = false;
                 if (colour.A == 0) down = true;
                 if (down) colour.A += 3; else colour.A -= 3;
-                if (mouse.LeftButton == ButtonState.Pressed) isClicked = true;
-
+                if (mouse.LeftButton == ButtonState.Pressed)
+                {
+                    isClicked = true;
+                }
+                else
+                {
+                    isClicked = false;
+                }
+               
             }
             else if (colour.A < 255)
             {
+                
                 colour.A += 3;
-                isClicked = false;
-
+               isClicked = false;
             }
+           
         }
 
         public void setPosition(Vector2 newPosition)
