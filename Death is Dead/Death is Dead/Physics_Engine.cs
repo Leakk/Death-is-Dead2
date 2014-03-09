@@ -49,9 +49,9 @@ namespace Death_is_Dead
             return (final_velocity);
         }
 
-        public bool touched_floor(Vector2 position)
+        public bool touched_floor(Vector2 position,Rectangle rect)
         {
-            return (position.Y >= 600 - spritesize);
+            return (position.Y >= rect.Y - spritesize);
         }
 
 
