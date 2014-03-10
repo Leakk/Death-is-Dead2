@@ -13,7 +13,7 @@ namespace Death_is_Dead
         //Fields
 
         private Player player;
-        static Rectangle[] rect = new Rectangle[5] { new Rectangle(300, 350, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(0, 550,10000, Ressources.plateforme.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height) };
+        static Rectangle[] rect = new Rectangle[5] { new Rectangle(300, 350, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(0, 550,1230, Ressources.sol.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height) };
 
         Map map = new Map(rect);
 
@@ -36,7 +36,7 @@ namespace Death_is_Dead
             {
                 if (player.Tirs[i] != null)
                 {
-                    if (player.Tirs[i].position.X > 700)
+                    if (player.Tirs[i].position.X >800)
                         player.Tirs[i] = null;
                     else
                         player.Tirs[i].Update();
@@ -48,13 +48,14 @@ namespace Death_is_Dead
         {
 
             map.Draw(sb);
-            sb.Draw(Ressources.plateforme, rect[0], Color.Red);
+            //sb.Draw(Ressources.plateforme, rect[0], Color.Red);
             player.Draw(sb);
             foreach (Projectile tir in player.Tirs)
             {
-                if (tir != null && tir.position.X < 700)
+                if (tir != null && tir.position.X < 800)
                     tir.Draw(sb);
             }
+            sb.Draw(Ressources.sol, rect[1], Color.White);
         }
     }
 }

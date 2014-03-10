@@ -26,6 +26,7 @@ namespace Death_is_Dead
         private Collision HitboxG;
         private Collision HitboxD;
         private Projectile[] tirs;
+        float position_Y_texture;
 
         //Constructors
 
@@ -40,6 +41,7 @@ namespace Death_is_Dead
             this.texture = texture;
             this.hasJumped = false;
             tirs = new Projectile[10];
+            position_Y_texture = Convert.ToInt32(position.Y);
         }
 
         //Get & Set
@@ -107,6 +109,22 @@ namespace Death_is_Dead
 
             }
 
+            if (k < 80)
+            {
+                if (k < 40)
+                {
+                    position_Y_texture = Convert.ToInt32(position.Y) - k*0.25f;
+                    k++;
+                }
+                else
+                {
+                    position_Y_texture = Convert.ToInt32(position.Y) + (k*0.25f) -20;
+                    k++;
+                }
+
+            }
+            else
+                k = 0;
 
             if (keyboard.IsKeyDown(Keys.Space) && hasJumped)
             {
@@ -149,7 +167,8 @@ namespace Death_is_Dead
                 {
                     if (tirs[i] == null)
                     {
-                        tirs[i] = new Projectile(texture.Bounds.X, 20, this);
+                        tirs[i] = new Projectile(texture.Bounds.X, 10, this);
+                        Ressources.tir_son.Play();
                         break;
                     }
                 }
@@ -165,11 +184,11 @@ namespace Death_is_Dead
         public void Draw(SpriteBatch sb)
         {
             
-            sb.Draw(texture, position, Color.White);
-            sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);
-            sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);
-            sb.Draw(Ressources.plateforme, HitboxG.Rectangle, Color.Red);
-            sb.Draw(Ressources.plateforme, HitboxH.Rectangle, Color.Red);
+            sb.Draw(texture, new Vector2(position.X,position_Y_texture), Color.White);
+            //sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);
+            //sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);
+            //sb.Draw(Ressources.plateforme, HitboxG.Rectangle, Color.Red);
+            //sb.Draw(Ressources.plateforme, HitboxH.Rectangle, Color.Red);
         }
 
     }
