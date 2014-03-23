@@ -16,15 +16,25 @@ namespace Death_is_Dead
         public Vector2 position;
         private Texture2D texture;
         private Player tireur;
+        private bool hasFliped;
 
-        public Projectile(int size, int speed, Player tireur)
+        public Projectile(int size, int speed, Player tireur, bool hasFliped)
         {
             this.size = size;
-            this.velocity = new Vector2(speed, 0);
+            if (tireur.HasFliped)
+            {
+                this.velocity = new Vector2(-speed, 0);
+                this.texture = Ressources.TirFlip;
+            }
+            else
+            {
+                this.velocity = new Vector2(speed, 0);
+                this.texture = Ressources.Tir;
+            }
+            this.hasFliped = hasFliped;
             this.tireur = tireur;
             this.is_collided = false;
             this.position = tireur.position;
-            this.texture = Ressources.Tir;
         }
 
         public void Update()

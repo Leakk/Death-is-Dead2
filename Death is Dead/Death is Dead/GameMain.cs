@@ -11,7 +11,7 @@ namespace Death_is_Dead
     class GameMain
     {
         //Fields
-
+       
         private Player player;
         static Rectangle[] rect = new Rectangle[5] { new Rectangle(300, 350, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(0, 550,1230, Ressources.sol.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height) };
 
@@ -36,12 +36,34 @@ namespace Death_is_Dead
             {
                 if (player.Tirs[i] != null)
                 {
-                    if (player.Tirs[i].position.X >800)
+                    if (player.Tirs[i].position.X > 800 || player.Tirs[i].position.X < -Ressources.Tir.Width)
                         player.Tirs[i] = null;
                     else
                         player.Tirs[i].Update();
                 }
             }
+
+           
+
+            #region/*smoke*/
+
+            for (int j = 0; j < player.Smoke.Length; j++)
+            {
+                if (player.Smoke[j] != null)
+                {
+                    if (player.Smoke[j].Alpha < 0)
+                    {
+                        player.Smoke[j] = null;
+                       
+                    }
+                    else
+                        player.Smoke[j].Update();
+                }
+
+            }
+            #endregion
+
+            
         }
 
         public void Draw(SpriteBatch sb)
@@ -52,10 +74,20 @@ namespace Death_is_Dead
             player.Draw(sb);
             foreach (Projectile tir in player.Tirs)
             {
-                if (tir != null && tir.position.X < 800)
+                if (tir != null)
                     tir.Draw(sb);
             }
+            #region/*smoke*/
+            foreach (smoke smoke in player.Smoke)
+            {
+                if (smoke != null && smoke.Alpha >=0)
+                    smoke.Draw(sb);
+            }
+            #endregion
             sb.Draw(Ressources.sol, rect[1], Color.White);
+
+
+            
         }
     }
 }

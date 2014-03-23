@@ -20,6 +20,7 @@ namespace Death_is_Dead
         SpriteBatch spriteBatch;
         GameMain main;
         SoundEffect button_click;
+        public KeyboardState keyboardState;
         #region  /*pour les buttons*/
         bool playOnce = false;
         int countt = 0;
@@ -30,6 +31,8 @@ namespace Death_is_Dead
             MainMenu,
             Option,
             Playing,
+            Playing_2P,
+            paused
 
         }
 
@@ -101,7 +104,7 @@ namespace Death_is_Dead
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
 
-            // -->  graphics.IsFullScreen = true;
+           // graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             IsMouseVisible = true;
             
@@ -119,12 +122,14 @@ namespace Death_is_Dead
                 btnOption.setPosition(new Vector2(500, 300));
                 /*Option*/
                 btnBack = new cButton(Content.Load<Texture2D>("sprite/Menu/Option/"+lang+"/back"), graphics.GraphicsDevice);
-                btnRes = new cButton(Content.Load<Texture2D>("sprite/Menu/Option/"+lang+"/resolution"), graphics.GraphicsDevice);
+                btnRes = new cButton(Content.Load<Texture2D>("sprite/Menu/Option/"+lang+"/fullscreen"), graphics.GraphicsDevice);
                 btnLanguage = new cButton(Content.Load<Texture2D>("sprite/Menu/Option/"+lang+"/language"), graphics.GraphicsDevice);
                 btnBack.setPosition(new Vector2(40, 500));
                 btnRes.setPosition(new Vector2(400, 500));
                 btnLanguage.setPosition(new Vector2(40, 100));
-                button_click = (Content.Load<SoundEffect>("Sound_effects/Menu/button_sound"));              
+
+                button_click = (Content.Load<SoundEffect>("Sound_effects/Menu/button_sound_click"));    
+                         
                 
             
             #endregion
@@ -167,10 +172,22 @@ namespace Death_is_Dead
                     btnRes.Udapte(mouse);
                     btnLanguage.Udapte(mouse);
                     if (btnBack.isClicked) { button_click.Play(); CurrentGameState = GameState.MainMenu; }
-                    if (btnRes.isClicked) { button_click.Play();}
+                    if ((btnRes.isClicked) & (countt == 0))
+                    {
+                        countt = 15;
+                        button_click.Play();
+                        if (graphics.IsFullScreen == false)
+                        graphics.IsFullScreen = true;
+                        else graphics.IsFullScreen = false;
+                        graphics.ApplyChanges();
+                        
+                    }
                     if ((btnLanguage.isClicked) & (countt == 0))
                     {
-                            countt =15 ;
+                        try
+                        {
+
+                            countt = 15;
                             switch (Currentlanguage)
                             {
                                 case language.english:
@@ -195,6 +212,13 @@ namespace Death_is_Dead
                                     button_click.Play();
                                     break;
                             }
+
+                        }
+                        catch
+                        {
+                        }
+
+
                     }
 
 
@@ -227,7 +251,7 @@ namespace Death_is_Dead
                     btnPlay.Draw(spriteBatch);
                     btnMultiplayer.Draw(spriteBatch);
                     btnOption.Draw(spriteBatch);
-                    spriteBatch.Draw(Content.Load<Texture2D>("sprite/Menu/Main_menu/eng/info_button_play_mult"), new Rectangle(600, 200, screenWidth / 4, screenHeight / 6), Color.White);
+                   // spriteBatch.Draw(Content.Load<Texture2D>("sprite/Menu/Main_menu/eng/info_button_play_mult"), new Rectangle(600, 200, screenWidth / 4, screenHeight / 6), Color.White);
 
 
                     break;
@@ -238,6 +262,10 @@ namespace Death_is_Dead
                     btnBack.Draw(spriteBatch);
                     btnRes.Draw(spriteBatch);
                     btnLanguage.Draw(spriteBatch);
+                    break;
+
+                case GameState.paused:
+                    /* il faut arrêter le jeu */
                     break;
 
             }
@@ -255,6 +283,10 @@ namespace Death_is_Dead
                 main.Draw(spriteBatch);
                 spriteBatch.End();
                 base.Draw(gameTime);
+                if (keyboardState.IsKeyDown(Keys.Escape))
+                {
+                    CurrentGameState = GameState.paused;
+                }
             }
         }
     }

@@ -58,8 +58,8 @@
     <Folder Include="sprite\Menu\other\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sound_effects\Menu\button_sound.wma">
-      <Name>button_sound</Name>
+    <Compile Include="Sound_effects\Menu\button_sound_click.wma">
+      <Name>button_sound_click</Name>
       <Importer>WmaImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
@@ -184,8 +184,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="sprite\Menu\Option\eng\resolution.bmp">
-      <Name>resolution</Name>
+    <Compile Include="sprite\Menu\Option\eng\fullscreen.bmp">
+      <Name>fullscreen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -212,15 +212,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="sprite\Menu\Option\fre\resolution.bmp">
-      <Name>resolution</Name>
+    <Compile Include="sprite\Menu\Option\fre\fullscreen.bmp">
+      <Name>fullscreen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="sprite\Menu\Option\spa\resolution.bmp">
-      <Name>resolution</Name>
+    <Compile Include="sprite\Menu\Option\spa\fullscreen.bmp">
+      <Name>fullscreen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -261,6 +261,32 @@
   <ItemGroup>
     <Compile Include="Sound_effects\tir_son.mp3">
       <Name>tir_son</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="sprite\smoke.png">
+      <Name>smoke</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="sprite\playerFlip.png">
+      <Name>playerFlip</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="sprite\tirFlip.png">
+      <Name>tirFlip</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sound_effects\Menu\button_sound.mp3">
+      <Name>button_sound</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>

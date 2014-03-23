@@ -15,7 +15,7 @@ namespace Death_is_Dead
         Vector2 position;
         Rectangle rectangle;
 
-        Color colour = new Color(255, 255, 255, 255);
+        Color colour = new Color(255, 0, 0, 255);
 
         public Vector2 size;
 
@@ -33,8 +33,8 @@ namespace Death_is_Dead
 
         bool down;
         public bool isClicked;
-        public bool isClickedprec;
-
+        bool for_sound = false;
+        bool for_sound2 = true;
         public void Udapte(MouseState mouse)
         {
             rectangle = new Rectangle((int)position.X, (int)position.Y, (int)size.X, (int)size.Y);
@@ -42,27 +42,47 @@ namespace Death_is_Dead
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
             if (mouseRectangle.Intersects(rectangle))
             {
-                
-               
+                for_sound = true;
+
+                if ((for_sound == true) & (for_sound2 == true))
+                {
+
+                    Ressources.button_sound.Play();
+                }
+                for_sound2 = false;
+
+                colour.G = 255;
+                colour.B = 255;
                 if (colour.A == 255) down = false;
                 if (colour.A == 0) down = true;
                 if (down) colour.A += 3; else colour.A -= 3;
                 if (mouse.LeftButton == ButtonState.Pressed)
                 {
                     isClicked = true;
+
                 }
                 else
                 {
+
                     isClicked = false;
                 }
-               
+
             }
-            else if (colour.A < 255)
+            else
             {
-                
-                colour.A += 3;
-               isClicked = false;
+                colour.G = 0;
+                colour.B = 0;
+                for_sound = false;
+                for_sound2 = true;
+                isClicked = false;
+                if (colour.A < 255)
+                {
+                    colour.A += 3; 
+                }
+
             }
+            
+
            
         }
 
