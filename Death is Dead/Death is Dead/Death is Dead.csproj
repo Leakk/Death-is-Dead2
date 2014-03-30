@@ -110,6 +110,7 @@
     <Compile Include="cButton.cs" />
     <Compile Include="Collison.cs" />
     <Compile Include="GameMain.cs" />
+    <Compile Include="Life.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Physics_Engine.cs" />
     <Compile Include="Player.cs" />

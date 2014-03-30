@@ -65,13 +65,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="sprite\Menu\Main_menu\eng\info_button_play_mult.bmp">
-      <Name>info_button_play_mult</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="sprite\Menu\Main_menu\eng\Button_play_mult.bmp">
       <Name>Button_play_mult</Name>
       <Importer>TextureImporter</Importer>
@@ -114,13 +107,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="sprite\Menu\Main_menu\fre\info_button_play_mult.bmp">
-      <Name>info_button_play_mult</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="sprite\Menu\Option\fre\back.bmp">
       <Name>back</Name>
       <Importer>TextureImporter</Importer>
@@ -137,13 +123,6 @@
   <ItemGroup>
     <Compile Include="sprite\Menu\Main_menu\fre\Button_play.bmp">
       <Name>Button_play</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="sprite\Menu\Main_menu\spa\info_button_play_mult.bmp">
-      <Name>info_button_play_mult</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -289,6 +268,34 @@
       <Name>button_sound</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="sprite\Menu\Main_menu\eng\Exit.bmp">
+      <Name>Exit</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="sprite\Menu\Main_menu\fre\Exit.bmp">
+      <Name>Exit</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="sprite\Menu\Main_menu\spa\Exit.bmp">
+      <Name>Exit</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="sprite\Lifebar.bmp">
+      <Name>Lifebar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

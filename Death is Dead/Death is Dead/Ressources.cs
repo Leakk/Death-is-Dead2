@@ -18,6 +18,7 @@ namespace Death_is_Dead
         public static Texture2D plateforme;
         public static Texture2D sol;
         public static Texture2D smoke;
+        public static Texture2D lifebar;
         public static SoundEffect tir_son;
         public static SoundEffect button_sound;
         public static void Load(ContentManager content)
@@ -32,6 +33,7 @@ namespace Death_is_Dead
             tir_son = content.Load<SoundEffect>("Sound_effects/tir_son");
             smoke = content.Load<Texture2D>("sprite/smoke");
             button_sound = content.Load<SoundEffect>("Sound_effects/Menu/button_sound");
+            lifebar = content.Load<Texture2D>("sprite/Lifebar");
            
         }
     }

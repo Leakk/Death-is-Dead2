@@ -25,6 +25,9 @@ namespace Death_is_Dead
         bool playOnce = false;
         int countt = 0;
         #endregion
+        private bool paused =false;
+        private bool pausedForGuide = false;
+       
 
         enum GameState
         {
@@ -58,7 +61,23 @@ namespace Death_is_Dead
             get { return screenWidth; }
             set { screenWidth = value; }
         }
-        
+
+        #region    /* pour mettre à pause */
+        private void BeginPause(bool UserInitiated) 
+        {
+            paused = true;
+            pausedForGuide = !UserInitiated;
+            //TODO: Pause audio playback
+            //TODO: Pause controller vibration
+        }
+        private void EndPause()
+        {
+            //TODO: Resume audio
+            //TODO: Resume controller vibration
+            pausedForGuide = false;
+            paused = false;
+        }
+#endregion
 
 
         /* attention si on change la résolution in faudra peut etre modifier dans la classe cButton le public cButton  :
@@ -108,18 +127,21 @@ namespace Death_is_Dead
             graphics.ApplyChanges();
             IsMouseVisible = true;
             
+            
             #region /*pour le menu*/  
             string lang = "";
             if (Currentlanguage == language.english) lang = "eng";
             if (Currentlanguage == language.french) lang = "fre";
             if (Currentlanguage == language.spanish) lang = "spa"; 
-                 
+                 /* MainMenu*/
                 btnPlay = new cButton(Content.Load<Texture2D>("sprite/Menu/Main_menu/"+lang+"/Button_play"), graphics.GraphicsDevice);
                 btnMultiplayer = new cButton(Content.Load<Texture2D>("sprite/Menu/Main_menu/"+lang+"/Button_play_mult"), graphics.GraphicsDevice);
                 btnOption = new cButton(Content.Load<Texture2D>("sprite/Menu/Main_menu/"+lang+"/Button_option"), graphics.GraphicsDevice);
+                btnExit = new cButton(Content.Load<Texture2D>("sprite/Menu/Main_menu/" + lang + "/Exit"), graphics.GraphicsDevice);
                 btnPlay.setPosition(new Vector2(500, 100));
                 btnMultiplayer.setPosition(new Vector2(500, 200));
                 btnOption.setPosition(new Vector2(500, 300));
+                btnExit.setPosition(new Vector2(500, 400));
                 /*Option*/
                 btnBack = new cButton(Content.Load<Texture2D>("sprite/Menu/Option/"+lang+"/back"), graphics.GraphicsDevice);
                 btnRes = new cButton(Content.Load<Texture2D>("sprite/Menu/Option/"+lang+"/fullscreen"), graphics.GraphicsDevice);
@@ -156,16 +178,41 @@ namespace Death_is_Dead
                     btnPlay.Udapte(mouse);
                     btnMultiplayer.Udapte(mouse);
                     btnOption.Udapte(mouse);
-
+                    btnExit.Udapte(mouse);
                     if (btnPlay.isClicked) button_click.Play();
                     if (btnMultiplayer.isClicked) button_click.Play();
                     if (btnOption.isClicked) button_click.Play();
                     if (btnPlay.isClicked == true) CurrentGameState = GameState.Playing;
                     if (btnOption.isClicked) CurrentGameState = GameState.Option;
+                    if (btnExit.isClicked)
+                    {
+                        button_click.Play();
+                        Exit();
+                    }
                     
                     break;
                 case GameState.Playing:
+                  
+
+                    if (keyboardState.IsKeyDown(Keys.Escape))
+                    {
+                        if (CurrentGameState != GameState.paused)
+                        {
+                            CurrentGameState = GameState.paused;
+                        }
+                        else
+                        {
+                            CurrentGameState = GameState.Playing;
+                        }
+                    }
+              
                     break;
+
+                case GameState.paused:
+                    BeginPause(true);
+                    
+                    break;
+                #region/*GameState.Option*/
                 case GameState.Option:
                     playOnce = false;
                     btnBack.Udapte(mouse);
@@ -218,15 +265,13 @@ namespace Death_is_Dead
                         {
                         }
 
-
                     }
-
 
                     if (countt != 0)
                         countt--;
                     break;
+                #endregion
 
-                    
             #endregion
 
             }
@@ -251,11 +296,13 @@ namespace Death_is_Dead
                     btnPlay.Draw(spriteBatch);
                     btnMultiplayer.Draw(spriteBatch);
                     btnOption.Draw(spriteBatch);
-                   // spriteBatch.Draw(Content.Load<Texture2D>("sprite/Menu/Main_menu/eng/info_button_play_mult"), new Rectangle(600, 200, screenWidth / 4, screenHeight / 6), Color.White);
-
+                    btnExit.Draw(spriteBatch);
+                  
 
                     break;
                 case GameState.Playing:
+
+                    
                     break;
                 case GameState.Option:
                     spriteBatch.Draw(Content.Load<Texture2D>("sprite/Menu/Option/Option_background"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
@@ -265,7 +312,8 @@ namespace Death_is_Dead
                     break;
 
                 case GameState.paused:
-                    /* il faut arrêter le jeu */
+                            
+                  
                     break;
 
             }
@@ -277,16 +325,14 @@ namespace Death_is_Dead
             if (btnPlay.isClicked)
             {
                 /* codé le jeu ici */
-
+                CurrentGameState = GameState.Playing;
                 main.Update();
                 spriteBatch.Begin();
                 main.Draw(spriteBatch);
                 spriteBatch.End();
                 base.Draw(gameTime);
-                if (keyboardState.IsKeyDown(Keys.Escape))
-                {
-                    CurrentGameState = GameState.paused;
-                }
+              
+
             }
         }
     }
