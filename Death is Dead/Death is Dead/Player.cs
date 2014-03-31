@@ -31,10 +31,12 @@ namespace Death_is_Dead
         float position_Y_texture;
         Random rnd = new Random();
         float badrandom;
+        private Life Life1;
+        public int life;
 
         //Constructors
 
-        public Player(Vector2 position, Texture2D texture)
+        public Player(Vector2 position, Texture2D texture, int life)
         {
             this.HitboxH = new Collision(new Rectangle(Convert.ToInt32(position.X), Convert.ToInt32(position.Y), texture.Width, 3));
             this.HitboxB = new Collision(new Rectangle(Convert.ToInt32(position.X), Convert.ToInt32(position.Y) + texture.Height - 3, texture.Width, 3));
@@ -48,6 +50,8 @@ namespace Death_is_Dead
             tirs = new Projectile[10];
             smoke1 = new smoke[20];
             position_Y_texture = Convert.ToInt32(position.Y);
+            this.life = life;
+            Life1 = new Life();
         }
 
         //Get & Set
@@ -238,6 +242,8 @@ namespace Death_is_Dead
 
         public void Draw(SpriteBatch sb)
         {
+            Life1.Udapte(life);
+            Life1.Draw(sb,10,10);
             if (hasFliped)
                 sb.Draw(Ressources.PlayerFlip, new Vector2(position.X, position_Y_texture), Color.White);
             else

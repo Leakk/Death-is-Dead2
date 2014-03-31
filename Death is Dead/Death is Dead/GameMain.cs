@@ -14,8 +14,7 @@ namespace Death_is_Dead
         //Fields
        
         private Player player;
-        private Life life;
-        private int player1_life;
+       
         static Rectangle[] rect = new Rectangle[5] { new Rectangle(300, 350, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(0, 550,1230, Ressources.sol.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height) };
 
         Map map = new Map(rect);
@@ -24,9 +23,8 @@ namespace Death_is_Dead
 
         public GameMain()
         {
-            player = new Player(new Vector2(350, 0), Ressources.Player);
-            life = new Life();
-            player1_life = 100;
+            player = new Player(new Vector2(350, 0), Ressources.Player,100);
+           
             
             
         }
@@ -50,7 +48,9 @@ namespace Death_is_Dead
                 }
             }
 
-            life.Udapte(player1_life);
+        
+            
+            
 
             #region/*smoke*/
 
@@ -79,7 +79,7 @@ namespace Death_is_Dead
             map.Draw(sb);
             //sb.Draw(Ressources.plateforme, rect[0], Color.Red);
             player.Draw(sb);
-            life.Draw(sb);
+          
             foreach (Projectile tir in player.Tirs)
             {
                 if (tir != null)

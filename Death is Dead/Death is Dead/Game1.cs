@@ -196,7 +196,7 @@ namespace Death_is_Dead
 
                     if (keyboardState.IsKeyDown(Keys.Escape))
                     {
-                        if (CurrentGameState != GameState.paused)
+                        if (CurrentGameState == GameState.paused)
                         {
                             CurrentGameState = GameState.paused;
                         }
@@ -324,7 +324,7 @@ namespace Death_is_Dead
 
             if (btnPlay.isClicked)
             {
-                /* codé le jeu ici */
+               
                 CurrentGameState = GameState.Playing;
                 main.Update();
                 spriteBatch.Begin();

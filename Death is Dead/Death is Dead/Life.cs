@@ -13,6 +13,7 @@ namespace Death_is_Dead
         Texture2D texture;
         Color colour = new Color(0, 0,0, 255);
         Rectangle rectangleLife;
+        private int hp;
 
 
       public Life()
@@ -22,16 +23,16 @@ namespace Death_is_Dead
 
         public void Udapte(int Life)
         {
+            hp = Life;
             colour.G = (byte)(55+(2 * Life));
             colour.R = (byte)(255-(2 * Life));
-            rectangleLife = new Rectangle(10, 10, Life, 15);
            
 
         }
-        public void Draw(SpriteBatch sb)
+        public void Draw(SpriteBatch sb,int x,int y)
 
-        { 
-       
+        {
+            rectangleLife = new Rectangle(x, y, hp, 15);
             sb.Draw(texture, rectangleLife, colour);
         }
 
