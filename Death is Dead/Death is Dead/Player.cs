@@ -96,6 +96,7 @@ namespace Death_is_Dead
         int k = 5;
         public void Update(KeyboardState keyboard, Rectangle[] rect)
         {
+            this.position.X -= 1;
             this.position += this.velocity;
             Collision next_h = new Collision(new Rectangle(HitboxH.Rectangle.X + 7, HitboxH.Rectangle.Y + Convert.ToInt32(velocity.Y) - 2, HitboxH.Rectangle.Width - 14, HitboxH.Rectangle.Height));
             if (next_h.is_coll(rect))
@@ -111,8 +112,6 @@ namespace Death_is_Dead
                 HitboxD = new Collision(new Rectangle(Convert.ToInt32(this.position.X) + texture.Width, Convert.ToInt32(this.position.Y), 3, texture.Height));
                 this.velocity = physics.apply_gravity(this.velocity);
                 hasJumped = false;
-                // if ((position.Y + texture.Height >= recta.Y-20) && (position.X >= recta.X) && (position.X <= recta.X + recta.Width))
-                //     velocity.Y += -3f;
 
             }
             else
@@ -125,8 +124,6 @@ namespace Death_is_Dead
                 position.Y = recta.Y - texture.Height;
                 hasJumped = true;
                 velocity.Y = 0f;
-                //if ((position.Y + texture.Height >= recta.Y - 20) && (position.X >= recta.X) && (position.X <= recta.X + recta.Width))
-                //    velocity.Y += -0.3f;
 
 
             }
