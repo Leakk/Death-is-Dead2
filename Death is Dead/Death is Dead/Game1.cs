@@ -326,7 +326,7 @@ namespace Death_is_Dead
             {
                
                 CurrentGameState = GameState.Playing;
-                main.Update();
+                main.Update(gameTime);
                 spriteBatch.Begin();
                 main.Draw(spriteBatch);
                 spriteBatch.End();

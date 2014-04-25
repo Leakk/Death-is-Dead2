@@ -34,7 +34,7 @@ namespace Death_is_Dead
         //Methods
 
         //Update & Draw
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             player.update1(rect);
             player.Update(Keyboard.GetState(), rect);
@@ -48,6 +48,7 @@ namespace Death_is_Dead
                         player.Tirs[i].Update();
                 }
             }
+            map.Update(gameTime);
 
         
             
@@ -78,6 +79,7 @@ namespace Death_is_Dead
         {
 
             map.Draw(sb);
+            
             //sb.Draw(Ressources.plateforme, rect[0], Color.Red);
             player.Draw(sb);
           
