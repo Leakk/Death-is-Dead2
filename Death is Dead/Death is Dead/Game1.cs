@@ -21,7 +21,6 @@ namespace Death_is_Dead
         GameMain main;
         SoundEffect button_click;
         private Color colour1 = new Color(255, 0, 0, 255);
-       // private Color btnColorPause = new Color(255, 0, 0, 255);
         public KeyboardState keyboardState;
         #region  /*pour les buttons*/
         bool playOnce = false;
@@ -218,8 +217,16 @@ namespace Death_is_Dead
                 case GameState.paused:
                     btnResume.Udapte(mouse);
                     btnBackToMenu.Udapte(mouse);
-                    if (btnResume.isClicked) CurrentGameState = GameState.Playing;
-                    if (btnBackToMenu.isClicked) CurrentGameState = GameState.MainMenu;
+                    if (btnResume.isClicked)
+                    {
+                        button_click.Play();
+                        CurrentGameState = GameState.Playing;
+                    }
+                    if (btnBackToMenu.isClicked)
+                    {
+                        button_click.Play();
+                        CurrentGameState = GameState.MainMenu;
+                    }
                     break;
                 #region/*GameState.Option*/
                 case GameState.Option:
