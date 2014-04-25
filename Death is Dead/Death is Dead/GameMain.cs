@@ -14,6 +14,7 @@ namespace Death_is_Dead
         //Fields
        
         private Player player;
+        
 
         static Rectangle[] rect = new Rectangle[5] { new Rectangle(300, 350, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(0, 550, 10000, Ressources.sol.Height), new Rectangle(800, 500, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(2000, 500, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(2500, 300, Ressources.plateforme.Width, Ressources.plateforme.Height) };
 
@@ -71,7 +72,7 @@ namespace Death_is_Dead
             }
             #endregion
 
-            
+          
         }
 
         public void Draw(SpriteBatch sb)
