@@ -23,7 +23,7 @@ namespace Death_is_Dead
 
         public GameMain()
         {
-            player = new Player(new Vector2(350, 0), Ressources.Player,100);
+            player = new Player(new Vector2(350, 0), Ressources.Player);
            
             
             
@@ -36,6 +36,7 @@ namespace Death_is_Dead
         //Update & Draw
         public void Update()
         {
+            player.update1(rect);
             player.Update(Keyboard.GetState(), rect);
             for (int i = 0; i < player.Tirs.Length; i++)
             {

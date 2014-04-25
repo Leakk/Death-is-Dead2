@@ -27,7 +27,7 @@ namespace Death_is_Dead
             this.player = player;
             //this.is_collided1 = false;
             this.position1 = player.position;
-            position1.Y = player.Position.Y+25;
+            position1.Y = player.position.Y+25;
             this.Smoke = Ressources.smoke;
         }
         public void Update()

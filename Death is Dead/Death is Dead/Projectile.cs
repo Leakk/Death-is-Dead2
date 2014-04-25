@@ -21,7 +21,7 @@ namespace Death_is_Dead
         public Projectile(int size, int speed, Player tireur, bool hasFliped)
         {
             this.size = size;
-            if (tireur.HasFliped)
+            if (tireur.hasFliped)
             {
                 this.velocity = new Vector2(-speed, 0);
                 this.texture = Ressources.TirFlip;

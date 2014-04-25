@@ -12,20 +12,11 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Death_is_Dead
 {
-    class Player
+    class Player:Entité
     {
 
         //Fields
-        public Vector2 position;
-        private Vector2 velocity;
-        private Physics_Engine physics;
-        private Texture2D texture;
-        private bool hasJumped;
-        private bool hasFliped;
-        private Collision HitboxB;
-        private Collision HitboxH;
-        private Collision HitboxG;
-        private Collision HitboxD;
+
         private Projectile[] tirs;
         private smoke[] smoke1;
         float position_Y_texture;
@@ -36,38 +27,20 @@ namespace Death_is_Dead
 
         //Constructors
 
-        public Player(Vector2 position, Texture2D texture, int life)
+        public Player(Vector2 position, Texture2D texture)
+            :base(position,texture,100,true)
         {
-            this.HitboxH = new Collision(new Rectangle(Convert.ToInt32(position.X), Convert.ToInt32(position.Y), texture.Width, 3));
-            this.HitboxB = new Collision(new Rectangle(Convert.ToInt32(position.X), Convert.ToInt32(position.Y) + texture.Height - 3, texture.Width, 3));
-            this.HitboxG = new Collision(new Rectangle(Convert.ToInt32(position.X), Convert.ToInt32(position.Y), 3, texture.Height));
-            this.HitboxD = new Collision(new Rectangle(Convert.ToInt32(position.X) + texture.Width - 3, Convert.ToInt32(position.Y), 3, texture.Height));
+            
             this.position = position;
-            physics = new Physics_Engine(0.20f, 50);
-            this.texture = texture;
-            this.hasJumped = false;
-            this.hasFliped = false;
             tirs = new Projectile[10];
             smoke1 = new smoke[20];
             position_Y_texture = Convert.ToInt32(position.Y);
-            this.life = life;
             Life1 = new Life();
         }
 
         //Get & Set
 
-        public Vector2 Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
 
-
-        public Vector2 Velocity
-        {
-            get { return velocity; }
-            set { velocity = value; }
-        }
 
         public Projectile[] Tirs
         {
@@ -80,12 +53,6 @@ namespace Death_is_Dead
             set { smoke1 = value; }
         }
 
-        public bool HasFliped
-        {
-            get { return hasFliped; }
-            set { hasFliped = value; }
-        }
-
         //Methods
 
 
@@ -96,40 +63,6 @@ namespace Death_is_Dead
         int k = 5;
         public void Update(KeyboardState keyboard, Rectangle[] rect)
         {
-            this.position += this.velocity;
-            Collision next_h = new Collision(new Rectangle(HitboxH.Rectangle.X + 7, HitboxH.Rectangle.Y + Convert.ToInt32(velocity.Y) - 2, HitboxH.Rectangle.Width - 14, HitboxH.Rectangle.Height));
-            if (next_h.is_coll(rect))
-                velocity.Y = 2;
-            Rectangle recta = new Rectangle(0, 800, 100000, 10);
-            Collision next = new Collision(new Rectangle(Convert.ToInt32(this.position.X) + 7, Convert.ToInt32(this.position.Y + 2) + texture.Height, texture.Width - 14, 3));
-            if (next.is_coll(rect) == false)
-            {
-
-                HitboxH = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y) - 2, texture.Width, 3));
-                HitboxB = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y) + texture.Height - 3, texture.Width, 3));
-                HitboxG = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y), 3, texture.Height));
-                HitboxD = new Collision(new Rectangle(Convert.ToInt32(this.position.X) + texture.Width, Convert.ToInt32(this.position.Y), 3, texture.Height));
-                this.velocity = physics.apply_gravity(this.velocity);
-                hasJumped = false;
-                // if ((position.Y + texture.Height >= recta.Y-20) && (position.X >= recta.X) && (position.X <= recta.X + recta.Width))
-                //     velocity.Y += -3f;
-
-            }
-            else
-            {
-                recta = next.rect_coll(rect);
-                HitboxH = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y), texture.Width, 3));
-                HitboxB = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y) + texture.Height, texture.Width, 3));
-                HitboxG = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y), 3, texture.Height));
-                HitboxD = new Collision(new Rectangle(Convert.ToInt32(this.position.X) + texture.Width, Convert.ToInt32(this.position.Y), 3, texture.Height));
-                position.Y = recta.Y - texture.Height;
-                hasJumped = true;
-                velocity.Y = 0f;
-                //if ((position.Y + texture.Height >= recta.Y - 20) && (position.X >= recta.X) && (position.X <= recta.X + recta.Width))
-                //    velocity.Y += -0.3f;
-
-
-            }
 
             if (k < 80)
             {
