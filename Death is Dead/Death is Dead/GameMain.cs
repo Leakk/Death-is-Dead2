@@ -14,8 +14,9 @@ namespace Death_is_Dead
         //Fields
        
         private Player player;
-       
-        static Rectangle[] rect = new Rectangle[5] { new Rectangle(300, 350, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(0, 550,1230, Ressources.sol.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(600, 800, Ressources.plateforme.Width, Ressources.plateforme.Height) };
+        
+
+        static Rectangle[] rect = new Rectangle[5] { new Rectangle(300, 350, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(0, 550, 10000, Ressources.sol.Height), new Rectangle(800, 500, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(2000, 500, Ressources.plateforme.Width, Ressources.plateforme.Height), new Rectangle(2500, 300, Ressources.plateforme.Width, Ressources.plateforme.Height) };
 
         Map map = new Map(rect);
 
@@ -23,7 +24,7 @@ namespace Death_is_Dead
 
         public GameMain()
         {
-            player = new Player(new Vector2(350, 0), Ressources.Player);
+            player = new Player(new Vector2(350, 0), Ressources.Player,100);
            
             
             
@@ -72,14 +73,13 @@ namespace Death_is_Dead
             }
             #endregion
 
-            
+          
         }
 
         public void Draw(SpriteBatch sb)
         {
 
             map.Draw(sb);
-            
             //sb.Draw(Ressources.plateforme, rect[0], Color.Red);
             player.Draw(sb);
           

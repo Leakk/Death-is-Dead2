@@ -32,6 +32,7 @@ namespace Death_is_Dead
         }
         public void Update()
         {
+            this.position1.X -= 1;
             this.position1 += this.velocity1;
           //  this.size1 += 10;
             Alpha = Alpha - 2;

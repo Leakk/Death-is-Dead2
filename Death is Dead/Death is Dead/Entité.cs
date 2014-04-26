@@ -27,7 +27,7 @@ namespace Death_is_Dead
         bool joueur;
 
 
-        public Entité(Vector2 position, Texture2D texture, int life,bool pla)
+        public Entité(Vector2 position, Texture2D texture, int life, bool pla)
         {
             this.position = position;
             physics = new Physics_Engine(0.20f, 50);
@@ -41,7 +41,7 @@ namespace Death_is_Dead
             joueur = pla;
         }
 
-        public void update1( Rectangle[] rect)
+        public void update1(Rectangle[] rect)
         {
             this.position += this.velocity;
             Collision next_h = new Collision(new Rectangle(HitboxH.Rectangle.X + 7, HitboxH.Rectangle.Y + Convert.ToInt32(velocity.Y) - 2, HitboxH.Rectangle.Width - 14, HitboxH.Rectangle.Height));
@@ -54,8 +54,8 @@ namespace Death_is_Dead
 
                 HitboxH = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y) - 2, texture.Width, 3));
                 HitboxB = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y) + texture.Height - 3, texture.Width, 3));
-                   HitboxG = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y), 3, texture.Height));
-                   HitboxD = new Collision(new Rectangle(Convert.ToInt32(this.position.X) + texture.Width, Convert.ToInt32(this.position.Y), 3, texture.Height));
+                HitboxG = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y), 3, texture.Height));
+                HitboxD = new Collision(new Rectangle(Convert.ToInt32(this.position.X) + texture.Width, Convert.ToInt32(this.position.Y), 3, texture.Height));
                 this.velocity = physics.apply_gravity(this.velocity);
                 hasJumped = false;
 
@@ -71,10 +71,13 @@ namespace Death_is_Dead
                 hasJumped = true;
                 velocity.Y = 0f;
 
-                if (joueur)
-                { }
+                
 
 
+            }
+            if (HitboxD.is_coll(rect))
+            {
+                position.X = HitboxD.rect_coll(rect).X - texture.Width;
             }
 
         }

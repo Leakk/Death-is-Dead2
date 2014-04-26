@@ -15,12 +15,13 @@ namespace Death_is_Dead
         Vector2 position;
         Rectangle rectangle;
 
-        Color colour = new Color(255, 0, 0, 255);
+        Color colour1;
 
         public Vector2 size;
 
-        public cButton(Texture2D newTexture, GraphicsDevice graphics)
+        public cButton(Texture2D newTexture,Color colour, GraphicsDevice graphics)
         {
+            this.colour1 = colour;
             texture = newTexture;
             /* ScreenW =800, ScreenH=600
                ImgW=100,ImgH=20 */
@@ -51,11 +52,11 @@ namespace Death_is_Dead
                 }
                 for_sound2 = false;
 
-                colour.G = 255;
-                colour.B = 255;
-                if (colour.A == 255) down = false;
-                if (colour.A == 0) down = true;
-                if (down) colour.A += 3; else colour.A -= 3;
+                colour1.G = 255;
+                colour1.B = 255;
+                if (colour1.A == 255) down = false;
+                if (colour1.A == 0) down = true;
+                if (down) colour1.A += 3; else colour1.A -= 3;
                 if (mouse.LeftButton == ButtonState.Pressed)
                 {
                     isClicked = true;
@@ -70,14 +71,14 @@ namespace Death_is_Dead
             }
             else
             {
-                colour.G = 0;
-                colour.B = 0;
+                colour1.G = 0;
+                colour1.B = 0;
                 for_sound = false;
                 for_sound2 = true;
                 isClicked = false;
-                if (colour.A < 255)
+                if (colour1.A < 255)
                 {
-                    colour.A += 3; 
+                    colour1.A += 3; 
                 }
 
             }
@@ -93,7 +94,7 @@ namespace Death_is_Dead
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, rectangle, colour);
+            spriteBatch.Draw(texture, rectangle, colour1);
         }
     }
 }

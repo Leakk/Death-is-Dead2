@@ -24,7 +24,7 @@ namespace Death_is_Dead
         {
             for (int i = 0; i < list.Length; i++)
             {
-                list[i].X = list[i].X - 1;
+                list[i].X =list[i].X-1;
             }
         }
     }

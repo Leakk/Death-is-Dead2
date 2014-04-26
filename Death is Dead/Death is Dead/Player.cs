@@ -16,7 +16,6 @@ namespace Death_is_Dead
     {
 
         //Fields
-
         private Projectile[] tirs;
         private smoke[] smoke1;
         float position_Y_texture;
@@ -27,20 +26,17 @@ namespace Death_is_Dead
 
         //Constructors
 
-        public Player(Vector2 position, Texture2D texture)
+        public Player(Vector2 position, Texture2D texture, int life)
             :base(position,texture,100,true)
         {
-            
-            this.position = position;
             tirs = new Projectile[10];
             smoke1 = new smoke[20];
             position_Y_texture = Convert.ToInt32(position.Y);
+            this.life = life;
             Life1 = new Life();
         }
 
         //Get & Set
-
-
 
         public Projectile[] Tirs
         {
@@ -53,6 +49,7 @@ namespace Death_is_Dead
             set { smoke1 = value; }
         }
 
+
         //Methods
 
 
@@ -63,7 +60,6 @@ namespace Death_is_Dead
         int k = 5;
         public void Update(KeyboardState keyboard, Rectangle[] rect)
         {
-
             if (k < 80)
             {
                 if (k < 40)

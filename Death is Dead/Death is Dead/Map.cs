@@ -29,7 +29,7 @@ namespace Death_is_Dead
         public void Draw(SpriteBatch sb)
         {
 
-            sb.Draw(Ressources.fond, new Rectangle(0, 0, 800, 600), Color.White);
+            sb.Draw(Ressources.fond, new Rectangle(0,0, 800,600), Color.White);
             foreach (Rectangle item in liste.list)
             {
                 sb.Draw(Ressources.plateforme, new Vector2(item.X, item.Y), Color.White);
@@ -37,4 +37,3 @@ namespace Death_is_Dead
         }
     }
 }
-
