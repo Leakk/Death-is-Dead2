@@ -113,6 +113,7 @@
     <Compile Include="GameMain.cs" />
     <Compile Include="Life.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="obstacle.cs" />
     <Compile Include="Physics_Engine.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Projectile.cs" />

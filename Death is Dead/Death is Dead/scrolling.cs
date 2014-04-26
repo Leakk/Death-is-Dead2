@@ -13,9 +13,9 @@ namespace Death_is_Dead
 {
     class scrolling
     {
-        public Rectangle[] list;
+        public obstacle[] list;
 
-        public scrolling(Rectangle[] rec)
+        public scrolling(obstacle[] rec)
         {
             list = rec;
         }
@@ -24,7 +24,7 @@ namespace Death_is_Dead
         {
             for (int i = 0; i < list.Length; i++)
             {
-                list[i].X =list[i].X-1;
+                list[i].rectangle.X =list[i].rectangle.X-1;
             }
         }
     }

@@ -17,7 +17,7 @@ namespace Death_is_Dead
 
         public scrolling liste;
 
-        public Map(Rectangle[] liste)
+        public Map(obstacle[] liste)
         {
             this.liste = new scrolling(liste);
         }
@@ -30,9 +30,9 @@ namespace Death_is_Dead
         {
 
             sb.Draw(Ressources.fond, new Rectangle(0,0, 800,600), Color.White);
-            foreach (Rectangle item in liste.list)
+            foreach (obstacle item in liste.list)
             {
-                sb.Draw(Ressources.plateforme, new Vector2(item.X, item.Y), Color.White);
+                sb.Draw(item.texture, new Vector2(item.rectangle.X, item.rectangle.Y), Color.White);
             }
         }
     }

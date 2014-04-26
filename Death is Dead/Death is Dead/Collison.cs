@@ -27,21 +27,21 @@ namespace Death_is_Dead
         }
 
 
-        public bool is_coll( Rectangle[] liste)
+        public bool is_coll( obstacle[] liste)
         {
-            foreach (Rectangle item in liste)
+            foreach (obstacle item in liste)
             {
-                if (rectangle.Intersects(item) == true)
+                if (rectangle.Intersects(item.rectangle) == true)
                     return true;
             }
             return false;
         }
-        public Rectangle rect_coll( Rectangle[] liste)
+        public Rectangle rect_coll( obstacle[] liste)
         {
-            foreach (Rectangle item in liste)
+            foreach (obstacle item in liste)
             {
-                if (rectangle.Intersects(item) == true)
-                    return item;
+                if (rectangle.Intersects(item.rectangle) == true)
+                    return item.rectangle;
             }
             return new Rectangle(0,0,0,0);
         }

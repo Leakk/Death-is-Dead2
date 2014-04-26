@@ -58,7 +58,7 @@ namespace Death_is_Dead
         int iiiiiiiiiiii = 0;
         int aaaaaaaaaa = 0;
         int k = 5;
-        public void Update(KeyboardState keyboard, Rectangle[] rect)
+        public void Update(KeyboardState keyboard, obstacle[] rect)
         {
             if (k < 80)
             {
@@ -177,10 +177,10 @@ namespace Death_is_Dead
                 sb.Draw(Ressources.PlayerFlip, new Vector2(position.X, position_Y_texture), Color.White);
             else
                 sb.Draw(Ressources.Player, new Vector2(position.X, position_Y_texture), Color.White);
-            //sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);
-            //sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);
-            //sb.Draw(Ressources.plateforme, HitboxG.Rectangle, Color.Red);
-            //sb.Draw(Ressources.plateforme, HitboxH.Rectangle, Color.Red);
+            sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);
+            sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);
+            sb.Draw(Ressources.plateforme, HitboxG.Rectangle, Color.Red);
+            sb.Draw(Ressources.plateforme, HitboxH.Rectangle, Color.Red);
         }
 
     }
