@@ -31,6 +31,7 @@ namespace Death_is_Dead
         public Entity(Vector2 position, Texture2D texture, int life, bool play)
         {
             this.position = position;
+            this.velocity = Vector2.Zero;
             physics = new Physics_Engine(0.20f, 50);
             this.texture = texture;
             this.hasJumped = false;
@@ -42,7 +43,7 @@ namespace Death_is_Dead
             joueur = play;
         }
 
-        public void update1(Obstacle[] rect)
+        public void Update(Obstacle[] rect)
         {
             position.X--;
             this.position += this.velocity;

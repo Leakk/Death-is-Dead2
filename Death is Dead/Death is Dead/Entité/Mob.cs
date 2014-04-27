@@ -28,5 +28,10 @@ namespace Death_is_Dead
             this.life = life;
             Life = new Life();
         }
+
+        public void Update(Obstacle[] rect)
+        {
+            base.Update(rect);
+        }
     }
 }

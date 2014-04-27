@@ -110,7 +110,6 @@
     <Compile Include="cButton.cs" />
     <Compile Include="Collison.cs" />
     <Compile Include="Entité\Entity.cs" />
-    <Compile Include="Entité\IA.cs" />
     <Compile Include="Entité\Life.cs" />
     <Compile Include="Map\Map.cs" />
     <Compile Include="Map\Obstacle.cs" />

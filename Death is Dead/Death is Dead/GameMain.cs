@@ -276,7 +276,6 @@ namespace Death_is_Dead
             #endregion
 
             #region /*Update Player*/
-            player.update1(rect);
             player.Update(Keyboard.GetState(), rect);
             for (int i = 0; i < player.Tirs.Length; i++)
             {
@@ -287,6 +286,13 @@ namespace Death_is_Dead
                     else
                         player.Tirs[i].Update();
                 }
+            }
+            #endregion
+
+            #region /*Update Mobs*/
+            foreach (Mob item in mobs)
+            {
+                item.Update(rect);
             }
             #endregion
 
@@ -327,7 +333,7 @@ namespace Death_is_Dead
                     btnExit.Draw(spriteBatch);
                     break;
                 case GameState.Playing:
-                    map.Draw(spriteBatch);
+                    map.Draw(spriteBatch, screenWidth, screenHeight);
                     #region/*Player*/
                     player.Draw(spriteBatch);
 

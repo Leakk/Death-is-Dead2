@@ -24,8 +24,6 @@ namespace Death_is_Dead
         private Life Life;
         public int life;
 
-        //Constructors
-
         public Player(Vector2 position, Texture2D texture, int life)
             : base(position, texture, life, true)
         {
@@ -35,8 +33,6 @@ namespace Death_is_Dead
             this.life = life;
             Life = new Life();
         }
-
-        //Get & Set
 
         public Projectile[] Tirs
         {
@@ -67,7 +63,6 @@ namespace Death_is_Dead
                     position_Y_texture = Convert.ToInt32(position.Y) + (k * 0.25f) - 20;
                     k++;
                 }
-
             }
             else
                 k = 0;
@@ -154,6 +149,7 @@ namespace Death_is_Dead
                 latenceSmoke--;
             #endregion
 
+            base.Update(rect);
         }
 
         public void Draw(SpriteBatch sb)
