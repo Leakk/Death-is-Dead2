@@ -23,6 +23,7 @@ namespace Death_is_Dead
         public static SoundEffect button_sound;
         public static void Load(ContentManager content)
         {
+            #region /*Sprite*/
             Player = content.Load<Texture2D>("sprite/player");
             PlayerFlip = content.Load<Texture2D>("sprite/playerFlip");
             Tir = content.Load<Texture2D>("sprite/tir");
@@ -30,11 +31,14 @@ namespace Death_is_Dead
             fond = content.Load<Texture2D>("sprite/cool");
             plateforme = content.Load<Texture2D>("sprite/plate");
             sol = content.Load<Texture2D>("sprite/sol");
-            tir_son = content.Load<SoundEffect>("Sound_effects/tir_son");
             smoke = content.Load<Texture2D>("sprite/smoke");
-            button_sound = content.Load<SoundEffect>("Sound_effects/Menu/button_sound");
             lifebar = content.Load<Texture2D>("sprite/Lifebar");
-           
+            #endregion
+
+            #region /*Sound*/
+            tir_son = content.Load<SoundEffect>("Sound_effects/tir_son");
+            button_sound = content.Load<SoundEffect>("Sound_effects/Menu/button_sound");
+            #endregion
         }
     }
 }

@@ -8,12 +8,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Death_is_Dead
 {
-    class obstacle
+    class Obstacle
     {
         public Rectangle rectangle;
         public Texture2D texture;
 
-        public obstacle(Rectangle rect, Texture2D text)
+        public Obstacle(Rectangle rect, Texture2D text)
         {
             rectangle = rect;
             texture = text;

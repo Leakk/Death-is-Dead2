@@ -9,9 +9,10 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+
 namespace Death_is_Dead
 {
-    class Entité
+    class Entity
     {
         public Vector2 position;
         public Vector2 velocity;
@@ -27,7 +28,7 @@ namespace Death_is_Dead
         bool joueur;
 
 
-        public Entité(Vector2 position, Texture2D texture, int life, bool pla)
+        public Entity(Vector2 position, Texture2D texture, int life, bool play)
         {
             this.position = position;
             physics = new Physics_Engine(0.20f, 50);
@@ -35,21 +36,25 @@ namespace Death_is_Dead
             this.hasJumped = false;
             this.hasFliped = false;
             this.HitboxG = new Collision(new Rectangle(Convert.ToInt32(position.X), Convert.ToInt32(position.Y), 3, texture.Height));
-            this.HitboxD = new Collision(new Rectangle(Convert.ToInt32(position.X) + texture.Width - 3, Convert.ToInt32(position.Y), 3, texture.Height-3));
+            this.HitboxD = new Collision(new Rectangle(Convert.ToInt32(position.X) + texture.Width - 3, Convert.ToInt32(position.Y), 3, texture.Height - 3));
             this.HitboxH = new Collision(new Rectangle(Convert.ToInt32(position.X), Convert.ToInt32(position.Y), texture.Width, 3));
             this.HitboxB = new Collision(new Rectangle(Convert.ToInt32(position.X), Convert.ToInt32(position.Y) + texture.Height - 3, texture.Width, 10));
-            joueur = pla;
+            joueur = play;
         }
 
-        public void update1(obstacle[] rect)
+        public void update1(Obstacle[] rect)
         {
             position.X--;
             this.position += this.velocity;
+
             Collision next_h = new Collision(new Rectangle(HitboxH.Rectangle.X + 7, HitboxH.Rectangle.Y + Convert.ToInt32(velocity.Y) - 2, HitboxH.Rectangle.Width - 14, HitboxH.Rectangle.Height));
+
             if (next_h.is_coll(rect))
                 velocity.Y = 2;
+
             Rectangle recta = new Rectangle(0, 800, 100000, 10);
             Collision next = new Collision(new Rectangle(Convert.ToInt32(this.position.X) + 7, Convert.ToInt32(this.position.Y + 2) + texture.Height, texture.Width - 14, 3));
+
             if (next.is_coll(rect) == false)
             {
 
@@ -71,18 +76,10 @@ namespace Death_is_Dead
                 position.Y = recta.Y - texture.Height;
                 hasJumped = true;
                 velocity.Y = 0f;
-
-                
-
-
             }
+
             if (HitboxD.is_coll(rect))
-            {
                 position.X = HitboxD.rect_coll(rect).X - texture.Width;
-            }
-
         }
-
-
     }
 }

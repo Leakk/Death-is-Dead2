@@ -23,6 +23,7 @@ namespace Death_is_Dead
         {
             this.colour1 = colour;
             texture = newTexture;
+
             /* ScreenW =800, ScreenH=600
                ImgW=100,ImgH=20 */
 
@@ -36,38 +37,32 @@ namespace Death_is_Dead
         public bool isClicked;
         bool for_sound = false;
         bool for_sound2 = true;
+
         public void Udapte(MouseState mouse)
         {
             rectangle = new Rectangle((int)position.X, (int)position.Y, (int)size.X, (int)size.Y);
-
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
+
             if (mouseRectangle.Intersects(rectangle))
             {
                 for_sound = true;
 
                 if ((for_sound == true) & (for_sound2 == true))
-                {
-
                     Ressources.button_sound.Play();
-                }
+
                 for_sound2 = false;
 
                 colour1.G = 255;
                 colour1.B = 255;
+
                 if (colour1.A == 255) down = false;
                 if (colour1.A == 0) down = true;
                 if (down) colour1.A += 3; else colour1.A -= 3;
+
                 if (mouse.LeftButton == ButtonState.Pressed)
-                {
                     isClicked = true;
-
-                }
                 else
-                {
-
                     isClicked = false;
-                }
-
             }
             else
             {
@@ -76,15 +71,10 @@ namespace Death_is_Dead
                 for_sound = false;
                 for_sound2 = true;
                 isClicked = false;
+
                 if (colour1.A < 255)
-                {
                     colour1.A += 3; 
-                }
-
             }
-            
-
-           
         }
 
         public void setPosition(Vector2 newPosition)

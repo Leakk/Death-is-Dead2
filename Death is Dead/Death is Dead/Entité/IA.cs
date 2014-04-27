@@ -9,23 +9,26 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+
 namespace Death_is_Dead
 {
-    class scrolling
+    class IA
     {
-        public obstacle[] list;
+        private Entity ent;
 
-        public scrolling(obstacle[] rec)
+        public IA(Entity ent)
         {
-            list = rec;
+            this.ent = ent;
         }
 
         public void Update(GameTime gameTime)
         {
-            for (int i = 0; i < list.Length; i++)
-            {
-                list[i].rectangle.X =list[i].rectangle.X-1;
-            }
+
+        }
+
+        public void Draw(SpriteBatch sb)
+        {
+
         }
     }
 }

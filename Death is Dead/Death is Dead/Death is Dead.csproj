@@ -109,20 +109,20 @@
   <ItemGroup>
     <Compile Include="cButton.cs" />
     <Compile Include="Collison.cs" />
-    <Compile Include="Entité.cs" />
-    <Compile Include="GameMain.cs" />
-    <Compile Include="Life.cs" />
-    <Compile Include="Map.cs" />
-    <Compile Include="obstacle.cs" />
-    <Compile Include="Physics_Engine.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="Projectile.cs" />
+    <Compile Include="Entité\Entity.cs" />
+    <Compile Include="Entité\IA.cs" />
+    <Compile Include="Entité\Life.cs" />
+    <Compile Include="Map\Map.cs" />
+    <Compile Include="Map\Obstacle.cs" />
+    <Compile Include="Map\Physics_Engine.cs" />
+    <Compile Include="Entité\Player.cs" />
+    <Compile Include="Entité\Projectile.cs" />
+    <Compile Include="Entité\Mob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="GameMain.cs" />
     <Compile Include="Ressources.cs" />
-    <Compile Include="scrolling.cs" />
-    <Compile Include="smoke.cs" />
+    <Compile Include="Smoke.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

@@ -21,30 +21,30 @@ namespace Death_is_Dead
             get { return rectangle; }
             set { rectangle = value; }
         }
+
         public Collision(Rectangle rect)
         {
             this.rectangle = rect;
         }
 
-
-        public bool is_coll( obstacle[] liste)
+        public bool is_coll( Obstacle[] liste)
         {
-            foreach (obstacle item in liste)
+            foreach (Obstacle item in liste)
             {
                 if (rectangle.Intersects(item.rectangle) == true)
                     return true;
             }
             return false;
         }
-        public Rectangle rect_coll( obstacle[] liste)
+
+        public Rectangle rect_coll( Obstacle[] liste)
         {
-            foreach (obstacle item in liste)
+            foreach (Obstacle item in liste)
             {
                 if (rectangle.Intersects(item.rectangle) == true)
                     return item.rectangle;
             }
             return new Rectangle(0,0,0,0);
         }
-
     }
 }

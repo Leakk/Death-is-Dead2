@@ -12,28 +12,28 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Death_is_Dead
 {
-    class Player:Entité
+    class Player : Entity
     {
-
-        //Fields
         private Projectile[] tirs;
-        private smoke[] smoke1;
         float position_Y_texture;
+
         Random rnd = new Random();
+        private Smoke[] smoke;
         float badrandom;
-        private Life Life1;
+
+        private Life Life;
         public int life;
 
         //Constructors
 
         public Player(Vector2 position, Texture2D texture, int life)
-            :base(position,texture,100,true)
+            : base(position, texture, life, true)
         {
             tirs = new Projectile[10];
-            smoke1 = new smoke[20];
+            smoke = new Smoke[20];
             position_Y_texture = Convert.ToInt32(position.Y);
             this.life = life;
-            Life1 = new Life();
+            Life = new Life();
         }
 
         //Get & Set
@@ -43,22 +43,17 @@ namespace Death_is_Dead
             get { return tirs; }
             set { tirs = value; }
         }
-        public smoke[] Smoke
+        public Smoke[] Smoke
         {
-            get { return smoke1; }
-            set { smoke1 = value; }
+            get { return smoke; }
+            set { smoke = value; }
         }
 
-
-        //Methods
-
-
-
-        //Update & Draw
-        int iiiiiiiiiiii = 0;
-        int aaaaaaaaaa = 0;
+        int latenceTir = 0;
+        int latenceSmoke = 0;
         int k = 5;
-        public void Update(KeyboardState keyboard, obstacle[] rect)
+
+        public void Update(KeyboardState keyboard, Obstacle[] rect)
         {
             if (k < 80)
             {
@@ -100,24 +95,19 @@ namespace Death_is_Dead
                 if (HitboxG.is_coll(rect) == false)
                     velocity.X = -8;
                 else
-                {
                     velocity.X = 0;
-                }
 
                 hasFliped = true;
             }
             else
-            {
-
                 velocity.X = velocity.X / 1.15f;
-            }
 
             if (position.X < 0)
                 position.X = 0;
 
-            if (keyboard.IsKeyDown(Keys.P) && iiiiiiiiiiii == 0)
+            if (keyboard.IsKeyDown(Keys.P) && latenceTir == 0)
             {
-                iiiiiiiiiiii = 20;
+                latenceTir = 20;
                 for (int i = 0; i < tirs.Length; i++)
                 {
                     if (tirs[i] == null)
@@ -128,25 +118,24 @@ namespace Death_is_Dead
                     }
                 }
             }
-            if (iiiiiiiiiiii > 0)
-                iiiiiiiiiiii--;
+            if (latenceTir > 0)
+                latenceTir--;
 
-
-            #region/*smoke*/
-            if ((HitboxB.is_coll(rect)) && aaaaaaaaaa == 0)
+            #region/*Smoke*/
+            if ((HitboxB.is_coll(rect)) && latenceSmoke == 0)
             {
-                aaaaaaaaaa = 5;
-                for (int i = 0; i < smoke1.Length; i++)
+                latenceSmoke = 5;
+                for (int i = 0; i < smoke.Length; i++)
                 {
-                    if (smoke1[i] == null)
+                    if (smoke[i] == null)
                     {
                         if (((HitboxD.is_coll(rect)) | HitboxG.is_coll(rect)))
                         {
-                            smoke1[i] = new smoke(texture.Bounds.X, badrandom, this);
+                            smoke[i] = new Smoke(texture.Bounds.X, badrandom, this);
                         }
                         else
                         {
-                            smoke1[i] = new smoke(texture.Bounds.X, (velocity.X / 6) + badrandom, this);
+                            smoke[i] = new Smoke(texture.Bounds.X, (velocity.X / 6) + badrandom, this);
                         }
                         if (badrandom > 0)
                         {
@@ -154,29 +143,29 @@ namespace Death_is_Dead
                         }
                         else
                         {
-                            badrandom = 0.05f * rnd.Next(4,8);
+                            badrandom = 0.05f * rnd.Next(4, 8);
                         }
 
                         break;
                     }
                 }
             }
-            if (aaaaaaaaaa > 0)
-                aaaaaaaaaa--;
+            if (latenceSmoke > 0)
+                latenceSmoke--;
             #endregion
 
         }
 
-
-
         public void Draw(SpriteBatch sb)
         {
-            Life1.Udapte(life);
-            Life1.Draw(sb,10,10);
+            Life.Udapte(life);
+            Life.Draw(sb, 10, 10);
+
             if (hasFliped)
                 sb.Draw(Ressources.PlayerFlip, new Vector2(position.X, position_Y_texture), Color.White);
             else
                 sb.Draw(Ressources.Player, new Vector2(position.X, position_Y_texture), Color.White);
+
             sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);
             sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);
             sb.Draw(Ressources.plateforme, HitboxG.Rectangle, Color.Red);
