@@ -155,7 +155,7 @@ namespace Death_is_Dead
 
         public void Draw(SpriteBatch sb)
         {
-            Life.Draw(sb, 10, 10);
+            Life.Draw(sb, 10, 30,1,15);
 
             if (hasFliped)
                 sb.Draw(Ressources.PlayerFlip, new Vector2(position.X, position_Y_texture), Color.White);

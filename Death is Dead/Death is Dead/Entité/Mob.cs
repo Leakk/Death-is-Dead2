@@ -72,7 +72,7 @@ namespace Death_is_Dead
 
         public void Draw(SpriteBatch sb)
         {
-            Life.Draw(sb, (int)position.X, (int)position.Y - 20);
+            Life.Draw(sb, (int)position.X, (int)position.Y - 20,0.5f,5);
 
             if (hasFliped)
                 sb.Draw(Ressources.PlayerFlip, new Vector2(position.X, position.Y), Color.White);

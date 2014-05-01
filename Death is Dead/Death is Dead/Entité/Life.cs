@@ -14,6 +14,7 @@ namespace Death_is_Dead
         Color colour = new Color(0, 0, 0, 255);
         Rectangle rectangleLife;
         private int hp;
+        private float factor;
 
 
         public Life()
@@ -26,12 +27,15 @@ namespace Death_is_Dead
             hp = Life;
             colour.G = (byte)(55 + (2 * Life));
             colour.R = (byte)(255 - (2 * Life));
-        }
 
-        public void Draw(SpriteBatch sb, int x, int y)
+
+        }
+        public void Draw(SpriteBatch sb, int pos_x, int pos_y, float Factor_lenght, int thickness)
         {
-            rectangleLife = new Rectangle(x, y, hp, 15);
+            rectangleLife = new Rectangle(pos_x, pos_y, (int)(Factor_lenght*(float)hp), thickness);
             sb.Draw(texture, rectangleLife, colour);
         }
+
+
     }
 }
