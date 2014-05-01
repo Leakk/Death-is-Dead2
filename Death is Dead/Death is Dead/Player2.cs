@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Death_is_Dead
 {
-    class Player : Entity
+    class Player2:Entity
     {
         public Projectile[] Tirs;
         float position_Y_texture;
@@ -25,7 +25,7 @@ namespace Death_is_Dead
         int latenceSmoke = 0;
         int k = 5;
 
-        public Player(Vector2 position, Texture2D texture, int life)
+        public Player2(Vector2 position, Texture2D texture, int life)
             : base(position, texture, life, true)
         {
             Tirs = new Projectile[10];
@@ -57,7 +57,7 @@ namespace Death_is_Dead
             #endregion
 
             #region /*Saut*/
-            if (keyboard.IsKeyDown(Keys.Space) && hasJumped)
+            if (keyboard.IsKeyDown(Keys.Up) && hasJumped)
             {
                 hasJumped = false;
                 this.velocity.Y = -12f;
@@ -65,7 +65,7 @@ namespace Death_is_Dead
             #endregion
 
             #region /*Deplacement*/
-            if (keyboard.IsKeyDown(Keys.D))
+            if (keyboard.IsKeyDown(Keys.Right))
             {
                 Collision next_b = (new Collision(new Rectangle(HitboxD.Rectangle.X + 8, HitboxD.Rectangle.Y, HitboxD.Rectangle.Width, HitboxD.Rectangle.Height)));
                 if (next_b.is_coll(rect) == false)
@@ -75,7 +75,7 @@ namespace Death_is_Dead
 
                 hasFliped = false;
             }
-            else if (keyboard.IsKeyDown(Keys.Q))
+            else if (keyboard.IsKeyDown(Keys.Left))
             {
                 if (HitboxG.is_coll(rect) == false)
                     velocity.X = -8;
@@ -90,18 +90,16 @@ namespace Death_is_Dead
 
             if (position.X < 0)
                 position.X = 0;
-            if (position.X > 800-texture.Width)
-                position.X = 800-texture.Width;
 
             #region /*Tirs*/
-            if (keyboard.IsKeyDown(Keys.P) && latenceTir == 0)
+            if (keyboard.IsKeyDown(Keys.NumPad5) && latenceTir == 0)
             {
                 latenceTir = 20;
                 for (int i = 0; i < Tirs.Length; i++)
                 {
                     if (Tirs[i] == null)
                     {
-                        Tirs[i] = new Projectile(10, 10, this, hasFliped);
+                        Tirs[i] = new Projectile(texture.Bounds.X, 10, this, hasFliped);
                         Ressources.tir_son.Play();
                         break;
                     }
@@ -147,7 +145,7 @@ namespace Death_is_Dead
             base.Update(rect);
             Life.Udapte(life);
 
-            if (position.X <= 4 && HitboxD.is_coll(rect) || life <= 0 || position.Y>600)
+            if (position.X == 0 && HitboxD.is_coll(rect) || life == 0 || position.Y>600)
                 dead = true;
             else
                 dead = false;

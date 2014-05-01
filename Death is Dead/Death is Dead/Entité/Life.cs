@@ -26,15 +26,12 @@ namespace Death_is_Dead
             hp = Life;
             colour.G = (byte)(55 + (2 * Life));
             colour.R = (byte)(255 - (2 * Life));
-
-
         }
+
         public void Draw(SpriteBatch sb, int x, int y)
         {
             rectangleLife = new Rectangle(x, y, hp, 15);
             sb.Draw(texture, rectangleLife, colour);
         }
-
-
     }
 }

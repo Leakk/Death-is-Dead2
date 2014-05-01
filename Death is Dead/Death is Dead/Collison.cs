@@ -14,7 +14,7 @@ namespace Death_is_Dead
 {
     class Collision
     {
-        Rectangle rectangle;
+        private Rectangle rectangle;
 
         public Rectangle Rectangle
         {
@@ -27,7 +27,7 @@ namespace Death_is_Dead
             this.rectangle = rect;
         }
 
-        public bool is_coll( Obstacle[] liste)
+        public bool is_coll(Obstacle[] liste)
         {
             foreach (Obstacle item in liste)
             {
@@ -36,6 +36,12 @@ namespace Death_is_Dead
             }
             return false;
         }
+
+        public bool is_coll(Rectangle rect)
+        {
+            return rect.Intersects(Rectangle);
+        }
+
 
         public Rectangle rect_coll( Obstacle[] liste)
         {

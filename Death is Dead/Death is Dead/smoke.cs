@@ -14,12 +14,12 @@ namespace Death_is_Dead
         private Vector2 velocity1;
         public Vector2 position1;
         private Texture2D smoke;
-        private Player player;
+        private Entity player;
         public int Alpha = 150;
         public Color colour = new Color(200, 200, 200, 100);
        
 
-        public Smoke(int size, float speed, Player player)
+        public Smoke(int size, float speed, Entity player)
         {
             this.size1 = size;
             this.velocity1 = new Vector2(speed, 0);

@@ -17,31 +17,53 @@ namespace Death_is_Dead
         public Vector2 position;
         public Vector2 velocity;
         public Physics_Engine physics;
+
         public Texture2D texture;
         public bool hasJumped;
         public bool hasFliped;
+
         public Collision HitboxB;
         public Collision HitboxH;
         public Collision HitboxG;
         public Collision HitboxD;
+
         public int life;
-        bool joueur;
+        public Life Life;
+
+        public bool dead ;
+        public Projectile[] Tirs;
 
 
         public Entity(Vector2 position, Texture2D texture, int life, bool play)
         {
+            dead = false;
             this.position = position;
             this.velocity = Vector2.Zero;
             physics = new Physics_Engine(0.20f, 50);
+
             this.texture = texture;
             this.hasJumped = false;
             this.hasFliped = false;
+
             this.HitboxG = new Collision(new Rectangle(Convert.ToInt32(position.X), Convert.ToInt32(position.Y), 3, texture.Height));
             this.HitboxD = new Collision(new Rectangle(Convert.ToInt32(position.X) + texture.Width - 3, Convert.ToInt32(position.Y), 3, texture.Height - 3));
             this.HitboxH = new Collision(new Rectangle(Convert.ToInt32(position.X), Convert.ToInt32(position.Y), texture.Width, 3));
             this.HitboxB = new Collision(new Rectangle(Convert.ToInt32(position.X), Convert.ToInt32(position.Y) + texture.Height - 3, texture.Width, 10));
-            joueur = play;
+
+            Tirs = new Projectile[10];
         }
+
+        public bool isTouched(Projectile tir)
+        {
+            if (tir != null)
+            {
+                Rectangle rectTir = new Rectangle(Convert.ToInt32(tir.position.X), Convert.ToInt32(tir.position.Y), Ressources.Tir.Width, Ressources.Tir.Width);
+                return HitboxG.is_coll(rectTir) || HitboxD.is_coll(rectTir);
+            }
+            return false;
+        }
+
+
 
         public void Update(Obstacle[] rect)
         {
@@ -77,10 +99,10 @@ namespace Death_is_Dead
                 position.Y = recta.Y - texture.Height;
                 hasJumped = true;
                 velocity.Y = 0f;
+
             }
 
-            if (HitboxD.is_coll(rect))
-                position.X = HitboxD.rect_coll(rect).X - texture.Width;
+
         }
     }
 }

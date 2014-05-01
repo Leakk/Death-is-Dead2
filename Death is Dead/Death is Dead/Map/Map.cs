@@ -43,8 +43,8 @@ namespace Death_is_Dead
 
             foreach (Mob item in mobs)
             {
-                if (item.position.X + item.texture.Width > 0 || item.position.X < screenWidth || item.position.Y + item.texture.Height > 0 || item.position.Y < screenHeight)
-                sb.Draw(item.texture, new Vector2(item.position.X, item.position.Y), Color.White);
+                if (!item.dead && (item.position.X + item.texture.Width > 0 || item.position.X < screenWidth || item.position.Y + item.texture.Height > 0 || item.position.Y < screenHeight))
+                    item.Draw(sb);
             }
         }
     }
