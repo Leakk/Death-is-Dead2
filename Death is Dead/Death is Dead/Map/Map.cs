@@ -16,6 +16,8 @@ namespace Death_is_Dead
     {
         public Obstacle[] obs;
         public Mob[] mobs;
+        private Vector2 moving_background = new Vector2(0f, 0f);
+        
 
         public Map(Obstacle[] obs, Mob[] mob)
         {
@@ -33,8 +35,13 @@ namespace Death_is_Dead
 
         public void Draw(SpriteBatch sb, int screenWidth, int screenHeight)
         {
-            sb.Draw(Ressources.fond, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
-
+            sb.Draw(Ressources.fond, moving_background, Color.White);
+          //  sb.Draw(Ressources.fond, new Rectangle((int)moving_background, 0, 800, 600), Color.White);
+            if (moving_background.X <= -1600f)
+            {
+                moving_background.X = 0f;
+            }
+            moving_background.X-=0.25f;
             foreach (Obstacle item in obs)
             {
                 if (item.rectangle.X + item.texture.Width > 0 || item.rectangle.X < screenWidth || item.rectangle.Y + item.texture.Height > 0 || item.rectangle.Y < screenHeight)
