@@ -133,7 +133,7 @@ namespace Death_is_Dead
             btnRes = new cButton(Content.Load<Texture2D>("sprite/Menu/Option/" + lang + "/fullscreen"), colour1, graphics.GraphicsDevice);
             btnLanguage = new cButton(Content.Load<Texture2D>("sprite/Menu/Option/" + lang + "/language"), colour1, graphics.GraphicsDevice);
             btnBack.setPosition(new Vector2(40, 500));
-            btnRes.setPosition(new Vector2(400, 500));
+            btnRes.setPosition(new Vector2(40, 200));
             btnLanguage.setPosition(new Vector2(40, 100));
 
             button_click = (Content.Load<SoundEffect>("Sound_effects/Menu/button_sound_click"));
