@@ -39,6 +39,7 @@ namespace Death_is_Dead
         private Color colour1 = new Color(255, 0, 0, 255);
         // private Color btnColorPause = new Color(255, 0, 0, 255);
         public KeyboardState keyboardState;
+        public string lang = "";
 
         #region  /*Pour les boutons*/
         bool playOnce = false;
@@ -111,7 +112,7 @@ namespace Death_is_Dead
             IsMouseVisible = true;
 
             #region /*Pour le menu*/
-            string lang = "";
+            
 
             if (Currentlanguage == language.english) lang = "eng";
             if (Currentlanguage == language.french) lang = "fre";
@@ -517,7 +518,7 @@ namespace Death_is_Dead
                     map.Draw(spriteBatch, screenWidth, screenHeight);
                     #region/*Player2*/
                     player2.Draw(spriteBatch);
-
+                    spriteBatch.Draw(Content.Load<Texture2D>("sprite/hud_multiplayer/" + lang + "/player_2"), new Rectangle((int)(player2.position.X) + 10, (int)(player2.position.Y) - 25, 40, 22), Color.White);
                     foreach (Projectile tir in player2.Tirs)
                     {
                         if (tir != null)
@@ -533,7 +534,7 @@ namespace Death_is_Dead
                     #endregion
                     #region/*Player*/
                     player.Draw(spriteBatch);
-
+                    spriteBatch.Draw(Content.Load<Texture2D>("sprite/hud_multiplayer/" + lang + "/player_1"), new Rectangle((int)(player.position.X) + 10, (int)(player.position.Y) - 25, 40, 22), Color.White);
                     foreach (Projectile tir in player.Tirs)
                     {
                         if (tir != null)

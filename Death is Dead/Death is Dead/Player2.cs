@@ -20,6 +20,7 @@ namespace Death_is_Dead
         Random rnd = new Random();
         public Smoke[] Smoke;
         float badrandom;
+        private Color player2_color = new Color(255, 255,100, 255);
 
         int latenceTir = 0;
         int latenceSmoke = 0;
@@ -158,9 +159,9 @@ namespace Death_is_Dead
             Life.Draw(sb, 10, 30,1,15);
 
             if (hasFliped)
-                sb.Draw(Ressources.PlayerFlip, new Vector2(position.X, position_Y_texture), Color.White);
+                sb.Draw(Ressources.PlayerFlip, new Vector2(position.X, position_Y_texture), player2_color);
             else
-                sb.Draw(Ressources.Player, new Vector2(position.X, position_Y_texture), Color.White);
+                sb.Draw(Ressources.Player, new Vector2(position.X, position_Y_texture), player2_color);
 
             sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);
             sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);

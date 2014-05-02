@@ -144,6 +144,7 @@ namespace Death_is_Dead
                 latenceSmoke--;
             #endregion
 
+            
             base.Update(rect);
             Life.Udapte(life);
 
