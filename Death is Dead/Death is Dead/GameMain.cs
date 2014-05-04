@@ -36,6 +36,8 @@ namespace Death_is_Dead
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SoundEffect button_click;
+        Song Menu_song ;
+        Song Game_song_lvl1;
         private Color colour1 = new Color(255, 0, 0, 255);
         // private Color btnColorPause = new Color(255, 0, 0, 255);
         public KeyboardState keyboardState;
@@ -59,6 +61,7 @@ namespace Death_is_Dead
         private static Mob[] mobs;
         private Map map;
         private Player2 player2;
+        private bool songisplayed = false;
 
         /* attention si on change la résolution in faudra peut etre modifier dans la classe cButton le public cButton  :
          * dans le size  le "graphics.Viewport.Width / 8, graphics.Viewport.Height / 30" la valeur des 2 divisions est a changer */
@@ -137,6 +140,8 @@ namespace Death_is_Dead
             btnLanguage.setPosition(new Vector2(40, 100));
 
             button_click = (Content.Load<SoundEffect>("Sound_effects/Menu/button_sound_click"));
+            Menu_song = (Content.Load<Song>("Sound_effects/Menu/Menu_music")); //Ressources.Menu_song;
+            Game_song_lvl1 = (Content.Load<Song>("Sound_effects/Game/Game_music")); //Ressources.Game_song_lvl1;
             #endregion
 
             #region/*Pour le menu pause*/
@@ -185,6 +190,12 @@ namespace Death_is_Dead
             switch (CurrentGameState)
             {
                 case GameState.MainMenu:
+                  //  MediaPlayer.Stop();
+                    if (!songisplayed)
+                    {
+                        MediaPlayer.Play(Menu_song);
+                        songisplayed = true;
+                    }
                     btnPlay.Udapte(mouse);
                     btnMultiplayer.Udapte(mouse);
                     btnOption.Udapte(mouse);
@@ -196,6 +207,9 @@ namespace Death_is_Dead
                         mobs = new Mob[1] { new Mob(new Vector2(350, 0), Ressources.Player, 100) };
                         map = new Map(rect, mobs);
                         player = new Player(new Vector2(350, 0), Ressources.Player, 100);
+                        MediaPlayer.Stop();
+                        MediaPlayer.Play(Game_song_lvl1);
+                        songisplayed = false;
                         CurrentGameState = GameState.Playing;
                     }
                     if (btnMultiplayer.isClicked)
@@ -206,6 +220,9 @@ namespace Death_is_Dead
                         map = new Map(rect, mobs);
                         player = new Player(new Vector2(350, 0), Ressources.Player, 100);
                         player2 = new Player2(new Vector2(350, 0), Ressources.Player, 100);
+                        MediaPlayer.Stop();
+                        MediaPlayer.Play(Game_song_lvl1);
+                        songisplayed = false;
                         CurrentGameState = GameState.Playing_2P;
                     }
                     if (btnOption.isClicked)
