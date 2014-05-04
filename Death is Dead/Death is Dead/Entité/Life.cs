@@ -24,9 +24,18 @@ namespace Death_is_Dead
 
         public void Udapte(int Life)
         {
-            hp = Life;
-            colour.G = (byte)(55 + (2 * Life));
-            colour.R = (byte)(255 - (2 * Life));
+            if (Life <= 100)
+            {
+                hp = Life;
+                colour.G = (byte)(55 + (2 * Life));
+                colour.R = (byte)(255 - (2 * Life));
+            }
+            else
+            {
+                hp = Life;
+                colour.G = (byte)(55 + (2 * 100));
+                colour.R = (byte)(255 - (2 * 100));
+            }
 
 
         }
