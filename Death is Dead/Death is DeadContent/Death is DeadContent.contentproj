@@ -226,11 +226,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="sprite\player.png">
-      <Name>player</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="sprite\tir.png">
       <Name>tir</Name>
       <Importer>TextureImporter</Importer>
@@ -252,11 +247,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="sprite\playerFlip.png">
-      <Name>playerFlip</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="sprite\tirFlip.png">
       <Name>tirFlip</Name>
       <Importer>TextureImporter</Importer>
@@ -462,6 +452,32 @@
   <ItemGroup>
     <Compile Include="sprite\15.png">
       <Name>15</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="sprite\player.png">
+      <Name>player</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="sprite\playerFlip.png">
+      <Name>playerFlip</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="sprite\E2.png">
+      <Name>E2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="sprite\EFlip.png">
+      <Name>EFlip</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

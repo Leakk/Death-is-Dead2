@@ -165,10 +165,10 @@ namespace Death_is_Dead
             else
                 sb.Draw(Ressources.Player, new Vector2(position.X, position_Y_texture), Color.White);
 
-            sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);
-            sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);
-            sb.Draw(Ressources.plateforme, HitboxG.Rectangle, Color.Red);
-            sb.Draw(Ressources.plateforme, HitboxH.Rectangle, Color.Red);
+            //sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);
+            //sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);
+            //sb.Draw(Ressources.plateforme, HitboxG.Rectangle, Color.Red);
+            //sb.Draw(Ressources.plateforme, HitboxH.Rectangle, Color.Red);
         }
 
     }

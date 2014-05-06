@@ -79,9 +79,9 @@ namespace Death_is_Dead
             Life.Draw(sb, (int)position.X, (int)position.Y - 20,0.5f,5);
 
             if (hasFliped)
-                sb.Draw(Ressources.PlayerFlip, new Vector2(position.X, position.Y), Color.White);
+                sb.Draw(Ressources.EFlip2, new Vector2(position.X, position.Y), Color.White);
             else
-                sb.Draw(Ressources.Player, new Vector2(position.X, position.Y), Color.White);
+                sb.Draw(Ressources.E2, new Vector2(position.X, position.Y), Color.White);
 
             //sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);
             //sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);
