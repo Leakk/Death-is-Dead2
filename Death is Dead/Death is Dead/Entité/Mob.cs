@@ -25,49 +25,53 @@ namespace Death_is_Dead
 
         public void Update(Obstacle[] rect,Player player)
         {
-            base.Update(rect);
-            //position.X += 1;
-            Life.Udapte(life);
+            
+                base.Update(rect);
+                //position.X += 1;
+                Life.Udapte(life);
 
-            if (life <= 0)
-            {
-                HitboxB = new Collision(new Rectangle(0, 0, 0, 0));
-                HitboxD = new Collision(new Rectangle(0, 0, 0, 0));
-                HitboxG = new Collision(new Rectangle(0, 0, 0, 0));
-                HitboxH = new Collision(new Rectangle(0, 0, 0, 0));
-                dead = true;
-            }
-
-            if (HitboxD.is_coll(rect) || HitboxG.is_coll(rect))
-                velocity.Y = -6f;
-
-            if (position.X < player.position.X)
-            {
-                velocity.X = 2;
-                hasFliped = false;
-            }
-            if (position.X > player.position.X)
-            {
-                velocity.X = -2;
-                hasFliped = true;
-            }
-
-            if (position.Y == player.position.Y && latenceTir == 0&&!dead)
-            {
-                latenceTir = 40;
-                for (int i = 0; i < Tirs.Length; i++)
+                if (life <= 0)
                 {
-                    if (Tirs[i] == null)
+                    HitboxB = new Collision(new Rectangle(0, 0, 0, 0));
+                    HitboxD = new Collision(new Rectangle(0, 0, 0, 0));
+                    HitboxG = new Collision(new Rectangle(0, 0, 0, 0));
+                    HitboxH = new Collision(new Rectangle(0, 0, 0, 0));
+                    dead = true;
+                }
+
+            if (position.X - player.position.X < 800 && position.X - player.position.X > -800)
+            {
+                if (HitboxD.is_coll(rect) || HitboxG.is_coll(rect))
+                    velocity.Y = -6f;
+
+                if (position.X < player.position.X)
+                {
+                    velocity.X = 2;
+                    hasFliped = false;
+                }
+                if (position.X > player.position.X)
+                {
+                    velocity.X = -2;
+                    hasFliped = true;
+                }
+
+                if (position.Y == player.position.Y && latenceTir == 0 && !dead)
+                {
+                    latenceTir = 40;
+                    for (int i = 0; i < Tirs.Length; i++)
                     {
-                        Tirs[i] = new Projectile(texture.Bounds.X, 10, this, hasFliped);
-                        Ressources.tir_son.Play();
-                        break;
+                        if (Tirs[i] == null)
+                        {
+                            Tirs[i] = new Projectile(texture.Bounds.X, 10, this, hasFliped);
+                            Ressources.tir_son.Play();
+                            break;
+                        }
                     }
                 }
-            }
-            if (latenceTir > 0)
-                latenceTir--;
+                if (latenceTir > 0)
+                    latenceTir--;
 
+            }
         }
 
         public void Draw(SpriteBatch sb)

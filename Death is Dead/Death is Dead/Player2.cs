@@ -159,9 +159,9 @@ namespace Death_is_Dead
             Life.Draw(sb, 10, 30,1,15);
 
             if (hasFliped)
-                sb.Draw(Ressources.PlayerFlip, new Vector2(position.X, position_Y_texture), player2_color);
+                sb.Draw(Ressources.PlayerFlip2, new Vector2(position.X, position_Y_texture), Color.White);
             else
-                sb.Draw(Ressources.Player, new Vector2(position.X, position_Y_texture), player2_color);
+                sb.Draw(Ressources.Player2, new Vector2(position.X, position_Y_texture), Color.White);
 
             sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);
             sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);

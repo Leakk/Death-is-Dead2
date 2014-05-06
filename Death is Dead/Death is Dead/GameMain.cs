@@ -36,7 +36,7 @@ namespace Death_is_Dead
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SoundEffect button_click;
-        Song Menu_song ;
+        Song Menu_song;
         Song Game_song_lvl1;
         private Color colour1 = new Color(255, 0, 0, 255);
         // private Color btnColorPause = new Color(255, 0, 0, 255);
@@ -115,7 +115,7 @@ namespace Death_is_Dead
             IsMouseVisible = true;
 
             #region /*Pour le menu*/
-            
+
 
             if (Currentlanguage == language.english) lang = "eng";
             if (Currentlanguage == language.french) lang = "fre";
@@ -190,7 +190,7 @@ namespace Death_is_Dead
             switch (CurrentGameState)
             {
                 case GameState.MainMenu:
-                  //  MediaPlayer.Stop();
+                    //  MediaPlayer.Stop();
                     if (!songisplayed)
                     {
                         MediaPlayer.Play(Menu_song);
@@ -204,7 +204,7 @@ namespace Death_is_Dead
                     {
                         button_click.Play();
                         rect = new Obstacle[21] { new Obstacle(new Rectangle(0, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(300, 360, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(1040, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(1800, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2100, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2540, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2840, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(3450, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme/*carre*/), new Obstacle(new Rectangle(3850, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4450, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4850, 350, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(5350, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6600, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6850, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7250, 300, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7650, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(7700, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8150, 150, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8550, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(9550, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(9200, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol) };
-                        mobs = new Mob[1] { new Mob(new Vector2(350, 0), Ressources.Player, 100) };
+                        mobs = new Mob[5] { new Mob(new Vector2(1250, 400), Ressources.Player, 100), new Mob(new Vector2(3370, 400), Ressources.Player, 100), new Mob(new Vector2(5870, 400), Ressources.Player, 100), new Mob(new Vector2(7450, 100), Ressources.Player, 100), new Mob(new Vector2(8700, 400), Ressources.Player, 100) };
                         map = new Map(rect, mobs);
                         player = new Player(new Vector2(350, 0), Ressources.Player, 100);
                         MediaPlayer.Stop();
@@ -227,7 +227,7 @@ namespace Death_is_Dead
                     }
                     if (btnOption.isClicked)
                         button_click.Play();
-                  
+
                     if (btnOption.isClicked)
                         CurrentGameState = GameState.Option;
                     if (btnExit.isClicked)
@@ -236,8 +236,8 @@ namespace Death_is_Dead
                         Exit();
                     }
 
-                  
-                   
+
+
                     break;
                 #region/* case paused*/
                 case GameState.Paused:
@@ -257,7 +257,7 @@ namespace Death_is_Dead
                     btnBackFromGameOver.Udapte(mouse);
                     if (btnRestart.isClicked)
                     {
-                        
+
                         CurrentGameState = GameState.Playing;
                         rect = new Obstacle[21] { new Obstacle(new Rectangle(0, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(300, 360, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(1040, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(1800, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2100, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2540, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2840, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(3450, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme/*carre*/), new Obstacle(new Rectangle(3850, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4450, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4850, 350, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(5350, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6600, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6850, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7250, 300, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7650, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(7700, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8150, 150, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8550, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(9550, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(9200, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol) };
                         mobs = new Mob[1] { new Mob(new Vector2(350, 0), Ressources.Player, 100) };
@@ -424,7 +424,7 @@ namespace Death_is_Dead
 
                                 if (player.isTouched(item.Tirs[i]))
                                 {
-                                    player.life -= 10;
+                                    player.life -= 5;
                                     item.Tirs[i] = null;
                                 }
 
@@ -531,7 +531,7 @@ namespace Death_is_Dead
                     btnBackFromGameOver.Draw(spriteBatch);
                     break;
                 default:
-                    
+
                     map.Draw(spriteBatch, screenWidth, screenHeight);
                     #region/*Player2*/
                     player2.Draw(spriteBatch);
@@ -568,8 +568,15 @@ namespace Death_is_Dead
                     #region /*Mobs*/
                     foreach (Mob item in mobs)
                     {
-                        if(!item.dead)
-                        item.Draw(spriteBatch);
+                        if (!item.dead)
+                        {
+                            item.Draw(spriteBatch);
+                            foreach (Projectile tir in item.Tirs)
+                            {
+                                if (tir != null)
+                                    tir.Draw(spriteBatch);
+                            }
+                        }
                     }
                     #endregion
                     break;

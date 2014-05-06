@@ -13,6 +13,8 @@ namespace Death_is_Dead
     {
         public static Texture2D Player;
         public static Texture2D PlayerFlip;
+        public static Texture2D Player2;
+        public static Texture2D PlayerFlip2;
         public static Texture2D Tir;
         public static Texture2D TirFlip;
         public static Texture2D fond;
@@ -27,6 +29,8 @@ namespace Death_is_Dead
             #region /*Sprite*/
             Player = content.Load<Texture2D>("sprite/player");
             PlayerFlip = content.Load<Texture2D>("sprite/playerFlip");
+            Player2 = content.Load<Texture2D>("sprite/14");
+            PlayerFlip2 = content.Load<Texture2D>("sprite/15");
             Tir = content.Load<Texture2D>("sprite/tir");
             TirFlip = content.Load<Texture2D>("sprite/tirFlip");
             fond = content.Load<Texture2D>("sprite/cool");
