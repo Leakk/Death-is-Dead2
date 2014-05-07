@@ -84,7 +84,7 @@ namespace Death_is_Dead
                 HitboxH = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y) - 2, texture.Width, 3));
                 HitboxB = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y) + texture.Height - 3, texture.Width, 3));
                 HitboxG = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y), 3, texture.Height));
-                HitboxD = new Collision(new Rectangle(Convert.ToInt32(this.position.X) + texture.Width, Convert.ToInt32(this.position.Y), 3, texture.Height - 20));
+                HitboxD = new Collision(new Rectangle(Convert.ToInt32(this.position.X) + texture.Width, Convert.ToInt32(this.position.Y), 3, texture.Height));
                 this.velocity = physics.apply_gravity(this.velocity);
                 hasJumped = false;
 
@@ -95,7 +95,7 @@ namespace Death_is_Dead
                 HitboxH = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y), texture.Width, 3));
                 HitboxB = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y) + texture.Height, texture.Width, 3));
                 HitboxG = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y), 3, texture.Height));
-                HitboxD = new Collision(new Rectangle(Convert.ToInt32(this.position.X) + texture.Width, Convert.ToInt32(this.position.Y), 3, texture.Height - 20));
+                HitboxD = new Collision(new Rectangle(Convert.ToInt32(this.position.X) + texture.Width, Convert.ToInt32(this.position.Y), 3, texture.Height));
                 position.Y = recta.Y - texture.Height;
                 hasJumped = true;
                 velocity.Y = 0f;
