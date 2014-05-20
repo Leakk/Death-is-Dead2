@@ -46,6 +46,7 @@ namespace Death_is_Dead
         #region  /*Pour les boutons*/
         bool playOnce = false;
         int count = 0;
+        int count_save = 0;
         #endregion
 
         private bool paused = false;
@@ -72,6 +73,7 @@ namespace Death_is_Dead
         cButton btnOption;
         cButton btnMultiplayer;
         cButton btnExit;
+        cButton btnLoad;
         /*Option*/
         cButton btnRes;
         cButton btnBack;
@@ -81,9 +83,9 @@ namespace Death_is_Dead
         /*pause*/
         cButton btnBackToMenu;
         cButton btnResume;
+        cButton btnSave;
         /*gameOver*/
         cButton btnBackFromGameOver;
-        cButton btnRestart;
         #endregion
 
         public GameMain()
@@ -126,10 +128,12 @@ namespace Death_is_Dead
             btnMultiplayer = new cButton(Content.Load<Texture2D>("sprite/Menu/Main_menu/" + lang + "/Button_play_mult"), colour1, graphics.GraphicsDevice);
             btnOption = new cButton(Content.Load<Texture2D>("sprite/Menu/Main_menu/" + lang + "/Button_option"), colour1, graphics.GraphicsDevice);
             btnExit = new cButton(Content.Load<Texture2D>("sprite/Menu/Main_menu/" + lang + "/Exit"), colour1, graphics.GraphicsDevice);
+            btnLoad = new cButton(Content.Load<Texture2D>("sprite/Menu/Main_menu/" + lang + "/Load"), colour1, graphics.GraphicsDevice);
             btnPlay.setPosition(new Vector2(500, 100));
-            btnMultiplayer.setPosition(new Vector2(500, 200));
-            btnOption.setPosition(new Vector2(500, 300));
-            btnExit.setPosition(new Vector2(500, 400));
+            btnLoad.setPosition(new Vector2(500,200));
+            btnMultiplayer.setPosition(new Vector2(500, 300));
+            btnOption.setPosition(new Vector2(500, 400));
+            btnExit.setPosition(new Vector2(500, 500));
 
             /*Option*/
             btnBack = new cButton(Content.Load<Texture2D>("sprite/Menu/Option/" + lang + "/back"), colour1, graphics.GraphicsDevice);
@@ -147,14 +151,14 @@ namespace Death_is_Dead
             #region/*Pour le menu pause*/
             btnBackToMenu = new cButton(Content.Load<Texture2D>("sprite/paused/" + lang + "/back"), colour1, graphics.GraphicsDevice);
             btnResume = new cButton(Content.Load<Texture2D>("sprite/paused/" + lang + "/resume"), colour1, graphics.GraphicsDevice);
-            btnBackToMenu.setPosition(new Vector2(300, 300));
+            btnSave = new cButton(Content.Load<Texture2D>("sprite/paused/" + lang + "/save"), colour1, graphics.GraphicsDevice);
+            btnBackToMenu.setPosition(new Vector2(300, 400));
+            btnSave.setPosition(new Vector2(300,300));
             btnResume.setPosition(new Vector2(300, 200));
             #endregion
             #region/*Menu Game over*/
             btnBackFromGameOver = new cButton(Content.Load<Texture2D>("sprite/Game_over/" + lang + "/back"), colour1, graphics.GraphicsDevice);
-            btnRestart = new cButton(Content.Load<Texture2D>("sprite/Game_over/" + lang + "/restart"), colour1, graphics.GraphicsDevice);
             btnBackFromGameOver.setPosition(new Vector2(10, 300));
-            btnRestart.setPosition(new Vector2(10, 200));
             #endregion
             Ressources.Load(Content);
 
@@ -197,6 +201,7 @@ namespace Death_is_Dead
                         songisplayed = true;
                     }
                     btnPlay.Udapte(mouse);
+                    btnLoad.Udapte(mouse);
                     btnMultiplayer.Udapte(mouse);
                     btnOption.Udapte(mouse);
                     btnExit.Udapte(mouse);
@@ -236,6 +241,15 @@ namespace Death_is_Dead
                         Exit();
                     }
 
+                    if ((btnLoad.isClicked)&&(count==0))
+                    {
+                        count = 15;
+                        button_click.Play();
+                        /* action chargement */
+                    
+                    }
+                    if (count != 0)
+                        count--;
 
 
                     break;
@@ -243,28 +257,32 @@ namespace Death_is_Dead
                 case GameState.Paused:
                     btnResume.Udapte(mouse);
                     btnBackToMenu.Udapte(mouse);
+                    btnSave.Udapte(mouse);
                     if (btnResume.isClicked)
+                    {
+                        button_click.Play();
                         CurrentGameState = GameState.Playing;
+                    }
                     if (btnBackToMenu.isClicked)
                     {
+                        button_click.Play();
                         CurrentGameState = GameState.MainMenu;
+                    }
+                    if ((btnSave.isClicked) && (count_save == 0))
+                    {
+                       count_save = 15;
+                       button_click.Play();
+                    /* action sauvegarder*/
+                    }
+                    if (count_save != 0)
+                    {
+                        count_save--;
                     }
                     break;
                 #endregion
                 #region/* case Game over*/
                 case GameState.GameOver:
-                    btnRestart.Udapte(mouse);
                     btnBackFromGameOver.Udapte(mouse);
-                    if (btnRestart.isClicked)
-                    {
-
-                        CurrentGameState = GameState.Playing;
-                        rect = new Obstacle[21] { new Obstacle(new Rectangle(0, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(300, 360, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(1040, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(1800, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2100, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2540, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2840, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(3450, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme/*carre*/), new Obstacle(new Rectangle(3850, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4450, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4850, 350, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(5350, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6600, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6850, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7250, 300, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7650, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(7700, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8150, 150, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8550, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(9550, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(9200, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol) };
-                        mobs = new Mob[5] { new Mob(new Vector2(1250, 400), Ressources.Player, 100), new Mob(new Vector2(3370, 400), Ressources.Player, 100), new Mob(new Vector2(5870, 400), Ressources.Player, 100), new Mob(new Vector2(7450, 100), Ressources.Player, 100), new Mob(new Vector2(8700, 400), Ressources.Player, 100) };
-                        map = new Map(rect, mobs);
-                        player = new Player(new Vector2(350, 0), Ressources.Player, 100);
-                        player2 = new Player2(new Vector2(350, 0), Ressources.Player, 100);
-                    }
                     if (btnBackFromGameOver.isClicked)
                     {
                         CurrentGameState = GameState.MainMenu;
@@ -284,7 +302,7 @@ namespace Death_is_Dead
 
 
                     }
-                    if ((btnRes.isClicked) & (count == 0))
+                    if ((btnRes.isClicked) && (count == 0))
                     {
                         count = 15;
                         button_click.Play();
@@ -294,7 +312,7 @@ namespace Death_is_Dead
                         graphics.ApplyChanges();
 
                     }
-                    if ((btnLanguage.isClicked) & (count == 0))
+                    if ((btnLanguage.isClicked) && (count == 0))
                     {
                         try
                         {
@@ -477,6 +495,7 @@ namespace Death_is_Dead
                 case GameState.MainMenu:
                     spriteBatch.Draw(Content.Load<Texture2D>("sprite/Menu/Main_menu/MainMenu"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     btnPlay.Draw(spriteBatch);
+                    btnLoad.Draw(spriteBatch);
                     btnMultiplayer.Draw(spriteBatch);
                     btnOption.Draw(spriteBatch);
                     btnExit.Draw(spriteBatch);
@@ -524,10 +543,10 @@ namespace Death_is_Dead
                     spriteBatch.Draw(Content.Load<Texture2D>("sprite/paused/foreground_paused"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     btnBackToMenu.Draw(spriteBatch);
                     btnResume.Draw(spriteBatch);
+                    btnSave.Draw(spriteBatch);
                     break;
                 case GameState.GameOver:
                     spriteBatch.Draw(Content.Load<Texture2D>("sprite/Game_over/gameover"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
-                    btnRestart.Draw(spriteBatch);
                     btnBackFromGameOver.Draw(spriteBatch);
                     break;
                 default:
