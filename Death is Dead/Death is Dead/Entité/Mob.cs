@@ -15,7 +15,6 @@ namespace Death_is_Dead
     class Mob : Entity
     {
         int latenceTir = 0;
-
         public Mob(Vector2 position, Texture2D texture, int life)
             : base(position, texture, life, true)
         {
@@ -32,6 +31,7 @@ namespace Death_is_Dead
 
                 if (life <= 0)
                 {
+
                     HitboxB = new Collision(new Rectangle(0, 0, 0, 0));
                     HitboxD = new Collision(new Rectangle(0, 0, 0, 0));
                     HitboxG = new Collision(new Rectangle(0, 0, 0, 0));
@@ -76,6 +76,7 @@ namespace Death_is_Dead
 
         public void Draw(SpriteBatch sb)
         {
+            
             Life.Draw(sb, (int)position.X, (int)position.Y - 20,0.5f,5);
 
             if (hasFliped)

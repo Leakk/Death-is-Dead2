@@ -449,6 +449,7 @@ namespace Death_is_Dead
                             }
                         }
                     }
+             //       bonus_coeur.Udapte_coeur(200, 200, player);
                     #endregion
 
                     map.Update(gameTime);
@@ -489,7 +490,6 @@ namespace Death_is_Dead
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-
             switch (CurrentGameState)
             {
                 case GameState.MainMenu:
@@ -550,7 +550,6 @@ namespace Death_is_Dead
                     btnBackFromGameOver.Draw(spriteBatch);
                     break;
                 default:
-
                     map.Draw(spriteBatch, screenWidth, screenHeight);
                     #region/*Player2*/
                     player2.Draw(spriteBatch);
@@ -585,6 +584,7 @@ namespace Death_is_Dead
                     }
                     #endregion
                     #region /*Mobs*/
+
                     foreach (Mob item in mobs)
                     {
                         if (!item.dead)
@@ -598,10 +598,12 @@ namespace Death_is_Dead
                         }
                     }
                     #endregion
+                    
                     break;
             }
 
             spriteBatch.End();
         }
+
     }
 }

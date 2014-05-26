@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bonus\Coeur.cs" />
     <Compile Include="cButton.cs" />
     <Compile Include="Collison.cs" />
     <Compile Include="Entité\Entity.cs" />
