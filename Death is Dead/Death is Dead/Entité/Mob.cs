@@ -14,36 +14,47 @@ namespace Death_is_Dead
 {
     class Mob : Entity
     {
-        int latenceTir = 0; 
+        int latenceTir = 0;
+       Vector2 mob_pos = new Vector2(0, 0);
        int pos_X_tmp = 0;
        int pos_Y_tmp = 0;
-        Bonus.Coeur coeur = new Bonus.Coeur();
-
+       Bonus.Coeur coeur = new Bonus.Coeur();
+       bool activer_bonus_coeur = true;
+      
+       
+        
         public Mob(Vector2 position, Texture2D texture, int life)
             : base(position, texture, life, true)
         {
+          
+
+            mob_pos = position;
             this.life = life;
             Life = new Life();
         }
-
+        
         public void Update(Obstacle[] rect,Player player)
         {
-            if ((player.position.X>0)&&(player.position.X<800)&&((player.position.Y>0)&&(player.position.Y<600)));
+            if ((mob_pos.X > 0) && (mob_pos.X < 800) && (mob_pos.Y > 0) && (mob_pos.Y < 600)) ; /* si le mob est dans l'image ( est visible quoi ) */
             {
-            
-                pos_X_tmp =(int) player.position.X;
-                pos_Y_tmp =(int) player.position.Y;
+                
+                pos_X_tmp =(int) mob_pos.X;          /* ça c'est parce que il me semble que maxime faisait teleporté les enemies hors de la map lors de leur mort */
+                pos_Y_tmp = (int) mob_pos.Y;         /* donc je retiens leur derniere pos quand ils étaient encore dans l'image, donc quand ils étaient vivants */
             }
          
                 base.Update(rect);
                 //position.X += 1;
                 Life.Udapte(life);
 
-                if (life <= 0)
+               
+
+                if (life <=0)
                 {
+                   if( activer_bonus_coeur ) coeur.exist = true;         /* pour evité que sa mettre coeur.exist = true à chaque frame*/
+                   activer_bonus_coeur = false;                          /* vu qu'apres quand le joueur le prends sa se met à false ( c'est gérer dans la classe coeur )*/
+                    
 
-
-                   // coeur.Udapte_coeur(pos_X_tmp,pos_Y_tmp,GameMain.);
+                    coeur.Udapte_coeur(200,400,ref player);
              
 
                     HitboxB = new Collision(new Rectangle(0, 0, 0, 0));
@@ -90,11 +101,10 @@ namespace Death_is_Dead
 
         public void Draw(SpriteBatch sb)
         {
-            if (coeur.exist)
-            {
-                coeur.Draw(sb, pos_X_tmp, pos_Y_tmp);
-            }
-            
+         
+               // coeur.Draw(sb,(int)mob_pos.X,(int)mob_pos.Y);
+            coeur.Draw(sb,200, 400);
+
             Life.Draw(sb, (int)position.X, (int)position.Y - 20,0.5f,5);
 
             if (hasFliped)

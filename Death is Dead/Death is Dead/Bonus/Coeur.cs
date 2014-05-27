@@ -13,7 +13,7 @@ namespace Death_is_Dead.Bonus
         Color colour = new Color(255, 255, 255, 255);
         int x;
         int y;
-        public bool exist = true;
+        public bool exist = false;
 
       /*  public void coeur()
         {
@@ -24,7 +24,8 @@ namespace Death_is_Dead.Bonus
         {
             this.x = x;
             this.y = y;
-            if (exist && (p1.position.X < x) && (p1.position.X + p1.texture.Width > x) && (p1.position.Y < y) && (p1.position.Y + p1.texture.Height > y)) /* si le joueur est sur le bonus */
+
+            if (exist && (p1.position.X < x) && (p1.position.X + p1.texture.Width > x) && (p1.position.Y < y) && (p1.position.Y + p1.texture.Height > y))
             {
                 p1.life += 50;
                 exist = false;
@@ -34,8 +35,11 @@ namespace Death_is_Dead.Bonus
 
         public void Draw(SpriteBatch sb,int x,int y)
         {
-        Rectangle Rectcoeur = new Rectangle(x, y, 20,22);
-        sb.Draw(coeur, Rectcoeur, colour);
+            if (exist)
+            {
+                Rectangle Rectcoeur = new Rectangle(x, y, 20, 22);
+                sb.Draw(coeur, Rectcoeur, colour);
+            }
         }
     }
 }
