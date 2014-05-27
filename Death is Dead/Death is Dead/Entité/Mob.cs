@@ -14,7 +14,11 @@ namespace Death_is_Dead
 {
     class Mob : Entity
     {
-        int latenceTir = 0;
+        int latenceTir = 0; 
+       int pos_X_tmp = 0;
+       int pos_Y_tmp = 0;
+        Bonus.Coeur coeur = new Bonus.Coeur();
+
         public Mob(Vector2 position, Texture2D texture, int life)
             : base(position, texture, life, true)
         {
@@ -24,13 +28,23 @@ namespace Death_is_Dead
 
         public void Update(Obstacle[] rect,Player player)
         {
+            if ((player.position.X>0)&&(player.position.X<800)&&((player.position.Y>0)&&(player.position.Y<600)));
+            {
             
+                pos_X_tmp =(int) player.position.X;
+                pos_Y_tmp =(int) player.position.Y;
+            }
+         
                 base.Update(rect);
                 //position.X += 1;
                 Life.Udapte(life);
 
                 if (life <= 0)
                 {
+
+
+                   // coeur.Udapte_coeur(pos_X_tmp,pos_Y_tmp,GameMain.);
+             
 
                     HitboxB = new Collision(new Rectangle(0, 0, 0, 0));
                     HitboxD = new Collision(new Rectangle(0, 0, 0, 0));
@@ -76,6 +90,10 @@ namespace Death_is_Dead
 
         public void Draw(SpriteBatch sb)
         {
+            if (coeur.exist)
+            {
+                coeur.Draw(sb, pos_X_tmp, pos_Y_tmp);
+            }
             
             Life.Draw(sb, (int)position.X, (int)position.Y - 20,0.5f,5);
 

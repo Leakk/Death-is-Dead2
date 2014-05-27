@@ -20,11 +20,11 @@ namespace Death_is_Dead.Bonus
             this.coeur = Ressources.Bonus_coeur;
         }*/
 
-        public void Udapte_coeur(int x, int y, Player p1)
+        public void Udapte_coeur(int x, int y,ref Player p1)
         {
             this.x = x;
             this.y = y;
-            if (exist&&(p1.position.X < x) && (p1.position.X + p1.texture.Width > x) && (p1.position.Y < y) && (p1.position.Y + p1.texture.Height > y)) /* si le joueur est sur le bonus */
+            if (exist && (p1.position.X < x) && (p1.position.X + p1.texture.Width > x) && (p1.position.Y < y) && (p1.position.Y + p1.texture.Height > y)) /* si le joueur est sur le bonus */
             {
                 p1.life += 50;
                 exist = false;
@@ -34,7 +34,7 @@ namespace Death_is_Dead.Bonus
 
         public void Draw(SpriteBatch sb,int x,int y)
         {
-        Rectangle Rectcoeur = new Rectangle( x, y, 20,22);
+        Rectangle Rectcoeur = new Rectangle(x, y, 20,22);
         sb.Draw(coeur, Rectcoeur, colour);
         }
     }
