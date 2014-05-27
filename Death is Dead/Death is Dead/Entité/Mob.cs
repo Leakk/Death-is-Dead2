@@ -47,7 +47,8 @@ namespace Death_is_Dead
                 if (activer_bonus_coeur) coeur.exist = true;         /* pour evité que sa mettre coeur.exist = true à chaque frame*/
                 activer_bonus_coeur = false;                          /* vu qu'apres quand le joueur le prends sa se met à false ( c'est gérer dans la classe coeur )*/
 
-
+                velocity.X = 0;
+                velocity.Y = 0;
                 coeur.Udapte_coeur((int)position.X, (int)position.Y, ref player);
 
 

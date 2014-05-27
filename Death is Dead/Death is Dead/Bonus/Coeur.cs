@@ -14,6 +14,7 @@ namespace Death_is_Dead.Bonus
         int x;
         int y;
         public bool exist = false;
+        public bool down = true;
 
       /*  public void coeur()
         {
@@ -24,12 +25,16 @@ namespace Death_is_Dead.Bonus
         {
             this.x = x;
             this.y = y;
-            Rectangle rec = new Rectangle(x, y, coeur.Width, coeur.Height);
+            Rectangle rec = new Rectangle(x, y, 20, 20);
             Rectangle rec2 = new Rectangle((int)p1.position.X,(int)p1.position.Y, p1.texture.Width, p1.texture.Height);
-            if (exist && rec.Intersects(rec2)== true)
+
+            if (exist && rec.Intersects(rec2))
             {
-                p1.life += 50;
-                exist = false;
+                if (p1.life <= 250)
+                {
+                    p1.life += 50;
+                    exist = false;
+                }
             }
 
         }
@@ -38,6 +43,17 @@ namespace Death_is_Dead.Bonus
         {
             if (exist)
             {
+                if (colour.A >= 250) down = true;
+                if (colour.A <= 50) down = false;
+                if (down)
+                {
+                    colour.A -= 5;
+                }
+                else
+                {
+                    colour.A += 5;
+                }
+
                 Rectangle Rectcoeur = new Rectangle(x, y, 20, 22);
                 sb.Draw(coeur, Rectcoeur, colour);
             }
