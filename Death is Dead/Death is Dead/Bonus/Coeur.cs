@@ -24,8 +24,9 @@ namespace Death_is_Dead.Bonus
         {
             this.x = x;
             this.y = y;
-
-            if (exist && (p1.position.X < x) && (p1.position.X + p1.texture.Width > x) && (p1.position.Y < y) && (p1.position.Y + p1.texture.Height > y))
+            Rectangle rec = new Rectangle(x, y, coeur.Width, coeur.Height);
+            Rectangle rec2 = new Rectangle((int)p1.position.X,(int)p1.position.Y, p1.texture.Width, p1.texture.Height);
+            if (exist && rec.Intersects(rec2)== true)
             {
                 p1.life += 50;
                 exist = false;

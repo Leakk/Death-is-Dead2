@@ -520,15 +520,12 @@ namespace Death_is_Dead
                     #region /*Mobs*/
                     foreach (Mob item in mobs)
                     {
-                        if (!item.dead)
-                        {
                             item.Draw(spriteBatch);
                             foreach (Projectile tir in item.Tirs)
                             {
                                 if (tir != null)
                                     tir.Draw(spriteBatch);
                             }
-                        }
                     }
                     #endregion
                     break;
@@ -586,15 +583,13 @@ namespace Death_is_Dead
 
                     foreach (Mob item in mobs)
                     {
-                        if (!item.dead)
-                        {
+                       
                             item.Draw(spriteBatch);
                             foreach (Projectile tir in item.Tirs)
                             {
                                 if (tir != null)
                                     tir.Draw(spriteBatch);
                             }
-                        }
                     }
                     #endregion
                     break;
