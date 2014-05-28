@@ -41,7 +41,7 @@ namespace Death_is_Dead.Bonus
             {
                 if (p1.life <= 250)
                 {
-                    p1.life += 50;
+                    p2.life += 50;
                     exist = false;
                 }
             }

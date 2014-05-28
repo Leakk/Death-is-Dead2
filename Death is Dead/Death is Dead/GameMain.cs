@@ -77,6 +77,7 @@ namespace Death_is_Dead
         cButton btnMultiplayer;
         cButton btnExit;
         cButton btnLoad;
+        cButton btnEditor;
         /*Option*/
         cButton btnRes;
         cButton btnBack;
@@ -132,10 +133,12 @@ namespace Death_is_Dead
             btnOption = new cButton(Content.Load<Texture2D>("sprite/Menu/Main_menu/" + lang + "/Button_option"), colour1, graphics.GraphicsDevice);
             btnExit = new cButton(Content.Load<Texture2D>("sprite/Menu/Main_menu/" + lang + "/Exit"), colour1, graphics.GraphicsDevice);
             btnLoad = new cButton(Content.Load<Texture2D>("sprite/Menu/Main_menu/" + lang + "/Load"), colour1, graphics.GraphicsDevice);
+            btnEditor = new cButton(Content.Load<Texture2D>("sprite/Menu/Main_menu/" + lang + "/editor"), colour1, graphics.GraphicsDevice);
             btnPlay.setPosition(new Vector2(500, 100));
-            btnLoad.setPosition(new Vector2(500,200));
-            btnMultiplayer.setPosition(new Vector2(500, 300));
-            btnOption.setPosition(new Vector2(500, 400));
+            btnLoad.setPosition(new Vector2(500,180));
+            btnMultiplayer.setPosition(new Vector2(500, 260));
+            btnEditor.setPosition(new Vector2(500, 340));
+            btnOption.setPosition(new Vector2(500, 420));
             btnExit.setPosition(new Vector2(500, 500));
 
             /*Option*/
@@ -209,6 +212,7 @@ namespace Death_is_Dead
                     btnMultiplayer.Udapte(mouse);
                     btnOption.Udapte(mouse);
                     btnExit.Udapte(mouse);
+                    btnEditor.Udapte(mouse);
                     if (btnPlay.isClicked)
                     {
                         button_click.Play();
@@ -276,6 +280,18 @@ namespace Death_is_Dead
                         else
                             CurrentGameState = GameState.Playing_2P;
                     
+                    }
+
+                    if ((btnEditor.isClicked)&&(count==0))
+                    {
+                        count = 15;
+                        button_click.Play();
+                    /* code here */
+
+                        // juste un truc essaye de mettre un try catch pour le bouton charger, parce que si ya rien à charger ça plante,
+                        //  et dans le catch du fait en sorte d'envoyer un message à l'utilisateur "rien à charger" ou "aucune sauvegarde n'a été trouvé"
+                        // si tu fais les messages oublie pas de les faire en 3 langues ( currentlanguage te donne la langue actuelle )
+                        
                     }
                     if (count != 0)
                         count--;
@@ -540,6 +556,7 @@ namespace Death_is_Dead
                     btnMultiplayer.Draw(spriteBatch);
                     btnOption.Draw(spriteBatch);
                     btnExit.Draw(spriteBatch);
+                    btnEditor.Draw(spriteBatch);
                     break;
                 case GameState.Playing:
                     map.Draw(spriteBatch, screenWidth, screenHeight);
