@@ -12,25 +12,37 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Death_is_Dead
 {
+    [Serializable]
     class Entity
     {
         public Vector2 position;
+        [NonSerialized]
         public Vector2 velocity;
+        [NonSerialized]
         public Physics_Engine physics;
-
+        [NonSerialized]
         public Texture2D texture;
+        [NonSerialized]
         public bool hasJumped;
+        [NonSerialized]
         public bool hasFliped;
 
+        [NonSerialized]
         public Collision HitboxB;
+        [NonSerialized]
         public Collision HitboxH;
+        [NonSerialized]
         public Collision HitboxG;
+        [NonSerialized]
         public Collision HitboxD;
 
         public int life;
+        [NonSerialized]
         public Life Life;
 
-        public bool dead ;
+        [NonSerialized]
+        public bool dead;
+        [NonSerialized]
         public Projectile[] Tirs;
 
 

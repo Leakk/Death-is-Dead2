@@ -12,50 +12,35 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Death_is_Dead
 {
-    class Player2:Entity
+    [Serializable]
+    class Player2 : Players
     {
-        public Projectile[] Tirs;
-        float position_Y_texture;
-
-        Random rnd = new Random();
+        [NonSerialized]
         public Smoke[] Smoke;
+        [NonSerialized]
+        Random rnd = new Random();
+        [NonSerialized]
         float badrandom;
+        [NonSerialized]
+        int latenceSmoke = 0;
+        [NonSerialized]
+        int latenceTir = 0;
+
+        [NonSerialized]
         private Color player2_color = new Color(255, 255,100, 255);
 
-        int latenceTir = 0;
-        int latenceSmoke = 0;
-        int k = 5;
 
         public Player2(Vector2 position, Texture2D texture, int life)
-            : base(position, texture, life, true)
+            : base(position, texture, life)
         {
-            Tirs = new Projectile[10];
             Smoke = new Smoke[20];
-            position_Y_texture = position.Y;
-            this.life = life;
             Life = new Life();
         }
 
 
         public void Update(KeyboardState keyboard, Obstacle[] rect)
         {
-            #region /*Flottement*/
-            if (k < 80)
-            {
-                if (k < 40)
-                {
-                    position_Y_texture = position.Y - k * 0.25f;
-                    k++;
-                }
-                else
-                {
-                    position_Y_texture = position.Y + (k * 0.25f) - 20;
-                    k++;
-                }
-            }
-            else
-                k = 0;
-            #endregion
+            
 
             #region /*Saut*/
             if (keyboard.IsKeyDown(Keys.Up) && hasJumped)
@@ -88,28 +73,6 @@ namespace Death_is_Dead
             else
                 velocity.X = velocity.X / 1.15f;
             #endregion
-
-            if (position.X < 0)
-                position.X = 0;
-
-            #region /*Tirs*/
-            if (keyboard.IsKeyDown(Keys.NumPad5) && latenceTir == 0)
-            {
-                latenceTir = 20;
-                for (int i = 0; i < Tirs.Length; i++)
-                {
-                    if (Tirs[i] == null)
-                    {
-                        Tirs[i] = new Projectile(texture.Bounds.X, 10, this, hasFliped);
-                        Ressources.tir_son.Play();
-                        break;
-                    }
-                }
-            }
-            if (latenceTir > 0)
-                latenceTir--;
-            #endregion
-
             #region/*Smoke*/
             if ((HitboxB.is_coll(rect)) && latenceSmoke == 0)
             {
@@ -142,27 +105,43 @@ namespace Death_is_Dead
             if (latenceSmoke > 0)
                 latenceSmoke--;
             #endregion
+            if (position.X < 0)
+                position.X = 0;
+            if (position.X > 800 - texture.Width)
+                position.X = 800 - texture.Width;
 
-            base.Update(rect);
-            Life.Udapte(life);
+            #region /*Tirs*/
+            if (keyboard.IsKeyDown(Keys.NumPad5) && latenceTir == 0)
+            {
+                latenceTir = 20;
+                for (int i = 0; i < Tirs.Length; i++)
+                {
+                    if (Tirs[i] == null)
+                    {
+                        Tirs[i] = new Projectile(texture.Bounds.X, 10, this, hasFliped);
+                        Ressources.tir_son.Play();
+                        break;
+                    }
+                }
+            }
+            if (latenceTir > 0)
+                latenceTir--;
+            #endregion
 
-            if (position.X == 0 && HitboxD.is_coll(rect) || life == 0 || position.Y>600)
-                dead = true;
-            else
-                dead = false;
+            
+            base.Update2(rect);
 
 
         }
 
         public void Draw(SpriteBatch sb)
         {
-            Life.Draw(sb, 10, 30,1,15);
 
-            if (hasFliped)
-                sb.Draw(Ressources.PlayerFlip2, new Vector2(position.X, position_Y_texture), Color.White);
+            Life.Draw(sb, 10, 30, 1, 15);
+            if (this.hasFliped)
+                sb.Draw(Ressources.PlayerFlip2, new Vector2(this.position.X, position_Y_texture), Color.White);
             else
-                sb.Draw(Ressources.Player2, new Vector2(position.X, position_Y_texture), Color.White);
-
+                sb.Draw(this.texture, new Vector2(this.position.X, this.position_Y_texture), Color.White);
             //sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);
             //sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);
             //sb.Draw(Ressources.plateforme, HitboxG.Rectangle, Color.Red);

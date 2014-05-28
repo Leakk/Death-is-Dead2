@@ -12,14 +12,21 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Death_is_Dead
 {
+    [Serializable]
     class Mob : Entity
     {
+        [NonSerialized]
         int latenceTir = 0;
-        Vector2 mob_pos = new Vector2(0, 0);
+        Vector2 mob_pos ;
+        [NonSerialized]
         int pos_X_tmp = 0;
+        [NonSerialized]
         int pos_Y_tmp = 0;
+        [NonSerialized]
         Bonus.Coeur coeur = new Bonus.Coeur();
+        [NonSerialized]
         bool activer_bonus_coeur;
+        uint[] tab;
 
 
 
@@ -31,9 +38,11 @@ namespace Death_is_Dead
             mob_pos = position;
             this.life = life;
             Life = new Life();
+            tab = new uint[texture.Height * texture.Width];
+            texture.GetData<uint>(tab);
         }
 
-        public void Update(Obstacle[] rect, Player player)
+        public void Update(Obstacle[] rect, Players player,Players p2)
         {
 
             base.Update(rect);
@@ -49,7 +58,7 @@ namespace Death_is_Dead
 
                 velocity.X = 0;
                 velocity.Y = 0;
-                coeur.Udapte_coeur((int)position.X, (int)position.Y, ref player);
+                coeur.Udapte_coeur((int)position.X, (int)position.Y, ref player,ref p2);
 
 
                 HitboxB = new Collision(new Rectangle(0, 0, 0, 0));
@@ -118,6 +127,14 @@ namespace Death_is_Dead
             //sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);
             //sb.Draw(Ressources.plateforme, HitboxG.Rectangle, Color.Red);
             //sb.Draw(Ressources.plateforme, HitboxH.Rectangle, Color.Red);
+        }
+
+
+        public void maj(ContentManager co)
+        {
+            Texture2D x = co.Load<Texture2D>("sprite/E2");
+            texture = new Texture2D(x.GraphicsDevice, 50, tab.Length / 50);
+            texture.SetData<uint>(tab);
         }
     }
 }

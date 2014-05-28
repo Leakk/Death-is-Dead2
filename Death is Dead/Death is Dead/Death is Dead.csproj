@@ -118,7 +118,8 @@
     <Compile Include="Entité\Player.cs" />
     <Compile Include="Entité\Projectile.cs" />
     <Compile Include="Entité\Mob.cs" />
-    <Compile Include="Player2.cs" />
+    <Compile Include="Entité\Player2.cs" />
+    <Compile Include="Players.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="GameMain.cs" />

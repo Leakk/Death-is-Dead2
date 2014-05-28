@@ -21,14 +21,23 @@ namespace Death_is_Dead.Bonus
             this.coeur = Ressources.Bonus_coeur;
         }*/
 
-        public void Udapte_coeur(int x, int y,ref Player p1)
+        public void Udapte_coeur(int x, int y, ref Players p1, ref Players p2)
         {
             this.x = x;
             this.y = y;
             Rectangle rec = new Rectangle(x, y, 20, 20);
-            Rectangle rec2 = new Rectangle((int)p1.position.X,(int)p1.position.Y, p1.texture.Width, p1.texture.Height);
+            Rectangle rec2 = new Rectangle((int)p1.position.X, (int)p1.position.Y, p1.texture.Width, p1.texture.Height);
+            Rectangle rec3 = new Rectangle((int)p2.position.X, (int)p2.position.Y, p2.texture.Width, p2.texture.Height);
 
             if (exist && rec.Intersects(rec2))
+            {
+                if (p1.life <= 250)
+                {
+                    p1.life += 50;
+                    exist = false;
+                }
+            }
+            if (exist && rec.Intersects(rec3))
             {
                 if (p1.life <= 250)
                 {
