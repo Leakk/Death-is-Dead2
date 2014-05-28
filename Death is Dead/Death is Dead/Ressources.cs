@@ -24,6 +24,7 @@ namespace Death_is_Dead
         public static Texture2D plateforme;
         public static Texture2D sol;
         public static Texture2D smoke;
+        public static Texture2D particule;
         public static Texture2D lifebar;
         public static Texture2D Bonus_coeur;
         public static SoundEffect tir_son;
@@ -43,6 +44,7 @@ namespace Death_is_Dead
             plateforme = content.Load<Texture2D>("sprite/plate");
             sol = content.Load<Texture2D>("sprite/sol");
             smoke = content.Load<Texture2D>("sprite/smoke");
+            particule = content.Load<Texture2D>("sprite/effet_swag");
             lifebar = content.Load<Texture2D>("sprite/Lifebar");
             Bonus_coeur = content.Load<Texture2D>("sprite/Bonus/coeur");
             #endregion

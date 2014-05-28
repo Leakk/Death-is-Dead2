@@ -119,6 +119,7 @@
     <Compile Include="Entité\Projectile.cs" />
     <Compile Include="Entité\Mob.cs" />
     <Compile Include="Entité\Player2.cs" />
+    <Compile Include="particule_tir.cs" />
     <Compile Include="Players.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
