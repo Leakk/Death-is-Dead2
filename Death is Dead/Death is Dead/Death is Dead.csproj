@@ -109,7 +109,9 @@
   <ItemGroup>
     <Compile Include="Bonus\Coeur.cs" />
     <Compile Include="cButton.cs" />
+    <Compile Include="cButton2.cs" />
     <Compile Include="Collison.cs" />
+    <Compile Include="editeur.cs" />
     <Compile Include="Entité\Entity.cs" />
     <Compile Include="Entité\Life.cs" />
     <Compile Include="Map\Map.cs" />

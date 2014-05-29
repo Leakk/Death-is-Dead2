@@ -16,13 +16,15 @@ namespace Death_is_Dead
     {
         public Obstacle[] obs;
         public Mob[] mobs;
+        Texture2D fond;
         private Vector2 moving_background = new Vector2(0f, 0f);
         
 
-        public Map(Obstacle[] obs, Mob[] mob)
+        public Map(Obstacle[] obs, Mob[] mob, Texture2D fo)
         {
             this.obs = obs;
             this.mobs = mob;
+            fond = fo;
         }
 
         public void Update(GameTime gameTime)

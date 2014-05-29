@@ -29,6 +29,10 @@ namespace Death_is_Dead
         public static Texture2D Bonus_coeur;
         public static SoundEffect tir_son;
         public static SoundEffect button_sound;
+
+        public static Texture2D boutton;
+        public static SpriteFont font;
+
         public static void Load(ContentManager content)
         {
             #region /*Sprite*/
@@ -53,6 +57,9 @@ namespace Death_is_Dead
             tir_son = content.Load<SoundEffect>("Sound_effects/tir_son");
             button_sound = content.Load<SoundEffect>("Sound_effects/Menu/button_sound");
             #endregion
+
+            font = content.Load<SpriteFont>("myfont");
+            boutton = content.Load<Texture2D>("button");
         }
     }
 }

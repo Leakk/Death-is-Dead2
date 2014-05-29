@@ -8,7 +8,8 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 
 namespace Death_is_Dead
-{[Serializable]
+{
+    [Serializable]
     class Obstacle
     {
         public Rectangle rectangle;
