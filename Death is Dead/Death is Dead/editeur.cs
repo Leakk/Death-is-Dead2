@@ -76,23 +76,33 @@ namespace Death_is_Dead
         public void charge(ContentManager cont)
         {
             IFormatter format = new BinaryFormatter();
-            Stream liste1 = new FileStream("map.edi", FileMode.Open, FileAccess.Read);
-            Stream liste2 = new FileStream("fond.edi", FileMode.Open, FileAccess.Read);
-            
-            Obstacle[] listef= (Obstacle[])format.Deserialize(liste1);
-            tab = (uint[])format.Deserialize(liste2);
-            curfond.SetData<uint>(tab);
-            liste1.Close();
-            liste2.Close();
-            LinkedList<Obstacle> lis = new LinkedList<Obstacle>();
-            for (int i = 0; i < listef.Length; i++)
+
+            try
             {
-                listef[i].maj(cont);
-                lis.AddLast(listef[i]);
+                Stream liste1 = new FileStream("map.edi", FileMode.Open, FileAccess.Read);
+
+
+                Stream liste2 = new FileStream("fond.edi", FileMode.Open, FileAccess.Read);
+
+
+                Obstacle[] listef = (Obstacle[])format.Deserialize(liste1);
+                tab = (uint[])format.Deserialize(liste2);
+                curfond.SetData<uint>(tab);
+                liste1.Close();
+                liste2.Close();
+                LinkedList<Obstacle> lis = new LinkedList<Obstacle>();
+                for (int i = 0; i < listef.Length; i++)
+                {
+                    listef[i].maj(cont);
+                    lis.AddLast(listef[i]);
+                }
+                liste = lis;
+
             }
-            liste = lis;
+            catch
+            { 
             
-            
+            }
         }
 
         public void update()

@@ -259,39 +259,43 @@ namespace Death_is_Dead
 
                     if ((btnLoad.isClicked)&&(count==0))
                     {
-                        count = 15;
-                        button_click.Play();
-                        IFormatter format = new BinaryFormatter();
-                        Stream liste = new FileStream("p1.save", FileMode.Open, FileAccess.Read);
-                        Stream liste2 = new FileStream("p2.save",  FileMode.Open, FileAccess.Read);
-                        Stream liste3 = new FileStream("map.save",  FileMode.Open, FileAccess.Read);
-                        Stream liste4 = new FileStream("mobs.save",  FileMode.Open, FileAccess.Read);
-                        Player P1;
-                        Player2 P2;
-                        Obstacle[] obs2;
-                        Mob[] mobs2;
-                        P1 = (Player)format.Deserialize(liste);
-                        P2 = (Player2)format.Deserialize(liste2);
-                        obs2 = (Obstacle[])format.Deserialize(liste3);
-                        mobs2 = (Mob[])format.Deserialize(liste4);
-                        player1 = new Player(P1.position, Ressources.Player, P1.life);
-                        player2 = new Player2(P2.position, Ressources.Player2, P2.life);
-                        foreach (Obstacle item in obs2)
+                        try
                         {
-                            item.maj(Content);
+                            count = 15;
+                            button_click.Play();
+                            IFormatter format = new BinaryFormatter();
+                            Stream liste = new FileStream("p1.save", FileMode.Open, FileAccess.Read);
+                            Stream liste2 = new FileStream("p2.save", FileMode.Open, FileAccess.Read);
+                            Stream liste3 = new FileStream("map.save", FileMode.Open, FileAccess.Read);
+                            Stream liste4 = new FileStream("mobs.save", FileMode.Open, FileAccess.Read);
+                            Player P1;
+                            Player2 P2;
+                            Obstacle[] obs2;
+                            Mob[] mobs2;
+                            P1 = (Player)format.Deserialize(liste);
+                            P2 = (Player2)format.Deserialize(liste2);
+                            obs2 = (Obstacle[])format.Deserialize(liste3);
+                            mobs2 = (Mob[])format.Deserialize(liste4);
+                            player1 = new Player(P1.position, Ressources.Player, P1.life);
+                            player2 = new Player2(P2.position, Ressources.Player2, P2.life);
+                            foreach (Obstacle item in obs2)
+                            {
+                                item.maj(Content);
+                            }
+                            map.obs = obs2;
+                            for (int a = 0; a < mobs2.Length; a++)
+                            {
+                                mobs2[a].maj(Content);
+                                mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life);
+                            }
+                            if (P2.position.X < 0)
+                                CurrentGameState = GameState.Playing;
+                            else
+                                CurrentGameState = GameState.Playing_2P;
+                            MediaPlayer.Stop();
+                            MediaPlayer.Play(Game_song_lvl1);
                         }
-                        map.obs = obs2;
-                        for (int a = 0; a < mobs2.Length; a++)
-                        {
-                            mobs2[a].maj(Content);
-                            mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life);
-                        }
-                        if (P2.position.X < 0)
-                            CurrentGameState = GameState.Playing;
-                        else
-                            CurrentGameState = GameState.Playing_2P;
-                        MediaPlayer.Stop();
-                        MediaPlayer.Play(Game_song_lvl1);
+                        catch { }
                     
                     }
 
