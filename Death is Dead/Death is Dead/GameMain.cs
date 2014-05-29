@@ -26,7 +26,9 @@ namespace Death_is_Dead
             Playing,
             Playing_2P,
             Paused,
-            GameOver
+            Paused_editor,
+            GameOver,
+            Editor
         }
 
         enum language
@@ -53,7 +55,6 @@ namespace Death_is_Dead
         int count_save = 0;
         #endregion
 
-        private bool paused = false;
 
         language Currentlanguage;
         GameState CurrentGameState = GameState.MainMenu;
@@ -88,6 +89,11 @@ namespace Death_is_Dead
         cButton btnBackToMenu;
         cButton btnResume;
         cButton btnSave;
+        /*pause_editeur*/
+        cButton btnBackToMenu_editor;
+        cButton btnResume_editor;
+        cButton btnSave_editor;
+        cButton btnLoad_editor;
         /*gameOver*/
         cButton btnBackFromGameOver;
         #endregion
@@ -162,6 +168,17 @@ namespace Death_is_Dead
             btnSave.setPosition(new Vector2(300,300));
             btnResume.setPosition(new Vector2(300, 200));
             #endregion
+            #region /* Pour le menu pause de l'editeur */
+            btnBackToMenu_editor = new cButton(Content.Load<Texture2D>("sprite/paused/" + lang + "/back"), colour1, graphics.GraphicsDevice);
+            btnResume_editor = new cButton(Content.Load<Texture2D>("sprite/paused/" + lang + "/resume"), colour1, graphics.GraphicsDevice);
+            btnSave_editor = new cButton(Content.Load<Texture2D>("sprite/paused/" + lang + "/save"), colour1, graphics.GraphicsDevice);
+            btnLoad_editor = new cButton(Content.Load<Texture2D>("sprite/paused_editor/" + lang + "/load"), colour1, graphics.GraphicsDevice);
+
+            btnBackToMenu_editor.setPosition(new Vector2(300, 500));
+            btnSave_editor.setPosition(new Vector2(300, 300));
+            btnLoad_editor.setPosition(new Vector2(300, 400));
+            btnResume_editor.setPosition(new Vector2(300, 200));
+            #endregion
             #region/*Menu Game over*/
             btnBackFromGameOver = new cButton(Content.Load<Texture2D>("sprite/Game_over/" + lang + "/back"), colour1, graphics.GraphicsDevice);
             btnBackFromGameOver.setPosition(new Vector2(10, 300));
@@ -178,28 +195,14 @@ namespace Death_is_Dead
    
         protected override void Update(GameTime gameTime)
         {
-            #region/*Pause*/
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-            {
-                paused = true;
-                CurrentGameState = GameState.Paused;
-            }
-
-            if ((paused) & (!Keyboard.GetState().IsKeyDown(Keys.Escape)))
-            {
-                paused = false;
-                if (paused)
-                    CurrentGameState = GameState.Playing;
-                else
-                    CurrentGameState = GameState.Paused;
-            }
-            #endregion
+            
             map1 = new Map(new Obstacle[21] { new Obstacle(new Rectangle(0, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(300, 360, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(1040, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(1800, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2100, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2540, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2840, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(3450, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme/*carre*/), new Obstacle(new Rectangle(3850, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4450, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4850, 350, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(5350, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6600, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6850, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7250, 300, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7650, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(7700, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8150, 150, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8550, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(9550, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(9200, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol) }, new Mob[5] { new Mob(new Vector2(1250, 400), Ressources.Player, 100), new Mob(new Vector2(3370, 400), Ressources.Player, 100), new Mob(new Vector2(5870, 400), Ressources.Player, 100), new Mob(new Vector2(7450, 100), Ressources.Player, 100), new Mob(new Vector2(8700, 400), Ressources.Player, 100) });
             MouseState mouse = Mouse.GetState();
 
             #region /*Les GameStates*/
             switch (CurrentGameState)
             {
+                #region/*menu*/
                 case GameState.MainMenu:
                     //  MediaPlayer.Stop();
                     if (!songisplayed)
@@ -236,10 +239,11 @@ namespace Death_is_Dead
                         CurrentGameState = GameState.Playing_2P;
                     }
                     if (btnOption.isClicked)
+                    {
                         button_click.Play();
-
-                    if (btnOption.isClicked)
                         CurrentGameState = GameState.Option;
+                    }
+                 
                     if (btnExit.isClicked)
                     {
                         button_click.Play();
@@ -286,25 +290,21 @@ namespace Death_is_Dead
                     {
                         count = 15;
                         button_click.Play();
-                    /* code here */
+                        CurrentGameState = GameState.Editor;
 
-                        // juste un truc essaye de mettre un try catch pour le bouton charger, parce que si ya rien à charger ça plante,
-                        //  et dans le catch du fait en sorte d'envoyer un message à l'utilisateur "rien à charger" ou "aucune sauvegarde n'a été trouvé"
-                        // si tu fais les messages oublie pas de les faire en 3 langues ( currentlanguage te donne la langue actuelle )
-                        
                     }
                     if (count != 0)
                         count--;
-
-
                     break;
+                #endregion
                 #region/* case paused*/
                 case GameState.Paused:
                     btnResume.Udapte(mouse);
                     btnBackToMenu.Udapte(mouse);
                     btnSave.Udapte(mouse);
-                    if (btnResume.isClicked)
+                    if ((btnResume.isClicked)&&(count_save==0))
                     {
+                        count_save = 15;
                         button_click.Play();
                         CurrentGameState = GameState.Playing;
                     }
@@ -331,6 +331,42 @@ namespace Death_is_Dead
                        liste2.Close();
                        liste3.Close();
                        liste4.Close();
+                    }
+                    if (count_save != 0)
+                    {
+                        count_save--;
+                    }
+                    break;
+                #endregion
+                #region/* case paused_editor*/
+                case GameState.Paused_editor:
+                    btnResume_editor.Udapte(mouse);
+                    btnBackToMenu_editor.Udapte(mouse);
+                    btnSave_editor.Udapte(mouse);
+                    btnLoad_editor.Udapte(mouse);
+                    if ((btnResume_editor.isClicked) && (count_save == 0))
+                    {
+                        count_save = 15;
+                        button_click.Play();
+                        CurrentGameState = GameState.Editor;
+                    }
+                    if (btnBackToMenu_editor.isClicked)
+                    {
+                        button_click.Play();
+                        CurrentGameState = GameState.MainMenu;
+                    }
+                    if ((btnSave_editor.isClicked) && (count_save == 0))
+                    {
+                        count_save = 15;
+                        button_click.Play();
+                        /* Save the map*/
+                    }
+
+                    if ((btnLoad_editor.isClicked) && (count_save == 0))
+                    {
+                        count_save = 15;
+                        button_click.Play();
+                        /* load a map*/
                     }
                     if (count_save != 0)
                     {
@@ -409,7 +445,30 @@ namespace Death_is_Dead
                         count--;
                     break;
                 #endregion
+                #region/*Editor*/
+                case GameState.Editor:
+
+                    if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    {
+                        CurrentGameState = GameState.Paused_editor;
+                    }
+                    /* code here */
+                    // juste un truc essaye de mettre un try catch pour le bouton charger, parce que si ya rien à charger ça plante,
+                    //  et dans le catch du fait en sorte d'envoyer un message à l'utilisateur "rien à charger" ou "aucune sauvegarde n'a été trouvé"
+                    // si tu fais les messages oublie pas de les faire en 3 langues ( currentlanguage te donne la langue actuelle )
+
+                    break;
+                # endregion
+                #region/*playing*/
                 default:
+                    #region/*Pause*/
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                CurrentGameState = GameState.Paused;
+            }
+
+         
+            #endregion
                     if (CurrentGameState == GameState.Playing_2P)
                     {
                         #region /*Update Player2*/
@@ -535,6 +594,7 @@ namespace Death_is_Dead
                     }
 
                     break;
+                #endregion
             }
             #endregion
 
@@ -600,9 +660,20 @@ namespace Death_is_Dead
                     btnResume.Draw(spriteBatch);
                     btnSave.Draw(spriteBatch);
                     break;
+                case GameState.Paused_editor:
+                    spriteBatch.Draw(Content.Load<Texture2D>("sprite/paused/foreground_paused"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                    btnBackToMenu_editor.Draw(spriteBatch);
+                    btnResume_editor.Draw(spriteBatch);
+                    btnSave_editor.Draw(spriteBatch);
+                    btnLoad_editor.Draw(spriteBatch);
+                    break;
                 case GameState.GameOver:
                     spriteBatch.Draw(Content.Load<Texture2D>("sprite/Game_over/gameover"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     btnBackFromGameOver.Draw(spriteBatch);
+                    break;
+                case GameState.Editor:
+                    /* code here */
+
                     break;
                 default:
                     map.Draw(spriteBatch, screenWidth, screenHeight);
