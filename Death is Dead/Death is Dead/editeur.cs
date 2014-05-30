@@ -106,11 +106,11 @@ namespace Death_is_Dead
         public void update()
         {
             map = new Obstacle[liste.Count];
-            int i = 0;
+            int x = 0;
             foreach (Obstacle item in liste)
             {
-               map[i] = new Obstacle(new Rectangle(item.rectangle.X-a,item.rectangle.Y,item.rectangle.Width,item.rectangle.Height),item.texture);
-                i++;
+               map[x] = new Obstacle(new Rectangle(item.rectangle.X-a,item.rectangle.Y,item.rectangle.Width,item.rectangle.Height),item.texture);
+                x++;
             }
 
 
