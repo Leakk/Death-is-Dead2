@@ -578,7 +578,7 @@ namespace Death_is_Dead
                                     ||(item.HitboxG.Rectangle.Intersects(player1.Faux_damageBox_ground)
                                     ||(item.HitboxD.Rectangle.Intersects(player1.Faux_damageBox_ground))))) /* la hit box de la faux touche l'enemi */
                                 {
-                                    item.life -=15;
+                                    item.life -=11;
                                 }
                             }
 
@@ -589,7 +589,7 @@ namespace Death_is_Dead
                                  || (item.HitboxG.Rectangle.Intersects(player1.Faux_damageBox_air)
                                  || (item.HitboxD.Rectangle.Intersects(player1.Faux_damageBox_air))))) /* la hit box de la faux touche l'enemi */
                                 {
-                                    item.life -= 15;
+                                    item.life -= 11;
                                 }
                             }
                         }

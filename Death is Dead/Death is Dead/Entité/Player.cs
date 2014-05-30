@@ -106,7 +106,7 @@ namespace Death_is_Dead
             #region /* attaque sur le sol */
             if (attackFaux_animation_ground)
             {
-                latence_Faux = 40;
+                latence_Faux = 30;
                
                     if (attackFaux_animation1 < 4) /* la faux descend */
                     {
@@ -135,7 +135,7 @@ namespace Death_is_Dead
             #region /* attaque en l'air */
             if (attackFaux_animation_air)
             {
-                latence_Faux = 40;
+                latence_Faux = 25;
 
                 if (attackFaux_animation1 < 6) /* la faux descend */
                 {
