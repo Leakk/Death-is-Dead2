@@ -14,6 +14,8 @@ namespace Death_is_Dead
     {
         static public LinkedList<Obstacle> liste;
         public Obstacle[] map;
+        public LinkedList<Mob> mob;
+        public Mob[] ennemi;
         public int i, j;
         public Texture2D curfond, curplate;
         public cButton2 fond1;
@@ -25,10 +27,14 @@ namespace Death_is_Dead
         cButton2 sol1;
         cButton2 sol2;
         cButton2 sol3;
+        cButton2 E1;
+        cButton2 E2;
+        cButton2 E3;
         cButton gauche, droite;
         Boolean change;
         uint[] tab;
         int a;
+        Boolean obs;
 
         public editeur()
         {
@@ -40,9 +46,12 @@ namespace Death_is_Dead
             liste = new LinkedList<Obstacle>();
             a = 0;
             map = new Obstacle[0];
+            obs = true;
+            ennemi = new Mob[0];
+            mob = new LinkedList<Mob>();
         }
 
-        public void load(GraphicsDeviceManager graphics )
+        public void load(GraphicsDeviceManager graphics)
         {
             fond1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "fond level 1", Ressources.font);
             fond2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "fond level 2", Ressources.font);
@@ -53,21 +62,42 @@ namespace Death_is_Dead
             sol1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "sol level 1", Ressources.font);
             sol2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "sol level 2", Ressources.font);
             sol3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "sol level 3", Ressources.font);
+            E1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Ennemi 1", Ressources.font);
+            E2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Ennemi 2", Ressources.font);
+            E3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Ennemi 3", Ressources.font);
+
             gauche = new cButton(Ressources.boutton, Color.White, graphics.GraphicsDevice);
             droite = new cButton(Ressources.boutton, Color.White, graphics.GraphicsDevice);
         }
 
         public void seri()
         {
+            map = new Obstacle[liste.Count];
+            int x = 0;
+            foreach (Obstacle item in liste)
+            {
+                map[x] = new Obstacle(new Rectangle(item.rectangle.X, item.rectangle.Y, item.rectangle.Width, item.rectangle.Height), item.texture);
+                x++;
+            }
+            ennemi = new Mob[mob.Count];
+            x = 0;
+            foreach (Mob item in mob)
+            {
+                ennemi[x] = new Mob(new Vector2(item.position.X , item.position.Y), item.texture, 100);
+                x++;
+            }
             tab = new uint[curfond.Height * curfond.Width];
             curfond.GetData<uint>(tab);
             IFormatter format = new BinaryFormatter();
             Stream liste1 = new FileStream("map.edi", FileMode.Create, FileAccess.Write);
             Stream liste2 = new FileStream("fond.edi", FileMode.Create, FileAccess.Write);
+            Stream liste3 = new FileStream("mob.edi", FileMode.Create, FileAccess.Write);
             format.Serialize(liste1, map);
             format.Serialize(liste2, tab);
+            format.Serialize(liste3, ennemi);
             liste1.Close();
             liste2.Close();
+            liste3.Close();
         }
 
 
@@ -81,25 +111,33 @@ namespace Death_is_Dead
 
 
                 Stream liste2 = new FileStream("fond.edi", FileMode.Open, FileAccess.Read);
+                Stream liste3 = new FileStream("mob.edi", FileMode.Open, FileAccess.Read);
 
-
+                ennemi = (Mob[])format.Deserialize(liste3);
                 map = (Obstacle[])format.Deserialize(liste1);
                 tab = (uint[])format.Deserialize(liste2);
                 curfond.SetData<uint>(tab);
                 liste1.Close();
                 liste2.Close();
-                LinkedList<Obstacle> lis = new LinkedList<Obstacle>();
+                liste3.Close();
+                liste = new LinkedList<Obstacle>();
                 for (int i = 0; i < map.Length; i++)
                 {
                     map[i].maj(cont);
-                    lis.AddLast(map[i]);
+                    liste.AddLast(map[i]);
                 }
-                liste = lis;
+                mob = new LinkedList<Mob>();
+                for (int i = 0; i < ennemi.Length; i++)
+                {
+                    ennemi[i].maj(cont);
+                    ennemi[i] = new Mob(ennemi[i].position, ennemi[i].texture, ennemi[i].life);
+                    mob.AddLast(ennemi[i]);
+                }
 
             }
             catch
-            { 
-            
+            {
+
             }
         }
 
@@ -112,7 +150,13 @@ namespace Death_is_Dead
                map[x] = new Obstacle(new Rectangle(item.rectangle.X-a,item.rectangle.Y,item.rectangle.Width,item.rectangle.Height),item.texture);
                 x++;
             }
-
+            ennemi = new Mob[mob.Count];
+            x = 0;
+            foreach (Mob item in mob)
+            {
+                ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture,100);
+                x++;
+            }
 
 
             if (Keyboard.GetState().IsKeyDown(Keys.C) && i == 0)
@@ -130,12 +174,23 @@ namespace Death_is_Dead
                 tab = new uint[curfond.Height * curfond.Width];
             }
             if (plate1.isClicked)
+            {
+                obs = true;
                 curplate = Ressources.plateforme;
+            }
             if (sol1.isClicked)
+            {
+                obs = true;
                 curplate = Ressources.sol;
+            }
             if (fond3.isClicked)
             { /*fond 3*/
                 tab = new uint[curfond.Height * curfond.Width];
+            }
+            if(E1.isClicked)
+            {
+                obs=false;
+                curplate = Ressources.E2;
             }
 
 
@@ -151,6 +206,9 @@ namespace Death_is_Dead
                 sol1.setPosition(new Vector2(400, 0));
                 sol2.setPosition(new Vector2(400, 50));
                 sol3.setPosition(new Vector2(400, 100));
+                E1.setPosition(new Vector2(550, 0));
+                E2.setPosition(new Vector2(550, 50));
+                E3.setPosition(new Vector2(550, 100));
                 fond1.Udapte(Mouse.GetState());
                 fond2.Udapte(Mouse.GetState());
                 fond3.Udapte(Mouse.GetState());
@@ -160,6 +218,9 @@ namespace Death_is_Dead
                 sol1.Udapte(Mouse.GetState());
                 sol2.Udapte(Mouse.GetState());
                 sol3.Udapte(Mouse.GetState());
+                E1.Udapte(Mouse.GetState());
+                E2.Udapte(Mouse.GetState());
+                E3.Udapte(Mouse.GetState());
             }
             else
             {
@@ -181,7 +242,11 @@ namespace Death_is_Dead
             if (!change && Mouse.GetState().LeftButton == ButtonState.Pressed && j == 0 && !droite.isClicked && !gauche.isClicked)
             {
                 j = 20;
-                liste.AddLast(new Obstacle(new Rectangle((int)Mouse.GetState().X+a, (int)Mouse.GetState().Y, curplate.Width, curplate.Height), curplate));
+                if(obs)
+                    liste.AddLast(new Obstacle(new Rectangle((int)Mouse.GetState().X+a, (int)Mouse.GetState().Y, curplate.Width, curplate.Height), curplate));
+                else
+                    mob.AddLast(new Mob(new Vector2((int)Mouse.GetState().X+a, (int)Mouse.GetState().Y),curplate,100));
+
             }
             if (!change && Mouse.GetState().RightButton == ButtonState.Pressed && j == 0)
             {
@@ -201,6 +266,11 @@ namespace Death_is_Dead
             foreach (Obstacle item in map)
             {
                 spriteBatch.Draw(item.texture, item.rectangle, Color.White);
+                
+            }
+            foreach (Mob item in ennemi)
+            {
+                item.Draw(spriteBatch);
             }
             if (change)
             {
@@ -213,6 +283,9 @@ namespace Death_is_Dead
                 sol1.Draw(spriteBatch);
                 sol2.Draw(spriteBatch);
                 sol3.Draw(spriteBatch);
+                E1.Draw(spriteBatch);
+                E2.Draw(spriteBatch);
+                E3.Draw(spriteBatch);
                 spriteBatch.DrawString(Ressources.font, "pause", new Vector2(300, 250), Color.Red, 0, Vector2.Zero, 3, SpriteEffects.None, 0);
                 spriteBatch.DrawString(Ressources.font, "C pour reprendre", new Vector2(300, 350), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
             }
@@ -223,7 +296,6 @@ namespace Death_is_Dead
                 spriteBatch.DrawString(Ressources.font, "Clic gauche ajouter", new Vector2(0, 0), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
                 spriteBatch.DrawString(Ressources.font, "Clic droit retour", new Vector2(0, 50), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
                 spriteBatch.DrawString(Ressources.font, "C pour le menu", new Vector2(0, 100), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
-                spriteBatch.DrawString(Ressources.font, a.ToString(), new Vector2(300, 100), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
             }
         }
     }
