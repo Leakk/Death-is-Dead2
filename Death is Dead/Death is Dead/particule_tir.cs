@@ -12,7 +12,6 @@ namespace Death_is_Dead
          
         private int size1;
         private Vector2 velocity1;
-        private Random rdm = new Random();
         public Vector2 position1;
         private Texture2D particle;
         public int Alpha = 90;
@@ -22,7 +21,7 @@ namespace Death_is_Dead
         public particule_tir(int size, float speed, Vector2 pos)
         {
             this.size1 = size;
-            this.velocity1 = new Vector2(speed, rdm.Next(-2,2));
+            this.velocity1 = new Vector2(speed, Ressources.random_number.Next(-2,2));
             this.position1 = pos;
             position1.Y = pos.Y+25;
             this.particle = Ressources.particule;

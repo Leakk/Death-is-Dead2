@@ -11,6 +11,9 @@ namespace Death_is_Dead
 {
     class Ressources
     {
+
+        public static Random random_number = new Random();
+
         public static Texture2D Player;
         public static Texture2D PlayerFlip;
         public static Texture2D Player2;
