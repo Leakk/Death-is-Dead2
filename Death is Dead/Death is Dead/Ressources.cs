@@ -27,6 +27,8 @@ namespace Death_is_Dead
         public static Texture2D particule;
         public static Texture2D lifebar;
         public static Texture2D Bonus_coeur;
+        public static Texture2D Faux;
+        public static Texture2D Faux_flipped;
         public static SoundEffect tir_son;
         public static SoundEffect button_sound;
 
@@ -51,6 +53,8 @@ namespace Death_is_Dead
             particule = content.Load<Texture2D>("sprite/effet_swag");
             lifebar = content.Load<Texture2D>("sprite/Lifebar");
             Bonus_coeur = content.Load<Texture2D>("sprite/Bonus/coeur");
+            Faux = content.Load<Texture2D>("sprite/Faux");
+            Faux_flipped = content.Load<Texture2D>("sprite/Faux_flipped");
             #endregion
 
             #region /*Sound*/

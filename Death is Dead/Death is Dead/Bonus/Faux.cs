@@ -1,0 +1,62 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+
+namespace Death_is_Dead.Bonus
+{
+    class Faux
+    {
+       
+            Texture2D Tfaux = Ressources.Faux;
+            Color colour = new Color(255, 255, 255, 255);
+            int x;
+            int y;
+            public bool exist = false;
+            public bool down = true;
+
+            public void Udapte(int x, int y, ref Players p1, ref Players p2)
+            {
+                this.x = x;
+                this.y = y;
+                Rectangle rec = new Rectangle(x, y, 20, 20);
+                Rectangle rec2 = new Rectangle((int)p1.position.X, (int)p1.position.Y, p1.texture.Width, p1.texture.Height);
+                Rectangle rec3 = new Rectangle((int)p2.position.X, (int)p2.position.Y, p2.texture.Width, p2.texture.Height);
+
+                if (exist && rec.Intersects(rec2))
+                {
+                    p1.CurrentWeaponIsFaux = true;
+                    exist = false;
+                }
+                if (exist && rec.Intersects(rec3))
+                {
+                    p2.CurrentWeaponIsFaux = true;
+                    exist = false;
+                }
+
+            }
+
+            public void Draw(SpriteBatch sb, int x, int y)
+            {
+                if (exist)
+                {
+                    if (colour.A >= 250) down = true;
+                    if (colour.A <= 50) down = false;
+                    if (down)
+                    {
+                        colour.A -= 5;
+                    }
+                    else
+                    {
+                        colour.A += 5;
+                    }
+
+                    Rectangle RectFaux = new Rectangle(x, y, 40, 40);
+                    sb.Draw(Tfaux, RectFaux, colour);
+                }
+            }
+        
+    }
+}

@@ -16,11 +16,6 @@ namespace Death_is_Dead.Bonus
         public bool exist = false;
         public bool down = true;
 
-      /*  public void coeur()
-        {
-            this.coeur = Ressources.Bonus_coeur;
-        }*/
-
         public void Udapte_coeur(int x, int y, ref Players p1, ref Players p2)
         {
             this.x = x;
@@ -39,7 +34,7 @@ namespace Death_is_Dead.Bonus
             }
             if (exist && rec.Intersects(rec3))
             {
-                if (p1.life <= 250)
+                if (p2.life <= 250)
                 {
                     p2.life += 50;
                     exist = false;

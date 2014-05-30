@@ -25,7 +25,10 @@ namespace Death_is_Dead
         [NonSerialized]
         Bonus.Coeur coeur = new Bonus.Coeur();
         [NonSerialized]
-        bool activer_bonus_coeur;
+        bool activer_bonus;
+        [NonSerialized] 
+        Bonus.Faux Bonusfaux = new Bonus.Faux();
+
         uint[] tab;
 
 
@@ -34,7 +37,7 @@ namespace Death_is_Dead
             : base(position, texture, life, true)
         {
 
-            activer_bonus_coeur = true;
+            activer_bonus = true;
             mob_pos = position;
             this.life = life;
             Life = new Life();
@@ -53,13 +56,24 @@ namespace Death_is_Dead
 
             if (life <= 0)
             {
-                if (activer_bonus_coeur) coeur.exist = true;         /* pour evité que sa mettre coeur.exist = true à chaque frame*/
-                activer_bonus_coeur = false;                          /* vu qu'apres quand le joueur le prends sa se met à false ( c'est gérer dans la classe coeur )*/
+                if (activer_bonus)                                  /* pour evité que sa mettre coeur.exist = true à chaque frame*/
+                                                                    /* vu qu'apres quand le joueur le prends sa se met à false ( c'est gérer dans la classe coeur )*/
+                {
+                    //coeur.exist = true;
+                    Bonusfaux.exist = true;
+                }                                              
+                activer_bonus = false;                          
 
                 velocity.X = 0;
                 velocity.Y = 0;
-                coeur.Udapte_coeur((int)position.X, (int)position.Y, ref player,ref p2);
-
+                if (coeur.exist)
+                {
+                    coeur.Udapte_coeur((int)position.X, (int)position.Y, ref player, ref p2);
+                }
+                if (Bonusfaux.exist)
+                {
+                    Bonusfaux.Udapte((int)position.X, (int)position.Y, ref player, ref p2);
+                }
 
                 HitboxB = new Collision(new Rectangle(0, 0, 0, 0));
                 HitboxD = new Collision(new Rectangle(0, 0, 0, 0));
@@ -109,9 +123,13 @@ namespace Death_is_Dead
         public void Draw(SpriteBatch sb)
         {
 
-            // coeur.Draw(sb,(int)mob_pos.X,(int)mob_pos.Y);
+            
             if (coeur.exist)
                 coeur.Draw(sb, (int)position.X, (int)position.Y);
+            if (Bonusfaux.exist)
+            {
+                Bonusfaux.Draw(sb, (int)position.X, (int)position.Y);
+            }
 
             Life.Draw(sb, (int)position.X, (int)position.Y - 20, 0.5f, 5);
 

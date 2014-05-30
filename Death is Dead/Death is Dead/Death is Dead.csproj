@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bonus\Coeur.cs" />
+    <Compile Include="Bonus\Faux.cs" />
     <Compile Include="cButton.cs" />
     <Compile Include="cButton2.cs" />
     <Compile Include="Collison.cs" />

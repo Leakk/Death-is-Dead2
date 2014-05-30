@@ -26,6 +26,7 @@ namespace Death_is_Dead
         int latenceTir = 0;
 
 
+
         public Player(Vector2 position, Texture2D texture, int life)
             : base(position, texture, life)
         {
@@ -70,6 +71,100 @@ namespace Death_is_Dead
                 velocity.X = velocity.X / 1.15f;
             #endregion
 
+           #region/*Faux*/
+            if (!hasFliped)
+            {
+                Faux_damageBox_ground.X = (int)position.X + 30;
+                Faux_damageBox_ground.Y = (int)position.Y - 10;
+                Faux_damageBox_ground.Width = 110;
+                Faux_damageBox_ground.Height = 90;
+
+                Faux_damageBox_air.X = (int)position.X + 15;
+                Faux_damageBox_air.Y = (int)position.Y + 80;
+                Faux_damageBox_air.Width = 100;
+                Faux_damageBox_air.Height = 50;
+
+            }
+            else
+            {
+                Faux_damageBox_ground.X = (int)position.X -80;
+                Faux_damageBox_ground.Y = (int)position.Y -10;
+                Faux_damageBox_ground.Width = 110;
+                Faux_damageBox_ground.Height = 90;
+
+                Faux_damageBox_air.X = (int)position.X -55;
+                Faux_damageBox_air.Y = (int)position.Y + 80;
+                Faux_damageBox_air.Width = 100;
+                Faux_damageBox_air.Height = 50;
+            }
+
+            if (keyboard.IsKeyDown(Keys.P)&&(CurrentWeaponIsFaux)&&(latence_Faux==0)&&(!attackFaux_animation_ground)&&(!attackFaux_animation_air))
+            {
+                if (HitboxB.is_coll(rect))  attackFaux_animation_ground = true;
+                else attackFaux_animation_air = true;
+            }
+            #region /* attaque sur le sol */
+            if (attackFaux_animation_ground)
+            {
+                latence_Faux = 40;
+               
+                    if (attackFaux_animation1 < 4) /* la faux descend */
+                    {
+                        Faux_damageBox_ground_isActivate = true;
+                        Faux_rotation += 0.3f;
+                        attackFaux_animation1 += 1;
+                    }
+                    else
+                    {
+                        if (attackFaux_animation2 < 10) /* la faux remonte */
+                        {
+                            Faux_damageBox_ground_isActivate = false;
+                            Faux_rotation -= 0.12f;
+                            attackFaux_animation2 += 1;
+                        }
+                        else                          /* on remet les variables comme il faut pour une prochaine relecture */
+                        {
+                            attackFaux_animation1 = 0;
+                            attackFaux_animation2 = 0;
+                            attackFaux_animation_ground = false; /* animation terminé */
+                        }
+                    }
+
+            }
+            #endregion
+            #region /* attaque en l'air */
+            if (attackFaux_animation_air)
+            {
+                latence_Faux = 40;
+
+                if (attackFaux_animation1 < 6) /* la faux descend */
+                {
+                    Faux_damageBox_ground_isActivate = true;
+                    Faux_damageBox_air_isActivate = true;
+                    Faux_rotation += 0.4f;
+                    attackFaux_animation1 += 1;
+                }
+                else
+                {
+                    if (attackFaux_animation2 < 16) /* la faux remonte */
+                    {
+                        Faux_damageBox_ground_isActivate = false;
+                        Faux_damageBox_air_isActivate = false;
+                        Faux_rotation -= 0.15f;
+                        attackFaux_animation2 += 1;
+                    }
+                    else                          /* on remet les variables comme il faut pour une prochaine relecture */
+                    {
+                        attackFaux_animation1 = 0;
+                        attackFaux_animation2 = 0;
+                        attackFaux_animation_air = false; /* animation terminé */
+                    }
+                }
+
+            }
+            #endregion
+            #endregion
+
             if (position.X < 0)
                 position.X = 0;
             if (position.X > 800-texture.Width)
@@ -107,7 +202,7 @@ namespace Death_is_Dead
                 latenceSmoke--;
             #endregion
             #region /*Tirs*/
-            if (keyboard.IsKeyDown(Keys.P) && latenceTir == 0)
+            if (keyboard.IsKeyDown(Keys.P) && latenceTir == 0&&(!CurrentWeaponIsFaux))
             {
                 latenceTir = 20;
                 for (int i = 0; i < Tirs.Length; i++)
@@ -126,20 +221,56 @@ namespace Death_is_Dead
             
 
             base.Update2(rect);
+            if (latence_Faux > 0)
+            {
+                latence_Faux--;
+            }
         }
 
         public void Draw(SpriteBatch sb)
         {
             Life.Draw(sb, 10, 10,1,15);
 
+            #region/*truc pour la faux */
+
+            //sb.Draw(Ressources.lifebar, Faux_damageBox_ground, Color.White); /* afficher les hitBox de la faux */
+            //sb.Draw(Ressources.lifebar, Faux_damageBox_air, Color.Green);
+
             if (this.hasFliped)
-                sb.Draw(Ressources.PlayerFlip, new Vector2(this.position.X, this.position_Y_texture), Color.White);
+            {
+                tmp = new Vector2(250, 300);
+                faux_pos.X = (this.position.X + 25);
+                faux_pos.Y = (this.position_Y_texture + 30);
+                Faux = Ressources.Faux_flipped;
+            }
             else
+            {
+                tmp = new Vector2(0, 300);
+                faux_pos.X = (this.position.X + 25);
+                faux_pos.Y = (this.position_Y_texture + 30);
+                Faux = Ressources.Faux;
+            }
+
+            #endregion
+
+            if (this.hasFliped)
+            {
+                 if (CurrentWeaponIsFaux) sb.Draw(Faux, faux_pos, null, Color.White, -Faux_rotation, tmp, 0.32f, SpriteEffects.None, 1);
+
+                 sb.Draw(Ressources.PlayerFlip, new Vector2(this.position.X, this.position_Y_texture), Color.White);
+            }
+            else
+            {
+                if (CurrentWeaponIsFaux) sb.Draw(Faux, faux_pos, null, Color.White, Faux_rotation, tmp, 0.32f, SpriteEffects.None, 1);
+
                 sb.Draw(this.texture, new Vector2(this.position.X, this.position_Y_texture), Color.White);
-            //sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);
-            //sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);
-            //sb.Draw(Ressources.plateforme, HitboxG.Rectangle, Color.Red);
-            //sb.Draw(Ressources.plateforme, HitboxH.Rectangle, Color.Red);
+
+            }
+                //sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);
+                //sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);
+                //sb.Draw(Ressources.plateforme, HitboxG.Rectangle, Color.Red);
+                //sb.Draw(Ressources.plateforme, HitboxH.Rectangle, Color.Red);
+         
         }
 
     }

@@ -568,6 +568,58 @@ namespace Death_is_Dead
                     foreach (Mob item in map.mobs)
                     {
                         item.Update(map.obs, player1,player2);
+                        #region /* faux */
+                        if (player1.CurrentWeaponIsFaux)
+                        {
+                            if (player1.Faux_damageBox_ground_isActivate)
+                            {           
+                                   if ((item.HitboxB.Rectangle.Intersects(player1.Faux_damageBox_ground))
+                                    ||(item.HitboxH.Rectangle.Intersects(player1.Faux_damageBox_ground)
+                                    ||(item.HitboxG.Rectangle.Intersects(player1.Faux_damageBox_ground)
+                                    ||(item.HitboxD.Rectangle.Intersects(player1.Faux_damageBox_ground))))) /* la hit box de la faux touche l'enemi */
+                                {
+                                    item.life -=15;
+                                }
+                            }
+
+                            if (player1.Faux_damageBox_air_isActivate)
+                            {
+                                if ((item.HitboxB.Rectangle.Intersects(player1.Faux_damageBox_air))
+                                 || (item.HitboxH.Rectangle.Intersects(player1.Faux_damageBox_air)
+                                 || (item.HitboxG.Rectangle.Intersects(player1.Faux_damageBox_air)
+                                 || (item.HitboxD.Rectangle.Intersects(player1.Faux_damageBox_air))))) /* la hit box de la faux touche l'enemi */
+                                {
+                                    item.life -= 15;
+                                }
+                            }
+                        }
+
+                        if (player2.CurrentWeaponIsFaux)
+                        {
+                            if (player2.Faux_damageBox_ground_isActivate)
+                            {
+                                if ((item.HitboxB.Rectangle.Intersects(player2.Faux_damageBox_ground))
+                                 || (item.HitboxH.Rectangle.Intersects(player2.Faux_damageBox_ground)
+                                 || (item.HitboxG.Rectangle.Intersects(player2.Faux_damageBox_ground)
+                                 || (item.HitboxD.Rectangle.Intersects(player2.Faux_damageBox_ground))))) /* la hit box de la faux touche l'enemi */
+                                {
+                                    item.life -= 20;
+                                }
+                            }
+
+                            if (player2.Faux_damageBox_air_isActivate)
+                            {
+                                if ((item.HitboxB.Rectangle.Intersects(player2.Faux_damageBox_air))
+                                 || (item.HitboxH.Rectangle.Intersects(player2.Faux_damageBox_air)
+                                 || (item.HitboxG.Rectangle.Intersects(player2.Faux_damageBox_air)
+                                 || (item.HitboxD.Rectangle.Intersects(player2.Faux_damageBox_air))))) /* la hit box de la faux touche l'enemi */
+                                {
+                                    item.life -= 20;
+                                }
+                            }
+                        }
+                        #endregion
+
                         for (int i = 0; i < item.Tirs.Length; i++)
                         {
                             if (item.Tirs[i] != null)
@@ -580,6 +632,12 @@ namespace Death_is_Dead
                                 if (player1.isTouched(item.Tirs[i]))
                                 {
                                     player1.life -= 5;
+                                    item.Tirs[i] = null;
+                                }
+
+                                if (player2.isTouched(item.Tirs[i]))
+                                {
+                                    player2.life -= 5;
                                     item.Tirs[i] = null;
                                 }
 
@@ -612,6 +670,8 @@ namespace Death_is_Dead
                         CurrentGameState = GameState.GameOver;
                         player1 = new Player(new Vector2(350, 0), Ressources.Player, 100);
                     }
+
+                    
 
                     break;
                 #endregion

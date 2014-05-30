@@ -21,6 +21,8 @@ namespace Death_is_Dead
         [NonSerialized]
         int k = 5;
 
+
+
         public Players(Vector2 position, Texture2D texture, int life)
             : base(position, texture, life, true)
         {
