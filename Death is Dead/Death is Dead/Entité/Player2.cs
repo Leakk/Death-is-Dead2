@@ -80,26 +80,26 @@ namespace Death_is_Dead
             {
                 Faux_damageBox_ground.X = (int)position.X + 30;
                 Faux_damageBox_ground.Y = (int)position.Y - 10;
-                Faux_damageBox_ground.Width = 110;
-                Faux_damageBox_ground.Height = 90;
+                Faux_damageBox_ground.Width = 90;
+                Faux_damageBox_ground.Height = 75;
 
                 Faux_damageBox_air.X = (int)position.X + 15;
-                Faux_damageBox_air.Y = (int)position.Y + 80;
-                Faux_damageBox_air.Width = 100;
-                Faux_damageBox_air.Height = 50;
+                Faux_damageBox_air.Y = (int)position.Y + 68;
+                Faux_damageBox_air.Width = 85;
+                Faux_damageBox_air.Height = 40;
 
             }
             else
             {
-                Faux_damageBox_ground.X = (int)position.X - 80;
+                Faux_damageBox_ground.X = (int)position.X - 60;
                 Faux_damageBox_ground.Y = (int)position.Y - 10;
-                Faux_damageBox_ground.Width = 110;
-                Faux_damageBox_ground.Height = 90;
+                Faux_damageBox_ground.Width = 90;
+                Faux_damageBox_ground.Height = 75;
 
-                Faux_damageBox_air.X = (int)position.X - 55;
-                Faux_damageBox_air.Y = (int)position.Y + 80;
-                Faux_damageBox_air.Width = 100;
-                Faux_damageBox_air.Height = 50;
+                Faux_damageBox_air.X = (int)position.X - 50;
+                Faux_damageBox_air.Y = (int)position.Y + 68;
+                Faux_damageBox_air.Width = 85;
+                Faux_damageBox_air.Height = 40;
             }
 
             if (keyboard.IsKeyDown(Keys.NumPad5) && (CurrentWeaponIsFaux) && (latence_Faux == 0) && (!attackFaux_animation_ground) && (!attackFaux_animation_air))
@@ -243,8 +243,8 @@ namespace Death_is_Dead
 
             #region/*truc pour la faux */
 
-            //sb.Draw(Ressources.lifebar, Faux_damageBox_ground, Color.White); /* afficher les hitBox de la faux */
-            //sb.Draw(Ressources.lifebar, Faux_damageBox_air, Color.Green);
+          //  sb.Draw(Ressources.lifebar, Faux_damageBox_ground, Color.White); /* afficher les hitBox de la faux */
+          //sb.Draw(Ressources.lifebar, Faux_damageBox_air, Color.Green);
 
             if (this.hasFliped)
             {
@@ -266,13 +266,13 @@ namespace Death_is_Dead
 
             if (this.hasFliped)
             {
-                if (CurrentWeaponIsFaux) sb.Draw(Faux, faux_pos, null, Color.White, -Faux_rotation, tmp, 0.32f, SpriteEffects.None, 1);
+                if (CurrentWeaponIsFaux) sb.Draw(Faux, faux_pos, null, Color.White, -Faux_rotation, tmp, 0.27f, SpriteEffects.None, 1);
 
                 sb.Draw(Ressources.PlayerFlip2, new Vector2(this.position.X, position_Y_texture), Color.White);
             }
             else
             {
-                if (CurrentWeaponIsFaux) sb.Draw(Faux, faux_pos, null, Color.White, Faux_rotation, tmp, 0.32f, SpriteEffects.None, 1);
+                if (CurrentWeaponIsFaux) sb.Draw(Faux, faux_pos, null, Color.White, Faux_rotation, tmp, 0.27f, SpriteEffects.None, 1);
 
                 sb.Draw(this.texture, new Vector2(this.position.X, this.position_Y_texture), Color.White);
             }
