@@ -30,11 +30,12 @@ namespace Death_is_Dead
         private Color player2_color = new Color(255, 255,100, 255);
 
 
-        public Player2(Vector2 position, Texture2D texture, int life)
-            : base(position, texture, life)
+        public Player2(Vector2 position, Texture2D texture, int life,Boolean faux)
+            : base(position, texture, life,faux)
         {
             Smoke = new Smoke[20];
             Life = new Life();
+            CurrentWeaponIsFaux = faux;
         }
 
 
@@ -227,7 +228,7 @@ namespace Death_is_Dead
             #endregion
 
             
-            base.Update2(rect);
+            base.Update2(rect,Keyboard.GetState());
             if (latence_Faux > 0)
             {
                 latence_Faux--;

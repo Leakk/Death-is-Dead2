@@ -226,8 +226,8 @@ namespace Death_is_Dead
                     if (btnPlay.isClicked)
                     {
                         button_click.Play();
-                        player1 = new Player(new Vector2(350, 0), Ressources.Player, 100);
-                        player2 = new Player2(new Vector2(-1000, 0), Ressources.Player2, 100);
+                        player1 = new Player(new Vector2(350, 0), Ressources.Player, 100,false);
+                        player2 = new Player2(new Vector2(-1000, 0), Ressources.Player2, 100, false);
                         map = map1;
                         MediaPlayer.Stop();
                         MediaPlayer.Play(Game_song_lvl1);
@@ -237,8 +237,8 @@ namespace Death_is_Dead
                     if (btnMultiplayer.isClicked)
                     {
                         button_click.Play();
-                        player1 = new Player(new Vector2(350, 0), Ressources.Player, 100);
-                        player2 = new Player2(new Vector2(350, 0), Ressources.Player2, 100);
+                        player1 = new Player(new Vector2(350, 0), Ressources.Player, 100, false);
+                        player2 = new Player2(new Vector2(350, 0), Ressources.Player2, 100, false);
                         map = map1;
                         MediaPlayer.Stop();
                         MediaPlayer.Play(Game_song_lvl1);
@@ -276,8 +276,8 @@ namespace Death_is_Dead
                             P2 = (Player2)format.Deserialize(liste2);
                             obs2 = (Obstacle[])format.Deserialize(liste3);
                             mobs2 = (Mob[])format.Deserialize(liste4);
-                            player1 = new Player(P1.position, Ressources.Player, P1.life);
-                            player2 = new Player2(P2.position, Ressources.Player2, P2.life);
+                            player1 = new Player(P1.position, Ressources.Player, P1.life,P1.CurrentWeaponIsFaux);
+                            player2 = new Player2(P2.position, Ressources.Player2, P2.life,P2.CurrentWeaponIsFaux);
                             foreach (Obstacle item in obs2)
                             {
                                 item.maj(Content);
@@ -534,7 +534,7 @@ namespace Death_is_Dead
                         if (player2.dead)
                         {
                             CurrentGameState = GameState.GameOver;
-                            player1 = new Player(new Vector2(350, 0), Ressources.Player, 100);
+                            player1 = new Player(new Vector2(350, 0), Ressources.Player, 100, false);
                         }
                     }
 
@@ -668,7 +668,7 @@ namespace Death_is_Dead
                     if (player1.dead)
                     {
                         CurrentGameState = GameState.GameOver;
-                        player1 = new Player(new Vector2(350, 0), Ressources.Player, 100);
+                        player1 = new Player(new Vector2(350, 0), Ressources.Player, 100, false);
                     }
 
                     

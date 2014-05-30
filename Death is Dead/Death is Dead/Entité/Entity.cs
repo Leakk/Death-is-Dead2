@@ -45,20 +45,6 @@ namespace Death_is_Dead
         [NonSerialized]
         public Projectile[] Tirs;
 
-        public Texture2D Faux = Ressources.Faux;
-        public Vector2 faux_pos = new Vector2(0, 0);
-        public Vector2 tmp = new Vector2(0, 300);
-        public float Faux_rotation;
-        public bool CurrentWeaponIsFaux = false;   /* ça par contre sa doit etre SERIALIZED */
-        public bool attackFaux_animation_ground = false;
-        public bool attackFaux_animation_air = false;
-        public int attackFaux_animation1 = 0;
-        public int attackFaux_animation2 = 0;
-        public int latence_Faux;
-        public  Rectangle Faux_damageBox_ground = new Rectangle();
-        public  Rectangle Faux_damageBox_air = new Rectangle();
-        public  bool Faux_damageBox_ground_isActivate = false;
-        public  bool Faux_damageBox_air_isActivate = false;
 
 
         public Entity(Vector2 position, Texture2D texture, int life, bool play)
