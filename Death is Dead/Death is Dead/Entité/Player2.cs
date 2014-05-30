@@ -80,27 +80,27 @@ namespace Death_is_Dead
             if (!hasFliped)
             {
                 Faux_damageBox_ground.X = (int)position.X + 30;
-                Faux_damageBox_ground.Y = (int)position.Y - 10;
+                Faux_damageBox_ground.Y = (int)position.Y - 17;
                 Faux_damageBox_ground.Width = 90;
-                Faux_damageBox_ground.Height = 75;
+                Faux_damageBox_ground.Height = 68;
 
                 Faux_damageBox_air.X = (int)position.X + 15;
-                Faux_damageBox_air.Y = (int)position.Y + 68;
-                Faux_damageBox_air.Width = 85;
-                Faux_damageBox_air.Height = 40;
+                Faux_damageBox_air.Y = (int)position.Y + 75;
+                Faux_damageBox_air.Width = 80;
+                Faux_damageBox_air.Height = 38;
 
             }
             else
             {
-                Faux_damageBox_ground.X = (int)position.X - 60;
-                Faux_damageBox_ground.Y = (int)position.Y - 10;
+                Faux_damageBox_ground.X = (int)position.X - 65;
+                Faux_damageBox_ground.Y = (int)position.Y - 17;
                 Faux_damageBox_ground.Width = 90;
-                Faux_damageBox_ground.Height = 75;
+                Faux_damageBox_ground.Height = 68;
 
-                Faux_damageBox_air.X = (int)position.X - 50;
-                Faux_damageBox_air.Y = (int)position.Y + 68;
-                Faux_damageBox_air.Width = 85;
-                Faux_damageBox_air.Height = 40;
+                Faux_damageBox_air.X = (int)position.X - 42;
+                Faux_damageBox_air.Y = (int)position.Y + 75;
+                Faux_damageBox_air.Width = 80;
+                Faux_damageBox_air.Height = 38;
             }
 
             if (keyboard.IsKeyDown(Keys.NumPad5) && (CurrentWeaponIsFaux) && (latence_Faux == 0) && (!attackFaux_animation_ground) && (!attackFaux_animation_air))
@@ -170,7 +170,7 @@ namespace Death_is_Dead
             #endregion
             #endregion
 
-
+            
 
             #region/*Smoke*/
             if ((HitboxB.is_coll(rect)) && latenceSmoke == 0)
@@ -244,8 +244,8 @@ namespace Death_is_Dead
 
             #region/*truc pour la faux */
 
-          //  sb.Draw(Ressources.lifebar, Faux_damageBox_ground, Color.White); /* afficher les hitBox de la faux */
-          //sb.Draw(Ressources.lifebar, Faux_damageBox_air, Color.Green);
+            sb.Draw(Ressources.lifebar, Faux_damageBox_ground, Color.White); /* afficher les hitBox de la faux */
+            sb.Draw(Ressources.lifebar, Faux_damageBox_air, Color.Green);
 
             if (this.hasFliped)
             {
