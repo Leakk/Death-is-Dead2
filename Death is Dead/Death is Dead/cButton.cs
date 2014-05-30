@@ -13,7 +13,7 @@ namespace Death_is_Dead
     {
         Texture2D texture;
         Vector2 position;
-        Rectangle rectangle;
+        public Rectangle rectangle;
 
         Color colour1;
 
