@@ -22,6 +22,7 @@ namespace Death_is_Dead
         enum GameState
         {
             MainMenu,
+            MapSelection,
             Option,
             Playing,
             Playing_2P,
@@ -48,6 +49,7 @@ namespace Death_is_Dead
         public KeyboardState keyboardState;
         public string lang = "";
         public Texture2D curFond;
+        public bool multiplayer = false;
 
 
         #region  /*Pour les boutons*/
@@ -87,8 +89,8 @@ namespace Death_is_Dead
         /*Option*/
         cButton btnRes;
         cButton btnBack;
-        cButton btnApply_change;
-        cButton btnSound_volume;
+       // cButton btnApply_change;
+       // cButton btnSound_volume;
         cButton btnLanguage;
         /*pause*/
         cButton btnBackToMenu;
@@ -101,6 +103,11 @@ namespace Death_is_Dead
         cButton btnLoad_editor;
         /*gameOver*/
         cButton btnBackFromGameOver;
+        /* Map_selection */
+        cButton btnMap1;
+        cButton btnMap2;
+        cButton btnMap3;
+        cButton btnMyMaps;
         #endregion
 
         public GameMain()
@@ -164,7 +171,17 @@ namespace Death_is_Dead
             Menu_song = (Content.Load<Song>("Sound_effects/Menu/Menu_music")); //Ressources.Menu_song;
             Game_song_lvl1 = (Content.Load<Song>("Sound_effects/Game/Game_music")); //Ressources.Game_song_lvl1;
             #endregion
+            #region /* Menu selection de map */
+            btnMap1 = new cButton(Content.Load<Texture2D>("sprite/Map_selection/" + lang + "/Level 1"), colour1, graphics.GraphicsDevice);
+            btnMap2 = new cButton(Content.Load<Texture2D>("sprite/Map_selection/" + lang + "/Level 2"), colour1, graphics.GraphicsDevice);
+            btnMap3 = new cButton(Content.Load<Texture2D>("sprite/Map_selection/" + lang + "/Level 3"), colour1, graphics.GraphicsDevice);
+            btnMyMaps = new cButton(Content.Load<Texture2D>("sprite/Map_selection/" + lang + "/MyMaps"), colour1, graphics.GraphicsDevice);
 
+            btnMap1.setPosition(new Vector2(20, 100));
+            btnMap2.setPosition(new Vector2(20, 200));
+            btnMap3.setPosition(new Vector2(20, 300));
+            btnMyMaps.setPosition(new Vector2(300, 100));
+            #endregion
             #region/*Pour le menu pause*/
             btnBackToMenu = new cButton(Content.Load<Texture2D>("sprite/paused/" + lang + "/back"), colour1, graphics.GraphicsDevice);
             btnResume = new cButton(Content.Load<Texture2D>("sprite/paused/" + lang + "/resume"), colour1, graphics.GraphicsDevice);
@@ -225,25 +242,17 @@ namespace Death_is_Dead
                     btnEditor.Udapte(mouse);
                     if (btnPlay.isClicked)
                     {
+                        multiplayer = false;
                         button_click.Play();
-                        player1 = new Player(new Vector2(350, 0), Ressources.Player, 100,false);
-                        player2 = new Player2(new Vector2(-1000, 0), Ressources.Player2, 100, false);
-                        map = map1;
-                        MediaPlayer.Stop();
-                        MediaPlayer.Play(Game_song_lvl1);
-                        songisplayed = false;
-                        CurrentGameState = GameState.Playing;
+                       
+                        CurrentGameState = GameState.MapSelection;
                     }
                     if (btnMultiplayer.isClicked)
                     {
+                        multiplayer = true;
                         button_click.Play();
-                        player1 = new Player(new Vector2(350, 0), Ressources.Player, 100, false);
-                        player2 = new Player2(new Vector2(350, 0), Ressources.Player2, 100, false);
-                        map = map1;
-                        MediaPlayer.Stop();
-                        MediaPlayer.Play(Game_song_lvl1);
-                        songisplayed = false;
-                        CurrentGameState = GameState.Playing_2P;
+
+                        CurrentGameState = GameState.MapSelection;
                     }
                     if (btnOption.isClicked)
                     {
@@ -310,6 +319,77 @@ namespace Death_is_Dead
                         
 
                     }
+                    if (count != 0)
+                        count--;
+                    break;
+                #endregion
+                #region /* map selection */
+                case GameState.MapSelection:
+                    btnBack.Udapte(mouse);
+                    btnMap1.Udapte(mouse);
+                    btnMap2.Udapte(mouse);
+                    btnMap3.Udapte(mouse);
+                    btnMyMaps.Udapte(mouse);
+                  
+                    #region /* chargements des truc commun à tout les bouttons */
+                    if (count==0&&(btnMap1.isClicked)||(btnMap2.isClicked)||(btnMap3.isClicked)||(btnMyMaps.isClicked)) /* n'importe quel boutton qui charge une map lira ça */
+                    {
+                        if (multiplayer)
+                        {
+                            player2 = new Player2(new Vector2(350, 0), Ressources.Player2, 100, false);
+                            CurrentGameState = GameState.Playing_2P;
+                        }
+                        else
+                        {
+                            player2 = new Player2(new Vector2(-1000, 0), Ressources.Player2, 100, false);
+                            CurrentGameState = GameState.Playing;
+                        }
+
+                        player1 = new Player(new Vector2(350, 0), Ressources.Player, 100, false);
+                        MediaPlayer.Stop();
+                        MediaPlayer.Play(Game_song_lvl1);
+                        songisplayed = false;
+
+                        
+                        button_click.Play();
+                    }
+                    #endregion
+
+
+                    if (btnMap1.isClicked && count == 0)
+                    {
+                        map = map1;
+                        count = 10;
+                        button_click.Play();
+                    }
+
+                    if (btnMap2.isClicked && count == 0)
+                    {
+                        /* map 2 here */
+                        count = 10;
+                        button_click.Play();
+                    }
+
+                    if (btnMap3.isClicked && count == 0)
+                    {
+                        /* map 3 here */
+                        count = 10;
+                        button_click.Play();
+                    }
+
+                    if (btnMyMaps.isClicked && count == 0)
+                    {
+                        /* map = la custom map */
+                        count = 10;
+                        button_click.Play();
+                    }
+
+                    if (btnBack.isClicked && count == 0)
+                    {
+                        button_click.Play();
+                        CurrentGameState = GameState.MainMenu;
+                    }
+
                     if (count != 0)
                         count--;
                     break;
@@ -697,6 +777,22 @@ namespace Death_is_Dead
                     btnOption.Draw(spriteBatch);
                     btnExit.Draw(spriteBatch);
                     btnEditor.Draw(spriteBatch);
+                    break;
+                case GameState.MapSelection:
+                    spriteBatch.Draw(Content.Load<Texture2D>("sprite/Map_selection/fond_mapSelect"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                    if (multiplayer)
+                    {
+                        spriteBatch.Draw(Content.Load<Texture2D>("sprite/Map_selection/" + lang + "/info2"), new Rectangle(200, 0,250, 80), Color.Red);
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(Content.Load<Texture2D>("sprite/Map_selection/" + lang + "/info"), new Rectangle(200, 0, 250, 80), Color.Red);
+                    }
+                    btnMap1.Draw(spriteBatch);
+                    btnMap2.Draw(spriteBatch);
+                    btnMap3.Draw(spriteBatch);
+                    btnMyMaps.Draw(spriteBatch);
+                    btnBack.Draw(spriteBatch);
                     break;
                 case GameState.Playing:
                     map.Draw(spriteBatch, screenWidth, screenHeight);

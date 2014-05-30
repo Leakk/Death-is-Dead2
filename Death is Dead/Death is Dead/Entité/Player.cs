@@ -233,8 +233,8 @@ namespace Death_is_Dead
 
             #region/*truc pour la faux */
 
-            sb.Draw(Ressources.lifebar, Faux_damageBox_ground, Color.White); /* afficher les hitBox de la faux */
-            sb.Draw(Ressources.lifebar, Faux_damageBox_air, Color.Green);
+            //sb.Draw(Ressources.lifebar, Faux_damageBox_ground, Color.White); /* afficher les hitBox de la faux */
+            //sb.Draw(Ressources.lifebar, Faux_damageBox_air, Color.Green);
 
             if (this.hasFliped)
             {
