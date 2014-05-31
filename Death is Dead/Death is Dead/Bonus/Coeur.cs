@@ -28,6 +28,7 @@ namespace Death_is_Dead.Bonus
             {
                 if (p1.life <= 250)
                 {
+                    Ressources.son_ramassage_de_bonus.Play();
                     p1.life += 50;
                     exist = false;
                 }
@@ -36,6 +37,7 @@ namespace Death_is_Dead.Bonus
             {
                 if (p2.life <= 250)
                 {
+                    Ressources.son_ramassage_de_bonus.Play();
                     p2.life += 50;
                     exist = false;
                 }

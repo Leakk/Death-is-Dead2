@@ -27,16 +27,19 @@ namespace Death_is_Dead.Bonus
 
                 if (exist && rec.Intersects(rec2))
                 {
+                    Ressources.son_ramassage_de_bonus.Play();
                     p1.CurrentWeaponIsFaux = true;
                     exist = false;
                 }
                 if (exist && rec.Intersects(rec3))
                 {
+                    Ressources.son_ramassage_de_bonus.Play();
                     p2.CurrentWeaponIsFaux = true;
                     exist = false;
                 }
 
             }
+        
 
             public void Draw(SpriteBatch sb, int x, int y)
             {

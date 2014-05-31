@@ -101,6 +101,7 @@ namespace Death_is_Dead
 
             if (keyboard.IsKeyDown(Keys.P) && (CurrentWeaponIsFaux) && (latence_Faux == 0) && (!attackFaux_animation_ground) && (!attackFaux_animation_air))
             {
+                Ressources.Faux_sound.Play();
                 if (HitboxB.is_coll(rect)) attackFaux_animation_ground = true;
                 else attackFaux_animation_air = true;
             }

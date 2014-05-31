@@ -585,13 +585,17 @@ namespace Death_is_Dead
                                 {
                                     if (mob.isTouched(player2.Tirs[i]))
                                     {
+                                        Ressources.impact_tir_enemi.Play();
                                         mob.life -= 10;
                                         player2.Tirs[i] = null;
                                     }
                                 }
                                 if (player2.Tirs[i] != null)
                                     if (new Collision(new Rectangle((int)player2.Tirs[i].position.X, (int)player2.Tirs[i].position.Y, player2.Tirs[i].texture.Width, player2.Tirs[i].texture.Height)).is_coll(map.obs))
+                                    {
                                         player2.Tirs[i] = null;
+                                        Ressources.impact_tir_mur.Play();
+                                    }
                             }
                         }
                         #region/*Smoke2*/
@@ -632,13 +636,17 @@ namespace Death_is_Dead
                             {
                                 if (mob.isTouched(player1.Tirs[i]))
                                 {
+                                    Ressources.impact_tir_enemi.Play();
                                     mob.life -= 10;
                                     player1.Tirs[i] = null;
                                 }
                             }
                             if (player1.Tirs[i] != null)
                                 if (new Collision(new Rectangle((int)player1.Tirs[i].position.X, (int)player1.Tirs[i].position.Y, player1.Tirs[i].texture.Width, player1.Tirs[i].texture.Height)).is_coll(map.obs))
+                                {
                                     player1.Tirs[i] = null;
+                                    Ressources.impact_tir_mur.Play();
+                                }
 
                         }
                     }
@@ -658,7 +666,7 @@ namespace Death_is_Dead
                                     ||(item.HitboxG.Rectangle.Intersects(player1.Faux_damageBox_ground)
                                     ||(item.HitboxD.Rectangle.Intersects(player1.Faux_damageBox_ground))))) /* la hit box de la faux touche l'enemi */
                                 {
-                                    item.life -=11;
+                                    item.life -=14;
                                 }
                             }
 
@@ -669,7 +677,7 @@ namespace Death_is_Dead
                                  || (item.HitboxG.Rectangle.Intersects(player1.Faux_damageBox_air)
                                  || (item.HitboxD.Rectangle.Intersects(player1.Faux_damageBox_air))))) /* la hit box de la faux touche l'enemi */
                                 {
-                                    item.life -= 11;
+                                    item.life -= 14;
                                 }
                             }
                         }
@@ -683,7 +691,7 @@ namespace Death_is_Dead
                                  || (item.HitboxG.Rectangle.Intersects(player2.Faux_damageBox_ground)
                                  || (item.HitboxD.Rectangle.Intersects(player2.Faux_damageBox_ground))))) /* la hit box de la faux touche l'enemi */
                                 {
-                                    item.life -= 20;
+                                    item.life -= 14;
                                 }
                             }
 
@@ -694,7 +702,7 @@ namespace Death_is_Dead
                                  || (item.HitboxG.Rectangle.Intersects(player2.Faux_damageBox_air)
                                  || (item.HitboxD.Rectangle.Intersects(player2.Faux_damageBox_air))))) /* la hit box de la faux touche l'enemi */
                                 {
-                                    item.life -= 20;
+                                    item.life -= 14;
                                 }
                             }
                         }
@@ -758,7 +766,7 @@ namespace Death_is_Dead
             }
             #endregion
 
-
+            
 
         }
 

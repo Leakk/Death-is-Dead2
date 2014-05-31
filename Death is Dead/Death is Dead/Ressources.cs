@@ -34,6 +34,10 @@ namespace Death_is_Dead
         public static Texture2D Faux_flipped;
         public static SoundEffect tir_son;
         public static SoundEffect button_sound;
+        public static SoundEffect Faux_sound;
+        public static SoundEffect impact_tir_enemi;
+        public static SoundEffect impact_tir_mur;
+        public static SoundEffect son_ramassage_de_bonus;
 
         public static Texture2D boutton;
         public static SpriteFont font;
@@ -63,6 +67,10 @@ namespace Death_is_Dead
             #region /*Sound*/
             tir_son = content.Load<SoundEffect>("Sound_effects/tir_son");
             button_sound = content.Load<SoundEffect>("Sound_effects/Menu/button_sound");
+            Faux_sound = content.Load<SoundEffect>("Sound_effects/Faux_sound");
+            impact_tir_enemi = content.Load<SoundEffect>("Sound_effects/Game/impact_tir_enemi");
+            impact_tir_mur = content.Load<SoundEffect>("Sound_effects/Game/impact_tir_mur");
+            son_ramassage_de_bonus = content.Load<SoundEffect>("Sound_effects/Game/son_ramassage_de_bonus");
             #endregion
 
             font = content.Load<SpriteFont>("myfont");
