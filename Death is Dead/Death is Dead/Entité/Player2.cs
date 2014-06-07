@@ -79,9 +79,9 @@ namespace Death_is_Dead
             #region/*Faux*/
             if (!hasFliped)
             {
-                Faux_damageBox_ground.X = (int)position.X + 30;
+                Faux_damageBox_ground.X = (int)position.X + 57;
                 Faux_damageBox_ground.Y = (int)position.Y - 17;
-                Faux_damageBox_ground.Width = 90;
+                Faux_damageBox_ground.Width = 70;
                 Faux_damageBox_ground.Height = 68;
 
                 Faux_damageBox_air.X = (int)position.X + 15;
@@ -92,9 +92,9 @@ namespace Death_is_Dead
             }
             else
             {
-                Faux_damageBox_ground.X = (int)position.X - 65;
+                Faux_damageBox_ground.X = (int)position.X - 81;
                 Faux_damageBox_ground.Y = (int)position.Y - 17;
-                Faux_damageBox_ground.Width = 90;
+                Faux_damageBox_ground.Width = 70;
                 Faux_damageBox_ground.Height = 68;
 
                 Faux_damageBox_air.X = (int)position.X - 42;

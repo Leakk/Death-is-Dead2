@@ -45,7 +45,7 @@ namespace Death_is_Dead.Bonus
 
         }
 
-        public void Draw(SpriteBatch sb,int x,int y)
+        public void Draw(SpriteBatch sb)
         {
             if (exist)
             {
