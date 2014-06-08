@@ -17,7 +17,7 @@ namespace Death_is_Dead
     {
         [NonSerialized]
         int latenceTir = 0;
-        Vector2 mob_pos ;
+        Vector2 mob_pos;
         [NonSerialized]
         int pos_X_tmp = 0;
         [NonSerialized]
@@ -26,7 +26,7 @@ namespace Death_is_Dead
         Bonus.Coeur coeur = new Bonus.Coeur();
         [NonSerialized]
         bool activer_bonus;
-        [NonSerialized] 
+        [NonSerialized]
         Bonus.Faux Bonusfaux = new Bonus.Faux();
 
         uint[] tab;
@@ -45,7 +45,7 @@ namespace Death_is_Dead
             texture.GetData<uint>(tab);
         }
 
-        public void Update(Obstacle[] rect, Players player,Players p2)
+        public void Update(Obstacle[] rect, Players player, Players p2)
         {
 
             base.Update(rect);
@@ -57,7 +57,7 @@ namespace Death_is_Dead
             if (life <= 0)
             {
                 if (activer_bonus)                                  /* pour evité que sa mettre coeur.exist = true à chaque frame*/
-                                                                    /* vu qu'apres quand le joueur le prends sa se met à false ( c'est gérer dans la classe coeur )*/
+                /* vu qu'apres quand le joueur le prends sa se met à false ( c'est gérer dans la classe coeur )*/
                 {
                     if ((Ressources.random_number.Next(0, 20) == 1)
                         || (Ressources.random_number.Next(0, 20) == 2)
@@ -70,10 +70,10 @@ namespace Death_is_Dead
                         if ((Ressources.random_number.Next(0, 20) == 10)
                             || (Ressources.random_number.Next(0, 20) == 11))
                         {
-                    Bonusfaux.exist = true;
+                            Bonusfaux.exist = true;
                         }
-                }                                              
-                activer_bonus = false;                          
+                }
+                activer_bonus = false;
 
                 velocity.X = 0;
                 velocity.Y = 0;
@@ -93,7 +93,7 @@ namespace Death_is_Dead
                 dead = true;
             }
             else
-                if (position.X - player.position.X < 800 && position.X - player.position.X > -800)
+                if (IA.isPlayerNearby(player, this))
                 {
                     pos_X_tmp = (int)position.X;          /* ça c'est parce que il me semble que maxime faisait teleporté les enemies hors de la map lors de leur mort */
                     pos_Y_tmp = (int)position.Y;         /* donc je retiens leur derniere pos quand ils étaient encore dans l'image, donc quand ils étaient vivants */
@@ -101,16 +101,14 @@ namespace Death_is_Dead
                     if (HitboxD.is_coll(rect) || HitboxG.is_coll(rect))
                         velocity.Y = -6f;
 
-                    if (position.X < player.position.X)
+                    if (!IA.isPlayerTooNearby(player, this))
                     {
-                        velocity.X = 2;
-                        hasFliped = false;
+                        Tuple<int, bool> mob_bef = IA.isMobBefore(player, this);
+                        velocity.X = 2 * mob_bef.Item1;
+                        hasFliped = mob_bef.Item2;
                     }
-                    if (position.X > player.position.X)
-                    {
-                        velocity.X = -2;
-                        hasFliped = true;
-                    }
+                    else
+                        velocity.X = 0;
 
                     if (position.Y == player.position.Y && latenceTir == 0 && !dead)
                     {
@@ -134,7 +132,7 @@ namespace Death_is_Dead
         public void Draw(SpriteBatch sb)
         {
 
-            
+
             if (coeur.exist)
                 coeur.Draw(sb);
             if (Bonusfaux.exist)
