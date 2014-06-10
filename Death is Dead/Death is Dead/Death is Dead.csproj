@@ -113,6 +113,7 @@
     <Compile Include="cButton2.cs" />
     <Compile Include="Collison.cs" />
     <Compile Include="editeur.cs" />
+    <Compile Include="end_flag.cs" />
     <Compile Include="Entité\Entity.cs" />
     <Compile Include="Entité\IA.cs" />
     <Compile Include="Entité\Life.cs" />

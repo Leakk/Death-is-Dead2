@@ -61,8 +61,8 @@ namespace Death_is_Dead
                 {
                     if ((Ressources.random_number.Next(0, 20) == 1)
                         || (Ressources.random_number.Next(0, 20) == 2)
-                            || (Ressources.random_number.Next(0, 20) == 3)
-                            || (Ressources.random_number.Next(0, 20) == 1))
+                            || (Ressources.random_number.Next(0, 20) == 3))
+                            
                     {
                         coeur.exist = true;
                     }

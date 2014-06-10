@@ -18,6 +18,7 @@ namespace Death_is_Dead
         public Mob[] mobs;
         Texture2D fond;
         private Vector2 moving_background = new Vector2(0f, 0f);
+        public end_flag flag = new end_flag(16000, 400);
         
 
         public Map(Obstacle[] obs, Mob[] mob, Texture2D fo)
@@ -38,6 +39,7 @@ namespace Death_is_Dead
         public void Draw(SpriteBatch sb, int screenWidth, int screenHeight)
         {
             sb.Draw(Ressources.fond, moving_background, Color.White);
+            flag.Draw(sb);
           //  sb.Draw(Ressources.fond, new Rectangle((int)moving_background, 0, 800, 600), Color.White);
             if (moving_background.X <= -1600f)
             {

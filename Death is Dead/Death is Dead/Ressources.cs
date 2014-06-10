@@ -32,12 +32,14 @@ namespace Death_is_Dead
         public static Texture2D Bonus_coeur;
         public static Texture2D Faux;
         public static Texture2D Faux_flipped;
+        public static Texture2D Flag_final;
         public static SoundEffect tir_son;
         public static SoundEffect button_sound;
         public static SoundEffect Faux_sound;
         public static SoundEffect impact_tir_enemi;
         public static SoundEffect impact_tir_mur;
         public static SoundEffect son_ramassage_de_bonus;
+
 
         public static Texture2D boutton;
         public static SpriteFont font;
@@ -62,6 +64,7 @@ namespace Death_is_Dead
             Bonus_coeur = content.Load<Texture2D>("sprite/Bonus/coeur");
             Faux = content.Load<Texture2D>("sprite/Faux");
             Faux_flipped = content.Load<Texture2D>("sprite/Faux_flipped");
+            Flag_final = content.Load<Texture2D>("sprite/Flag");
             #endregion
 
             #region /*Sound*/

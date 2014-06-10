@@ -29,6 +29,7 @@ namespace Death_is_Dead
             Paused,
             Paused_editor,
             GameOver,
+            Win,
             Editor
         }
 
@@ -50,7 +51,8 @@ namespace Death_is_Dead
         public string lang = "";
         public Texture2D curFond;
         public bool multiplayer = false;
-
+        public bool level2_enable = false;
+        public bool level3_enable = false;
 
         #region  /*Pour les boutons*/
         bool playOnce = false;
@@ -363,14 +365,14 @@ namespace Death_is_Dead
                         button_click.Play();
                     }
 
-                    if (btnMap2.isClicked && count == 0)
+                    if (btnMap2.isClicked && count == 0 && level2_enable)
                     {
                         /* map 2 here */
                         count = 10;
                         button_click.Play();
                     }
 
-                    if (btnMap3.isClicked && count == 0)
+                    if (btnMap3.isClicked && count == 0 && level3_enable)
                     {
                         /* map 3 here */
                         count = 10;
@@ -559,6 +561,26 @@ namespace Death_is_Dead
                     editeur1.update();
                     break;
                 # endregion
+                #region/*Win*/
+                case GameState.Win :
+                    btnBackToMenu.Udapte(mouse);
+                    if (btnBackToMenu.isClicked)
+                    {
+                        button_click.Play();
+                        CurrentGameState = GameState.MainMenu;
+                        if (level2_enable == true)
+                        {
+                            level3_enable = true;
+                        }
+                        else
+                        {
+                            level2_enable = true;
+                        }
+
+                    }
+                    break;
+
+                #endregion
                 #region/*playing*/
                 default:
                     #region/*Pause*/
@@ -759,7 +781,12 @@ namespace Death_is_Dead
                         player1 = new Player(new Vector2(350, 0), Ressources.Player, 100, false);
                     }
 
-                    
+                    map.flag.Udapte(player1, player2);
+                   if (map.flag.Win)
+                   {
+                       CurrentGameState = GameState.Win;
+
+                   }
 
                     break;
                 #endregion
@@ -856,6 +883,11 @@ namespace Death_is_Dead
 
 
                     break;
+                case GameState.Win:
+                     spriteBatch.Draw(Content.Load<Texture2D>("sprite/paused/foreground_paused"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                     spriteBatch.Draw(Content.Load<Texture2D>("sprite/Win_menu/"+ lang +"/Win_message"), new Rectangle(200, 200, 400, 100), Color.White);
+                    btnBackToMenu.Draw(spriteBatch);
+                    break;
                 case GameState.GameOver:
                     spriteBatch.Draw(Content.Load<Texture2D>("sprite/Game_over/gameover"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     btnBackFromGameOver.Draw(spriteBatch);
@@ -864,6 +896,7 @@ namespace Death_is_Dead
                     editeur1.draw(spriteBatch);
                     break;
                 default:
+                   
                     map.Draw(spriteBatch, screenWidth, screenHeight);
                     #region/*Player2*/
                     player2.Draw(spriteBatch);
