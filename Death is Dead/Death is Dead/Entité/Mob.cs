@@ -62,7 +62,6 @@ namespace Death_is_Dead
                     if ((Ressources.random_number.Next(0, 20) == 1)
                         || (Ressources.random_number.Next(0, 20) == 2)
                             || (Ressources.random_number.Next(0, 20) == 3))
-                            
                     {
                         coeur.exist = true;
                     }
@@ -93,7 +92,9 @@ namespace Death_is_Dead
                 dead = true;
             }
             else
-                if (IA.isPlayerNearby(player, this))
+            {
+                float nearby = IA.isPlayerNearby(player, this);
+                if (nearby < 800)
                 {
                     pos_X_tmp = (int)position.X;          /* ça c'est parce que il me semble que maxime faisait teleporté les enemies hors de la map lors de leur mort */
                     pos_Y_tmp = (int)position.Y;         /* donc je retiens leur derniere pos quand ils étaient encore dans l'image, donc quand ils étaient vivants */
@@ -101,14 +102,23 @@ namespace Death_is_Dead
                     if (HitboxD.is_coll(rect) || HitboxG.is_coll(rect))
                         velocity.Y = -6f;
 
-                    if (!IA.isPlayerTooNearby(player, this))
+                    if (nearby > 80)
                     {
                         Tuple<int, bool> mob_bef = IA.isMobBefore(player, this);
                         velocity.X = 2 * mob_bef.Item1;
                         hasFliped = mob_bef.Item2;
                     }
+                    else if (nearby < 50)
+                    {
+                        Tuple<int, bool> mob_bef = IA.isMobBefore(player, this);
+                        velocity.X = -2 * mob_bef.Item1;
+                        hasFliped = mob_bef.Item2;
+                    }
                     else
                         velocity.X = 0;
+
+                    if (IA.isPlateformNearby(rect, this))
+                        velocity.Y = -6f;
 
                     if (position.Y == player.position.Y && latenceTir == 0 && !dead)
                     {
@@ -125,8 +135,8 @@ namespace Death_is_Dead
                     }
                     if (latenceTir > 0)
                         latenceTir--;
-
                 }
+            }
         }
 
         public void Draw(SpriteBatch sb)

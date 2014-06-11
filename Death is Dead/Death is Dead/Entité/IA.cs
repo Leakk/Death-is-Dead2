@@ -14,14 +14,20 @@ namespace Death_is_Dead
 {
     class IA
     {
-        public static bool isPlayerNearby(Players player, Mob mob)
+        public static float isPlayerNearby(Players player, Mob mob)
         {
-            return Math.Abs(player.position.X - mob.position.X) <= 800;
+            return Math.Abs(player.position.X - mob.position.X);
         }
 
-        public static bool isPlayerTooNearby(Players player, Mob mob)
+        public static bool isPlateformNearby(Obstacle[] rect, Mob mob)
         {
-            return Math.Abs(player.position.X - mob.position.X) <= 50;
+            foreach (Obstacle item in rect)
+            {
+                if (item.texture.Width == Ressources.plateforme.Width)
+                    return Math.Abs(item.rectangle.Center.X - mob.position.X) < 100 + item.texture.Width / 2;
+            }
+
+            return false;
         }
 
         public static Tuple<int, bool> isMobBefore(Players player, Mob mob)

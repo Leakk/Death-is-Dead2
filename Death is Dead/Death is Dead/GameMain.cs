@@ -73,7 +73,7 @@ namespace Death_is_Dead
 
         private Player player1;
         private Map map1;
-        private Map map = new Map(new Obstacle[0], new Mob[0],Ressources.fond);
+        private Map map = new Map(new Obstacle[0], new Mob[0], Ressources.fond);
         private Player2 player2;
         private bool songisplayed = false;
 
@@ -91,8 +91,8 @@ namespace Death_is_Dead
         /*Option*/
         cButton btnRes;
         cButton btnBack;
-       // cButton btnApply_change;
-       // cButton btnSound_volume;
+        // cButton btnApply_change;
+        // cButton btnSound_volume;
         cButton btnLanguage;
         /*pause*/
         cButton btnBackToMenu;
@@ -118,7 +118,7 @@ namespace Death_is_Dead
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 600;
-            Window.Title = "Physics Engine";
+            Window.Title = "Death is Dead";
         }
 
         protected override void Initialize()
@@ -155,7 +155,7 @@ namespace Death_is_Dead
             btnLoad = new cButton(Content.Load<Texture2D>("sprite/Menu/Main_menu/" + lang + "/Load"), colour1, graphics.GraphicsDevice);
             btnEditor = new cButton(Content.Load<Texture2D>("sprite/Menu/Main_menu/" + lang + "/editor"), colour1, graphics.GraphicsDevice);
             btnPlay.setPosition(new Vector2(500, 100));
-            btnLoad.setPosition(new Vector2(500,180));
+            btnLoad.setPosition(new Vector2(500, 180));
             btnMultiplayer.setPosition(new Vector2(500, 260));
             btnEditor.setPosition(new Vector2(500, 340));
             btnOption.setPosition(new Vector2(500, 420));
@@ -189,7 +189,7 @@ namespace Death_is_Dead
             btnResume = new cButton(Content.Load<Texture2D>("sprite/paused/" + lang + "/resume"), colour1, graphics.GraphicsDevice);
             btnSave = new cButton(Content.Load<Texture2D>("sprite/paused/" + lang + "/save"), colour1, graphics.GraphicsDevice);
             btnBackToMenu.setPosition(new Vector2(300, 400));
-            btnSave.setPosition(new Vector2(300,300));
+            btnSave.setPosition(new Vector2(300, 300));
             btnResume.setPosition(new Vector2(300, 200));
             #endregion
             #region /* Pour le menu pause de l'editeur */
@@ -219,11 +219,9 @@ namespace Death_is_Dead
             Content.Unload();
         }
 
-   
         protected override void Update(GameTime gameTime)
         {
-            
-            map1 = new Map(new Obstacle[21] { new Obstacle(new Rectangle(0, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(300, 360, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(1040, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(1800, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2100, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2540, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2840, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(3450, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme/*carre*/), new Obstacle(new Rectangle(3850, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4450, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4850, 350, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(5350, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6600, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6850, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7250, 300, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7650, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(7700, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8150, 150, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8550, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(9550, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(9200, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol) }, new Mob[5] { new Mob(new Vector2(1250, 400), Ressources.Player, 100), new Mob(new Vector2(3370, 400), Ressources.Player, 100), new Mob(new Vector2(5870, 400), Ressources.Player, 100), new Mob(new Vector2(7450, 100), Ressources.Player, 100), new Mob(new Vector2(8700, 400), Ressources.Player, 100) },Ressources.fond);
+            map1 = new Map(new Obstacle[21] { new Obstacle(new Rectangle(0, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(300, 360, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(1040, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(1800, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2100, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2540, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2840, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(3450, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme/*carre*/), new Obstacle(new Rectangle(3850, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4450, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4850, 350, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(5350, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6600, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6850, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7250, 300, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7650, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(7700, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8150, 150, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8550, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(9550, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(9200, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol) }, new Mob[5] { new Mob(new Vector2(1250, 400), Ressources.Player, 100), new Mob(new Vector2(3370, 400), Ressources.Player, 100), new Mob(new Vector2(5870, 400), Ressources.Player, 100), new Mob(new Vector2(7450, 100), Ressources.Player, 100), new Mob(new Vector2(8700, 400), Ressources.Player, 100) }, Ressources.fond);
             MouseState mouse = Mouse.GetState();
 
             #region /*Les GameStates*/
@@ -246,7 +244,7 @@ namespace Death_is_Dead
                     {
                         multiplayer = false;
                         button_click.Play();
-                       
+
                         CurrentGameState = GameState.MapSelection;
                     }
                     if (btnMultiplayer.isClicked)
@@ -261,14 +259,14 @@ namespace Death_is_Dead
                         button_click.Play();
                         CurrentGameState = GameState.Option;
                     }
-                 
+
                     if (btnExit.isClicked)
                     {
                         button_click.Play();
                         Exit();
                     }
 
-                    if ((btnLoad.isClicked)&&(count==0))
+                    if ((btnLoad.isClicked) && (count == 0))
                     {
                         try
                         {
@@ -287,8 +285,8 @@ namespace Death_is_Dead
                             P2 = (Player2)format.Deserialize(liste2);
                             obs2 = (Obstacle[])format.Deserialize(liste3);
                             mobs2 = (Mob[])format.Deserialize(liste4);
-                            player1 = new Player(P1.position, Ressources.Player, P1.life,P1.CurrentWeaponIsFaux);
-                            player2 = new Player2(P2.position, Ressources.Player2, P2.life,P2.CurrentWeaponIsFaux);
+                            player1 = new Player(P1.position, Ressources.Player, P1.life, P1.CurrentWeaponIsFaux);
+                            player2 = new Player2(P2.position, Ressources.Player2, P2.life, P2.CurrentWeaponIsFaux);
                             foreach (Obstacle item in obs2)
                             {
                                 item.maj(Content);
@@ -307,10 +305,10 @@ namespace Death_is_Dead
                             MediaPlayer.Play(Game_song_lvl1);
                         }
                         catch { }
-                    
+
                     }
 
-                    if ((btnEditor.isClicked)&&(count==0))
+                    if ((btnEditor.isClicked) && (count == 0))
                     {
                         count = 15;
                         button_click.Play();
@@ -318,7 +316,7 @@ namespace Death_is_Dead
                         editeur1.load(graphics);
                         editeur1.j = 30;
                         CurrentGameState = GameState.Editor;
-                        
+
 
                     }
                     if (count != 0)
@@ -332,9 +330,9 @@ namespace Death_is_Dead
                     btnMap2.Udapte(mouse);
                     btnMap3.Udapte(mouse);
                     btnMyMaps.Udapte(mouse);
-                  
+
                     #region /* chargements des truc commun à tout les bouttons */
-                    if (count==0&&(btnMap1.isClicked)||(btnMap2.isClicked)||(btnMap3.isClicked)||(btnMyMaps.isClicked)) /* n'importe quel boutton qui charge une map lira ça */
+                    if (count == 0 && (btnMap1.isClicked) || (btnMap2.isClicked) || (btnMap3.isClicked) || (btnMyMaps.isClicked)) /* n'importe quel boutton qui charge une map lira ça */
                     {
                         if (multiplayer)
                         {
@@ -352,7 +350,7 @@ namespace Death_is_Dead
                         MediaPlayer.Play(Game_song_lvl1);
                         songisplayed = false;
 
-                        
+
                         button_click.Play();
                     }
                     #endregion
@@ -401,7 +399,7 @@ namespace Death_is_Dead
                     btnResume.Udapte(mouse);
                     btnBackToMenu.Udapte(mouse);
                     btnSave.Udapte(mouse);
-                    if ((btnResume.isClicked)&&(count_save==0))
+                    if ((btnResume.isClicked) && (count_save == 0))
                     {
                         count_save = 15;
                         button_click.Play();
@@ -414,22 +412,22 @@ namespace Death_is_Dead
                     }
                     if ((btnSave.isClicked) && (count_save == 0))
                     {
-                       count_save = 15;
-                       button_click.Play();
+                        count_save = 15;
+                        button_click.Play();
 
-                       IFormatter format = new BinaryFormatter();
-                       Stream liste = new FileStream("p1.save", FileMode.Create, FileAccess.Write);
-                       Stream liste2 = new FileStream("p2.save", FileMode.Create, FileAccess.Write);
-                       Stream liste3 = new FileStream("map.save", FileMode.Create, FileAccess.Write);
-                       Stream liste4 = new FileStream("mobs.save", FileMode.Create, FileAccess.Write);
-                       format.Serialize(liste, player1);
-                       format.Serialize(liste2, player2);
-                       format.Serialize(liste3, map.obs);
-                       format.Serialize(liste4, map.mobs);
-                       liste.Close();
-                       liste2.Close();
-                       liste3.Close();
-                       liste4.Close();
+                        IFormatter format = new BinaryFormatter();
+                        Stream liste = new FileStream("p1.save", FileMode.Create, FileAccess.Write);
+                        Stream liste2 = new FileStream("p2.save", FileMode.Create, FileAccess.Write);
+                        Stream liste3 = new FileStream("map.save", FileMode.Create, FileAccess.Write);
+                        Stream liste4 = new FileStream("mobs.save", FileMode.Create, FileAccess.Write);
+                        format.Serialize(liste, player1);
+                        format.Serialize(liste2, player2);
+                        format.Serialize(liste3, map.obs);
+                        format.Serialize(liste4, map.mobs);
+                        liste.Close();
+                        liste2.Close();
+                        liste3.Close();
+                        liste4.Close();
                     }
                     if (count_save != 0)
                     {
@@ -562,7 +560,7 @@ namespace Death_is_Dead
                     break;
                 # endregion
                 #region/*Win*/
-                case GameState.Win :
+                case GameState.Win:
                     btnBackToMenu.Udapte(mouse);
                     if (btnBackToMenu.isClicked)
                     {
@@ -584,13 +582,13 @@ namespace Death_is_Dead
                 #region/*playing*/
                 default:
                     #region/*Pause*/
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-            {
-                CurrentGameState = GameState.Paused;
-            }
+                    if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    {
+                        CurrentGameState = GameState.Paused;
+                    }
 
-         
-            #endregion
+
+                    #endregion
                     if (CurrentGameState == GameState.Playing_2P)
                     {
                         #region /*Update Player2*/
@@ -677,18 +675,18 @@ namespace Death_is_Dead
                     #region /*Update Mobs*/
                     foreach (Mob item in map.mobs)
                     {
-                        item.Update(map.obs, player1,player2);
+                        item.Update(map.obs, player1, player2);
                         #region /* faux */
                         if (player1.CurrentWeaponIsFaux)
                         {
                             if (player1.Faux_damageBox_ground_isActivate)
-                            {           
-                                   if ((item.HitboxB.Rectangle.Intersects(player1.Faux_damageBox_ground))
-                                    ||(item.HitboxH.Rectangle.Intersects(player1.Faux_damageBox_ground)
-                                    ||(item.HitboxG.Rectangle.Intersects(player1.Faux_damageBox_ground)
-                                    ||(item.HitboxD.Rectangle.Intersects(player1.Faux_damageBox_ground))))) /* la hit box de la faux touche l'enemi */
+                            {
+                                if ((item.HitboxB.Rectangle.Intersects(player1.Faux_damageBox_ground))
+                                 || (item.HitboxH.Rectangle.Intersects(player1.Faux_damageBox_ground)
+                                 || (item.HitboxG.Rectangle.Intersects(player1.Faux_damageBox_ground)
+                                 || (item.HitboxD.Rectangle.Intersects(player1.Faux_damageBox_ground))))) /* la hit box de la faux touche l'enemi */
                                 {
-                                    item.life -=14;
+                                    item.life -= 14;
                                 }
                             }
 
@@ -782,18 +780,16 @@ namespace Death_is_Dead
                     }
 
                     map.flag.Udapte(player1, player2);
-                   if (map.flag.Win)
-                   {
-                       CurrentGameState = GameState.Win;
+                    if (map.flag.Win)
+                    {
+                        CurrentGameState = GameState.Win;
 
-                   }
+                    }
 
                     break;
                 #endregion
             }
             #endregion
-
-            
 
         }
 
@@ -817,7 +813,7 @@ namespace Death_is_Dead
                     spriteBatch.Draw(Content.Load<Texture2D>("sprite/Map_selection/fond_mapSelect"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     if (multiplayer)
                     {
-                        spriteBatch.Draw(Content.Load<Texture2D>("sprite/Map_selection/" + lang + "/info2"), new Rectangle(200, 0,250, 80), Color.Red);
+                        spriteBatch.Draw(Content.Load<Texture2D>("sprite/Map_selection/" + lang + "/info2"), new Rectangle(200, 0, 250, 80), Color.Red);
                     }
                     else
                     {
@@ -850,12 +846,12 @@ namespace Death_is_Dead
                     #region /*Mobs*/
                     foreach (Mob item in map.mobs)
                     {
-                            item.Draw(spriteBatch);
-                            foreach (Projectile tir in item.Tirs)
-                            {
-                                if (tir != null)
-                                    tir.Draw(spriteBatch);
-                            }
+                        item.Draw(spriteBatch);
+                        foreach (Projectile tir in item.Tirs)
+                        {
+                            if (tir != null)
+                                tir.Draw(spriteBatch);
+                        }
                     }
                     #endregion
                     break;
@@ -884,8 +880,8 @@ namespace Death_is_Dead
 
                     break;
                 case GameState.Win:
-                     spriteBatch.Draw(Content.Load<Texture2D>("sprite/paused/foreground_paused"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
-                     spriteBatch.Draw(Content.Load<Texture2D>("sprite/Win_menu/"+ lang +"/Win_message"), new Rectangle(200, 200, 400, 100), Color.White);
+                    spriteBatch.Draw(Content.Load<Texture2D>("sprite/paused/foreground_paused"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
+                    spriteBatch.Draw(Content.Load<Texture2D>("sprite/Win_menu/" + lang + "/Win_message"), new Rectangle(200, 200, 400, 100), Color.White);
                     btnBackToMenu.Draw(spriteBatch);
                     break;
                 case GameState.GameOver:
@@ -896,7 +892,7 @@ namespace Death_is_Dead
                     editeur1.draw(spriteBatch);
                     break;
                 default:
-                   
+
                     map.Draw(spriteBatch, screenWidth, screenHeight);
                     #region/*Player2*/
                     player2.Draw(spriteBatch);
@@ -934,13 +930,13 @@ namespace Death_is_Dead
 
                     foreach (Mob item in map.mobs)
                     {
-                       
-                            item.Draw(spriteBatch);
-                            foreach (Projectile tir in item.Tirs)
-                            {
-                                if (tir != null)
-                                    tir.Draw(spriteBatch);
-                            }
+
+                        item.Draw(spriteBatch);
+                        foreach (Projectile tir in item.Tirs)
+                        {
+                            if (tir != null)
+                                tir.Draw(spriteBatch);
+                        }
                     }
                     #endregion
                     break;
