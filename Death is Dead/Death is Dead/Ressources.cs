@@ -39,6 +39,9 @@ namespace Death_is_Dead
         public static SoundEffect impact_tir_enemi;
         public static SoundEffect impact_tir_mur;
         public static SoundEffect son_ramassage_de_bonus;
+        public static SoundEffect Faux_impact_on_ennemy;
+        public static Song Game_over_song;
+        public static Song Victory;
 
 
         public static Texture2D boutton;
@@ -74,6 +77,9 @@ namespace Death_is_Dead
             impact_tir_enemi = content.Load<SoundEffect>("Sound_effects/Game/impact_tir_enemi");
             impact_tir_mur = content.Load<SoundEffect>("Sound_effects/Game/impact_tir_mur");
             son_ramassage_de_bonus = content.Load<SoundEffect>("Sound_effects/Game/son_ramassage_de_bonus");
+            Faux_impact_on_ennemy = content.Load<SoundEffect>("Sound_effects/Game/Impact_faux_on_ennemy");
+            Game_over_song = content.Load<Song>("Sound_effects/gameover");
+            Victory = content.Load<Song>("Sound_effects/victoire");
             #endregion
 
             font = content.Load<SpriteFont>("myfont");

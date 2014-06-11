@@ -53,6 +53,8 @@ namespace Death_is_Dead
         public bool multiplayer = false;
         public bool level2_enable = false;
         public bool level3_enable = false;
+        private bool game_over_song_activate = false;
+        private bool Win_song_activate = false;
 
         #region  /*Pour les boutons*/
         bool playOnce = false;
@@ -480,6 +482,11 @@ namespace Death_is_Dead
                 #endregion
                 #region/* case Game over*/
                 case GameState.GameOver:
+                    if (!game_over_song_activate)
+                    {
+                        MediaPlayer.Play(Ressources.Game_over_song);
+                        game_over_song_activate = true;
+                    }
                     btnBackFromGameOver.Udapte(mouse);
                     if (btnBackFromGameOver.isClicked)
                     {
@@ -562,6 +569,11 @@ namespace Death_is_Dead
                 #region/*Win*/
                 case GameState.Win:
                     btnBackToMenu.Udapte(mouse);
+                    if (!Win_song_activate)
+                    {
+                        MediaPlayer.Play(Ressources.Victory);
+                        Win_song_activate = true;
+                    }
                     if (btnBackToMenu.isClicked)
                     {
                         button_click.Play();
@@ -687,6 +699,7 @@ namespace Death_is_Dead
                                  || (item.HitboxD.Rectangle.Intersects(player1.Faux_damageBox_ground))))) /* la hit box de la faux touche l'enemi */
                                 {
                                     item.life -= 14;
+                                    Ressources.Faux_impact_on_ennemy.Play();
                                 }
                             }
 
@@ -698,6 +711,7 @@ namespace Death_is_Dead
                                  || (item.HitboxD.Rectangle.Intersects(player1.Faux_damageBox_air))))) /* la hit box de la faux touche l'enemi */
                                 {
                                     item.life -= 14;
+                                    Ressources.Faux_impact_on_ennemy.Play();
                                 }
                             }
                         }
@@ -712,6 +726,7 @@ namespace Death_is_Dead
                                  || (item.HitboxD.Rectangle.Intersects(player2.Faux_damageBox_ground))))) /* la hit box de la faux touche l'enemi */
                                 {
                                     item.life -= 14;
+                                    Ressources.Faux_impact_on_ennemy.Play();
                                 }
                             }
 
@@ -723,6 +738,7 @@ namespace Death_is_Dead
                                  || (item.HitboxD.Rectangle.Intersects(player2.Faux_damageBox_air))))) /* la hit box de la faux touche l'enemi */
                                 {
                                     item.life -= 14;
+                                    Ressources.Faux_impact_on_ennemy.Play();
                                 }
                             }
                         }

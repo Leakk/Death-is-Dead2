@@ -59,18 +59,18 @@ namespace Death_is_Dead
                 if (activer_bonus)                                  /* pour evité que sa mettre coeur.exist = true à chaque frame*/
                 /* vu qu'apres quand le joueur le prends sa se met à false ( c'est gérer dans la classe coeur )*/
                 {
-                    if ((Ressources.random_number.Next(0, 20) == 1)
-                        || (Ressources.random_number.Next(0, 20) == 2)
-                            || (Ressources.random_number.Next(0, 20) == 3))
-                    {
-                        coeur.exist = true;
-                    }
-                    else
-                        if ((Ressources.random_number.Next(0, 20) == 10)
-                            || (Ressources.random_number.Next(0, 20) == 11))
-                        {
+                    //if ((Ressources.random_number.Next(0, 20) == 1)
+                    //    || (Ressources.random_number.Next(0, 20) == 2)
+                    //        || (Ressources.random_number.Next(0, 20) == 3))
+                    //{
+                    //    coeur.exist = true;
+                    //}
+                    //else
+                    //    if ((Ressources.random_number.Next(0, 20) == 10)
+                    //        || (Ressources.random_number.Next(0, 20) == 11))
+                    //    {
                             Bonusfaux.exist = true;
-                        }
+                      //  }
                 }
                 activer_bonus = false;
 
