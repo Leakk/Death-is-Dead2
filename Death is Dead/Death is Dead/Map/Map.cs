@@ -18,7 +18,7 @@ namespace Death_is_Dead
         public Mob[] mobs;
         Texture2D fond;
         private Vector2 moving_background = new Vector2(0f, 0f);
-        public end_flag flag = new end_flag(16000, 400);
+        public end_flag flag = new end_flag(10000, 400);
         
 
         public Map(Obstacle[] obs, Mob[] mob, Texture2D fo)
