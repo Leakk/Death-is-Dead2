@@ -21,11 +21,12 @@ namespace Death_is_Dead
         public end_flag flag = new end_flag(10000, 400);
         
 
-        public Map(Obstacle[] obs, Mob[] mob, Texture2D fo)
+        public Map(Obstacle[] obs, Mob[] mob, Texture2D fo,Vector2 fin)
         {
             this.obs = obs;
             this.mobs = mob;
             fond = fo;
+            flag = new end_flag((int)fin.X, (int)fin.Y);
         }
 
         public void Update(GameTime gameTime)

@@ -75,7 +75,7 @@ namespace Death_is_Dead
 
         private Player player1;
         private Map map1;
-        private Map map = new Map(new Obstacle[0], new Mob[0], Ressources.fond);
+        private Map map = new Map(new Obstacle[0], new Mob[0], Ressources.fond,new Vector2 (0,0));
         private Player2 player2;
         private bool songisplayed = false;
 
@@ -223,7 +223,7 @@ namespace Death_is_Dead
 
         protected override void Update(GameTime gameTime)
         {
-            map1 = new Map(new Obstacle[21] { new Obstacle(new Rectangle(0, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(300, 360, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(1040, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(1800, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2100, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2540, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2840, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(3450, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme/*carre*/), new Obstacle(new Rectangle(3850, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4450, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4850, 350, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(5350, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6600, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6850, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7250, 300, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7650, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(7700, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8150, 150, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8550, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(9550, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(9200, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol) }, new Mob[5] { new Mob(new Vector2(1250, 400), Ressources.Player, 100), new Mob(new Vector2(3370, 400), Ressources.Player, 100), new Mob(new Vector2(5870, 400), Ressources.Player, 100), new Mob(new Vector2(7450, 100), Ressources.Player, 100), new Mob(new Vector2(8700, 400), Ressources.Player, 100) }, Ressources.fond);
+            map1 = new Map(new Obstacle[21] { new Obstacle(new Rectangle(0, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(300, 360, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(1040, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(1800, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2100, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2540, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2840, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(3450, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme/*carre*/), new Obstacle(new Rectangle(3850, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4450, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4850, 350, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(5350, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6600, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6850, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7250, 300, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7650, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(7700, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8150, 150, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8550, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(9550, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(9200, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol) }, new Mob[5] { new Mob(new Vector2(1250, 400), Ressources.Player, 100), new Mob(new Vector2(3370, 400), Ressources.Player, 100), new Mob(new Vector2(5870, 400), Ressources.Player, 100), new Mob(new Vector2(7450, 100), Ressources.Player, 100), new Mob(new Vector2(8700, 400), Ressources.Player, 100) }, Ressources.fond, new Vector2(800, 0));
             MouseState mouse = Mouse.GetState();
 
             #region /*Les GameStates*/
@@ -279,6 +279,7 @@ namespace Death_is_Dead
                             Stream liste2 = new FileStream("p2.save", FileMode.Open, FileAccess.Read);
                             Stream liste3 = new FileStream("map.save", FileMode.Open, FileAccess.Read);
                             Stream liste4 = new FileStream("mobs.save", FileMode.Open, FileAccess.Read);
+                            Stream liste5 = new FileStream("flag.save", FileMode.Open, FileAccess.Read);
                             Player P1;
                             Player2 P2;
                             Obstacle[] obs2;
@@ -299,6 +300,9 @@ namespace Death_is_Dead
                                 mobs2[a].maj(Content);
                                 mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life);
                             }
+
+                            Vector2 fl = (Vector2)format.Deserialize(liste5);
+                            map.flag = new end_flag((int)fl.X, (int)fl.Y);
                             if (P2.position.X < 0)
                                 CurrentGameState = GameState.Playing;
                             else
@@ -360,7 +364,33 @@ namespace Death_is_Dead
 
                     if (btnMap1.isClicked && count == 0)
                     {
-                        map = map1;
+                        IFormatter format = new BinaryFormatter();
+
+                        Stream liste2 = new FileStream("lvl1/fond.1", FileMode.Open, FileAccess.Read);
+                        Stream liste3 = new FileStream("lvl1/map.1", FileMode.Open, FileAccess.Read);
+                        Stream liste4 = new FileStream("lvl1/mobs.1", FileMode.Open, FileAccess.Read);
+                        Stream liste5 = new FileStream("lvl1/flag.1", FileMode.Open, FileAccess.Read);
+                        Obstacle[] obs2;
+                        Mob[] mobs2;
+                        uint[] fon = (uint[])format.Deserialize(liste2);
+                        Vector2 fl = (Vector2)format.Deserialize(liste5);
+                        obs2 = (Obstacle[])format.Deserialize(liste3);
+                        mobs2 = (Mob[])format.Deserialize(liste4);
+                        foreach (Obstacle item in obs2)
+                        {
+                            item.maj(Content);
+                        }
+                        for (int a = 0; a < mobs2.Length; a++)
+                        {
+                            mobs2[a].maj(Content);
+                            mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life);
+                        }
+                        Texture2D tmp = Ressources.fond;
+                        tmp.SetData<uint>(fon);
+
+                        MediaPlayer.Stop();
+                        MediaPlayer.Play(Game_song_lvl1);
+                        map =new Map(obs2,mobs2,tmp,fl);
                         count = 10;
                         button_click.Play();
                     }
@@ -422,14 +452,17 @@ namespace Death_is_Dead
                         Stream liste2 = new FileStream("p2.save", FileMode.Create, FileAccess.Write);
                         Stream liste3 = new FileStream("map.save", FileMode.Create, FileAccess.Write);
                         Stream liste4 = new FileStream("mobs.save", FileMode.Create, FileAccess.Write);
+                        Stream liste5 = new FileStream("flag.save", FileMode.Create, FileAccess.Write);
                         format.Serialize(liste, player1);
                         format.Serialize(liste2, player2);
                         format.Serialize(liste3, map.obs);
                         format.Serialize(liste4, map.mobs);
+                        format.Serialize(liste5, new Vector2(map.flag.x, map.flag.y));
                         liste.Close();
                         liste2.Close();
                         liste3.Close();
                         liste4.Close();
+                        liste5.Close();
                     }
                     if (count_save != 0)
                     {

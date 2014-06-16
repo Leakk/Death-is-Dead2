@@ -11,8 +11,8 @@ namespace Death_is_Dead
     {
         Texture2D flag = Ressources.Flag_final;
         Color colour = new Color(255, 255, 255, 255);
-        int x;
-        int y;
+        public int x;
+        public int y;
         public bool Win = false;
 
         public end_flag(int x, int y)
