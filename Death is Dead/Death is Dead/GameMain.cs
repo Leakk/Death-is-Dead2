@@ -275,11 +275,11 @@ namespace Death_is_Dead
                             count = 15;
                             button_click.Play();
                             IFormatter format = new BinaryFormatter();
-                            Stream liste = new FileStream("p1.save", FileMode.Open, FileAccess.Read);
-                            Stream liste2 = new FileStream("p2.save", FileMode.Open, FileAccess.Read);
-                            Stream liste3 = new FileStream("map.save", FileMode.Open, FileAccess.Read);
-                            Stream liste4 = new FileStream("mobs.save", FileMode.Open, FileAccess.Read);
-                            Stream liste5 = new FileStream("flag.save", FileMode.Open, FileAccess.Read);
+                            Stream liste = new FileStream("Sauvegarde/p1.save", FileMode.Open, FileAccess.Read);
+                            Stream liste2 = new FileStream("Sauvegarde/p2.save", FileMode.Open, FileAccess.Read);
+                            Stream liste3 = new FileStream("Sauvegarde/map.save", FileMode.Open, FileAccess.Read);
+                            Stream liste4 = new FileStream("Sauvegarde/mobs.save", FileMode.Open, FileAccess.Read);
+                            Stream liste5 = new FileStream("Sauvegarde/flag.save", FileMode.Open, FileAccess.Read);
                             Player P1;
                             Player2 P2;
                             Obstacle[] obs2;
@@ -411,7 +411,33 @@ namespace Death_is_Dead
 
                     if (btnMyMaps.isClicked && count == 0)
                     {
-                        /* map = la custom map */
+                        IFormatter format = new BinaryFormatter();
+
+                        Stream liste2 = new FileStream("Editeur/fond.edi", FileMode.Open, FileAccess.Read);
+                        Stream liste3 = new FileStream("Editeur/map.edi", FileMode.Open, FileAccess.Read);
+                        Stream liste4 = new FileStream("Editeur/mob.edi", FileMode.Open, FileAccess.Read);
+                        Stream liste5 = new FileStream("Editeur/flag.edi", FileMode.Open, FileAccess.Read);
+                        Obstacle[] obs2;
+                        Mob[] mobs2;
+                        uint[] fon = (uint[])format.Deserialize(liste2);
+                        Vector2 fl = (Vector2)format.Deserialize(liste5);
+                        obs2 = (Obstacle[])format.Deserialize(liste3);
+                        mobs2 = (Mob[])format.Deserialize(liste4);
+                        foreach (Obstacle item in obs2)
+                        {
+                            item.maj(Content);
+                        }
+                        for (int a = 0; a < mobs2.Length; a++)
+                        {
+                            mobs2[a].maj(Content);
+                            mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life);
+                        }
+                        Texture2D tmp = Ressources.fond;
+                        tmp.SetData<uint>(fon);
+
+                        MediaPlayer.Stop();
+                        MediaPlayer.Play(Game_song_lvl1);
+                        map = new Map(obs2, mobs2, tmp, fl);
                         count = 10;
                         button_click.Play();
                     }
@@ -448,11 +474,11 @@ namespace Death_is_Dead
                         button_click.Play();
 
                         IFormatter format = new BinaryFormatter();
-                        Stream liste = new FileStream("p1.save", FileMode.Create, FileAccess.Write);
-                        Stream liste2 = new FileStream("p2.save", FileMode.Create, FileAccess.Write);
-                        Stream liste3 = new FileStream("map.save", FileMode.Create, FileAccess.Write);
-                        Stream liste4 = new FileStream("mobs.save", FileMode.Create, FileAccess.Write);
-                        Stream liste5 = new FileStream("flag.save", FileMode.Create, FileAccess.Write);
+                        Stream liste = new FileStream("Sauvegarde/p1.save", FileMode.Create, FileAccess.Write);
+                        Stream liste2 = new FileStream("Sauvegarde/p2.save", FileMode.Create, FileAccess.Write);
+                        Stream liste3 = new FileStream("Sauvegarde/map.save", FileMode.Create, FileAccess.Write);
+                        Stream liste4 = new FileStream("Sauvegarde/mobs.save", FileMode.Create, FileAccess.Write);
+                        Stream liste5 = new FileStream("Sauvegarde/flag.save", FileMode.Create, FileAccess.Write);
                         format.Serialize(liste, player1);
                         format.Serialize(liste2, player2);
                         format.Serialize(liste3, map.obs);
@@ -463,6 +489,7 @@ namespace Death_is_Dead
                         liste3.Close();
                         liste4.Close();
                         liste5.Close();
+                        CurrentGameState = GameState.MainMenu;
                     }
                     if (count_save != 0)
                     {

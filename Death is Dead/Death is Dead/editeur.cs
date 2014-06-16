@@ -96,10 +96,10 @@ namespace Death_is_Dead
             tab = new uint[curfond.Height * curfond.Width];
             curfond.GetData<uint>(tab);
             IFormatter format = new BinaryFormatter();
-            Stream liste1 = new FileStream("map.edi", FileMode.Create, FileAccess.Write);
-            Stream liste2 = new FileStream("fond.edi", FileMode.Create, FileAccess.Write);
-            Stream liste3 = new FileStream("mob.edi", FileMode.Create, FileAccess.Write);
-            Stream liste4 = new FileStream("flag.edi", FileMode.Create, FileAccess.Write);
+            Stream liste1 = new FileStream("Editeur/map.edi", FileMode.Create, FileAccess.Write);
+            Stream liste2 = new FileStream("Editeur/fond.edi", FileMode.Create, FileAccess.Write);
+            Stream liste3 = new FileStream("Editeur/mob.edi", FileMode.Create, FileAccess.Write);
+            Stream liste4 = new FileStream("Editeur/flag.edi", FileMode.Create, FileAccess.Write);
             format.Serialize(liste1, map);
             format.Serialize(liste2, tab);
             format.Serialize(liste3, ennemi);
@@ -117,12 +117,12 @@ namespace Death_is_Dead
 
             try
             {
-                Stream liste1 = new FileStream("map.edi", FileMode.Open, FileAccess.Read);
+                Stream liste1 = new FileStream("Editeur/map.edi", FileMode.Open, FileAccess.Read);
 
 
-                Stream liste2 = new FileStream("fond.edi", FileMode.Open, FileAccess.Read);
-                Stream liste3 = new FileStream("mob.edi", FileMode.Open, FileAccess.Read);
-                Stream liste4 = new FileStream("flag.edi", FileMode.Open, FileAccess.Read);
+                Stream liste2 = new FileStream("Editeur/fond.edi", FileMode.Open, FileAccess.Read);
+                Stream liste3 = new FileStream("Editeur/mob.edi", FileMode.Open, FileAccess.Read);
+                Stream liste4 = new FileStream("Editeur/flag.edi", FileMode.Open, FileAccess.Read);
 
                 ennemi = (Mob[])format.Deserialize(liste3);
                 map = (Obstacle[])format.Deserialize(liste1);
@@ -177,11 +177,13 @@ namespace Death_is_Dead
                 tab = new uint[curfond.Height * curfond.Width];
             }
             if (fond2.isClicked)
-            { /*fond 2*/
+            {
+                curfond = Ressources.fond2;
                 tab = new uint[curfond.Height * curfond.Width];
             }
             if (fond3.isClicked)
-            { /*fond 3*/
+            {
+                curfond = Ressources.fond3;
                 tab = new uint[curfond.Height * curfond.Width];
             }
             #endregion
@@ -407,7 +409,7 @@ namespace Death_is_Dead
 
         public void draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(curfond, new Rectangle(0, 0, 800, 600), Color.White);
+            spriteBatch.Draw(curfond, new Rectangle((int)-0.25*a, 0, 2400, 600), Color.White);
             if (drap)
             {
                 spriteBatch.Draw(curplate, new Rectangle((int)Mouse.GetState().X, (int)Mouse.GetState().Y, 70, 160), Color.White);

@@ -24,6 +24,8 @@ namespace Death_is_Dead
         public static Texture2D Tir;
         public static Texture2D TirFlip;
         public static Texture2D fond;
+        public static Texture2D fond2;
+        public static Texture2D fond3;
         public static Texture2D plateforme;
         public static Texture2D sol;
         public static Texture2D smoke;
@@ -59,6 +61,8 @@ namespace Death_is_Dead
             Tir = content.Load<Texture2D>("sprite/tir");
             TirFlip = content.Load<Texture2D>("sprite/tirFlip");
             fond = content.Load<Texture2D>("sprite/cool");
+            fond2 = content.Load<Texture2D>("sprite/Fond2");
+            fond3 = content.Load<Texture2D>("sprite/Fond3");
             plateforme = content.Load<Texture2D>("sprite/plate");
             sol = content.Load<Texture2D>("sprite/sol");
             smoke = content.Load<Texture2D>("sprite/smoke");
