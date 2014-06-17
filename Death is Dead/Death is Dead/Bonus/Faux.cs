@@ -12,8 +12,8 @@ namespace Death_is_Dead.Bonus
        
             Texture2D Tfaux = Ressources.Faux;
             Color colour = new Color(255, 255, 255, 255);
-            int x;
-            int y;
+            public int x;
+            public int y;
             public bool exist = false;
             public bool down = true;
 

@@ -11,8 +11,8 @@ namespace Death_is_Dead.Bonus
     {
         Texture2D coeur = Ressources.Bonus_coeur;
         Color colour = new Color(255, 255, 255, 255);
-        int x;
-        int y;
+        public int x;
+        public int y;
         public bool exist = false;
         public bool down = true;
 
