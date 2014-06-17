@@ -63,7 +63,7 @@ namespace Death_is_Dead
         #endregion
 
         #region/*boutton editeur*/
-        editeur editeur1 = new editeur();
+        editeur editeur1 = new editeur(2);
         #endregion
 
 
@@ -318,7 +318,14 @@ namespace Death_is_Dead
                     {
                         count = 15;
                         button_click.Play();
-                        editeur1 = new editeur();
+                        if (Currentlanguage == language.french)
+                            editeur1 = new editeur(1);
+
+                        if (Currentlanguage == language.english)
+                            editeur1 = new editeur(2);
+
+                        if (Currentlanguage == language.spanish)
+                            editeur1 = new editeur(3);
                         editeur1.load(graphics);
                         editeur1.j = 30;
                         CurrentGameState = GameState.Editor;

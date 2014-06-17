@@ -39,9 +39,11 @@ namespace Death_is_Dead
         Boolean ene;
         Boolean drap;
         int choix = 0;
+        public int lang;
 
-        public editeur()
+        public editeur(int x)
         {
+            lang = x;
             change = false;
             i = 0;
             j = 0;
@@ -60,23 +62,75 @@ namespace Death_is_Dead
 
         public void load(GraphicsDeviceManager graphics)
         {
-            fond1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "fond level 1", Ressources.font);
-            fond2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "fond level 2", Ressources.font);
-            fond3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "fond level 3", Ressources.font);
-            plate1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "plateforme level 1", Ressources.font);
-            plate2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "plateforme level 2", Ressources.font);
-            plate3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "plateforme level 3", Ressources.font);
-            sol1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "sol level 1", Ressources.font);
-            sol2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "sol level 2", Ressources.font);
-            sol3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "sol level 3", Ressources.font);
+            fond1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "fond niveau 1", Ressources.font);
+            fond2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "fond niveau 2", Ressources.font);
+            fond3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "fond niveau 3", Ressources.font);
+            plate1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "plateforme niveau 1", Ressources.font);
+            plate2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "plateforme niveau 2", Ressources.font);
+            plate3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "plateforme niveau 3", Ressources.font);
+            sol1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "sol niveau 1", Ressources.font);
+            sol2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "sol niveau 2", Ressources.font);
+            sol3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "sol niveau 3", Ressources.font);
             E1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Ennemi 1", Ressources.font);
             E2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Bonus  1", Ressources.font);
             E3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Bonus  2", Ressources.font);
             E4 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Ennemi 2", Ressources.font);
             flagg = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Drapeau", Ressources.font);
 
-            gauche = new cButton(Ressources.boutton, Color.White, graphics.GraphicsDevice);
-            droite = new cButton(Ressources.boutton, Color.White, graphics.GraphicsDevice);
+            if (lang == 1)
+            {
+                fond1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "fond niveau 1", Ressources.font);
+                fond2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "fond niveau 2", Ressources.font);
+                fond3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "fond niveau 3", Ressources.font);
+                plate1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "plateforme niveau 1", Ressources.font);
+                plate2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "plateforme niveau 2", Ressources.font);
+                plate3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "plateforme niveau 3", Ressources.font);
+                sol1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "sol niveau 1", Ressources.font);
+                sol2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "sol niveau 2", Ressources.font);
+                sol3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "sol niveau 3", Ressources.font);
+                E1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Ennemi 1", Ressources.font);
+                E2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Bonus  1", Ressources.font);
+                E3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Bonus  2", Ressources.font);
+                E4 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Ennemi 2", Ressources.font);
+                flagg = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Drapeau", Ressources.font);
+            }
+            if (lang == 2)
+            {
+                fond1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Background 1", Ressources.font);
+                fond2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Background 2", Ressources.font);
+                fond3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Background 3", Ressources.font);
+                plate1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "plateform level 1", Ressources.font);
+                plate2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "plateform level 2", Ressources.font);
+                plate3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "plateform level 3", Ressources.font);
+                sol1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "ground level 1", Ressources.font);
+                sol2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "ground level 2", Ressources.font);
+                sol3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "ground level 3", Ressources.font);
+                E1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Enemy 1", Ressources.font);
+                E2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Bonus  1", Ressources.font);
+                E3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Bonus  2", Ressources.font);
+                E4 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Enemy 2", Ressources.font);
+                flagg = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Flag", Ressources.font);
+            }
+            if (lang == 3)
+            {
+                fond1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "fondo nivel 1", Ressources.font);
+                fond2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "fondo nivel 2", Ressources.font);
+                fond3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "fondo nivel 3", Ressources.font);
+                plate1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "plataforma nivel 1", Ressources.font);
+                plate2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "plataforma nivel 2", Ressources.font);
+                plate3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "plataforma nivel 3", Ressources.font);
+                sol1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "suelo nivel 1", Ressources.font);
+                sol2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "suelo nivel 2", Ressources.font);
+                sol3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "suelo nivel 3", Ressources.font);
+                E1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "enemigo 1", Ressources.font);
+                E2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "prima  1", Ressources.font);
+                E3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "prima  2", Ressources.font);
+                E4 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "enemigo 2", Ressources.font);
+                flagg = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "bandera", Ressources.font);
+            }
+
+                gauche = new cButton(Ressources.boutton, Color.White, graphics.GraphicsDevice);
+                droite = new cButton(Ressources.boutton, Color.White, graphics.GraphicsDevice);
         }
 
         public void seri()
@@ -288,9 +342,9 @@ namespace Death_is_Dead
                 sol1.setPosition(new Vector2(400, 0));
                 sol2.setPosition(new Vector2(400, 50));
                 sol3.setPosition(new Vector2(400, 100));
-                E1.setPosition(new Vector2(550, 0));
-                E2.setPosition(new Vector2(550, 50));
-                E3.setPosition(new Vector2(550, 100));
+                E1.setPosition(new Vector2(560, 0));
+                E2.setPosition(new Vector2(560, 50));
+                E3.setPosition(new Vector2(560, 100));
                 E4.setPosition(new Vector2(680, 0));
                 flagg.setPosition(new Vector2(680, 50));
                 fond1.Udapte(Mouse.GetState());
@@ -462,16 +516,44 @@ namespace Death_is_Dead
                 E3.Draw(spriteBatch);
                 E4.Draw(spriteBatch);
                 flagg.Draw(spriteBatch);
-                spriteBatch.DrawString(Ressources.font, "pause", new Vector2(300, 250), Color.Red, 0, Vector2.Zero, 3, SpriteEffects.None, 0);
-                spriteBatch.DrawString(Ressources.font, "C pour reprendre", new Vector2(300, 350), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                if (lang == 1)
+                {
+                    spriteBatch.DrawString(Ressources.font, "pause", new Vector2(300, 250), Color.Red, 0, Vector2.Zero, 3, SpriteEffects.None, 0);
+                    spriteBatch.DrawString(Ressources.font, "C pour reprendre", new Vector2(300, 350), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                }
+                if (lang == 2)
+                {
+                    spriteBatch.DrawString(Ressources.font, "pause", new Vector2(300, 250), Color.Red, 0, Vector2.Zero, 3, SpriteEffects.None, 0);
+                    spriteBatch.DrawString(Ressources.font, "C to resume", new Vector2(300, 350), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                }
+                if (lang == 3)
+                {
+                    spriteBatch.DrawString(Ressources.font, "pausa", new Vector2(300, 250), Color.Red, 0, Vector2.Zero, 3, SpriteEffects.None, 0);
+                    spriteBatch.DrawString(Ressources.font, "C para continuar", new Vector2(300, 350), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                }
             }
             else
             {
                 gauche.Draw(spriteBatch);
                 droite.Draw(spriteBatch);
-                spriteBatch.DrawString(Ressources.font, "Clic gauche ajouter", new Vector2(0, 0), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
-                spriteBatch.DrawString(Ressources.font, "Clic droit retour", new Vector2(0, 50), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
-                spriteBatch.DrawString(Ressources.font, "C pour le menu", new Vector2(0, 100), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                if (lang == 1)
+                {
+                    spriteBatch.DrawString(Ressources.font, "Clic gauche ajouter", new Vector2(0, 0), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                    spriteBatch.DrawString(Ressources.font, "Clic droit retour", new Vector2(0, 50), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                    spriteBatch.DrawString(Ressources.font, "C pour le menu", new Vector2(0, 100), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                }
+                if (lang == 2)
+                {
+                    spriteBatch.DrawString(Ressources.font, "Left clic Add", new Vector2(0, 0), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                    spriteBatch.DrawString(Ressources.font, "Right clic remove last add", new Vector2(0, 50), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                    spriteBatch.DrawString(Ressources.font, "C back to menu", new Vector2(0, 100), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                }
+                if (lang == 3)
+                {
+                    spriteBatch.DrawString(Ressources.font, "Clic izquierdo anadir", new Vector2(0, 0), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                    spriteBatch.DrawString(Ressources.font, "Clic derecho retorno", new Vector2(0, 50), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                    spriteBatch.DrawString(Ressources.font, "C Volver al menu", new Vector2(0, 100), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                }
             }
         }
     }
