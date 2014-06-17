@@ -23,12 +23,12 @@ namespace Death_is_Dead
         [NonSerialized]
         int pos_Y_tmp = 0;
         [NonSerialized]
-        Bonus.Coeur coeur = new Bonus.Coeur();
+        public Bonus.Coeur coeur = new Bonus.Coeur();
         [NonSerialized]
-        bool activer_bonus;
+        public bool activer_bonus;
         [NonSerialized]
-        Bonus.Faux Bonusfaux = new Bonus.Faux();
-
+        public Bonus.Faux Bonusfaux = new Bonus.Faux();
+        public int type;
         uint[] tab;
 
 
@@ -36,7 +36,7 @@ namespace Death_is_Dead
         public Mob(Vector2 position, Texture2D texture, int life)
             : base(position, texture, life, true)
         {
-
+            type = 0;
             activer_bonus = true;
             mob_pos = position;
             this.life = life;
@@ -209,10 +209,10 @@ namespace Death_is_Dead
                     sb.Draw(Ressources.E2, new Vector2(position.X, position.Y), Color.White);
             }
 
-            sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);
-            sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);
-            sb.Draw(Ressources.plateforme, HitboxG.Rectangle, Color.Red);
-            sb.Draw(Ressources.plateforme, HitboxH.Rectangle, Color.Red);
+            //sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);
+            //sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);
+            //sb.Draw(Ressources.plateforme, HitboxG.Rectangle, Color.Red);
+            //sb.Draw(Ressources.plateforme, HitboxH.Rectangle, Color.Red);
         }
 
 

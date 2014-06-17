@@ -111,6 +111,7 @@
     <Compile Include="Bonus\Faux.cs" />
     <Compile Include="cButton.cs" />
     <Compile Include="cButton2.cs" />
+    <Compile Include="choixbonus.cs" />
     <Compile Include="Collison.cs" />
     <Compile Include="editeur.cs" />
     <Compile Include="end_flag.cs" />

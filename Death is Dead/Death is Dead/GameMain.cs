@@ -300,7 +300,10 @@ namespace Death_is_Dead
                             for (int a = 0; a < mobs2.Length; a++)
                             {
                                 mobs2[a].maj(Content);
-                                mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life);
+                                if (mobs2[a].type == 0)
+                                    mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life);
+                                else
+                                    mobs2[a] = new choixbonus(mobs2[a].position, mobs2[a].type);
                             }
 
                             Vector2 fl = (Vector2)format.Deserialize(liste5);
@@ -386,8 +389,12 @@ namespace Death_is_Dead
                         for (int a = 0; a < mobs2.Length; a++)
                         {
                             mobs2[a].maj(Content);
-                            mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life);
+                            if (mobs2[a].type == 0)
+                                mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life);
+                            else
+                                mobs2[a] = new choixbonus(mobs2[a].position, mobs2[a].type);
                         }
+                            
                         Texture2D tmp = Ressources.fond;
                         tmp.SetData<uint>(fon);
 
@@ -426,7 +433,10 @@ namespace Death_is_Dead
                         for (int a = 0; a < mobs2.Length; a++)
                         {
                             mobs2[a].maj(Content);
-                            mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life);
+                            if (mobs2[a].type == 0)
+                                mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life);
+                            else
+                                mobs2[a] = new choixbonus(mobs2[a].position, mobs2[a].type);
                         }
                         Texture2D tmp = Ressources.fond;
                         tmp.SetData<uint>(fon);
@@ -461,7 +471,10 @@ namespace Death_is_Dead
                         for (int a = 0; a < mobs2.Length; a++)
                         {
                             mobs2[a].maj(Content);
-                            mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life);
+                            if (mobs2[a].type == 0)
+                                mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life);
+                            else
+                                mobs2[a] = new choixbonus(mobs2[a].position, mobs2[a].type);
                         }
                         Texture2D tmp = Ressources.fond;
                         tmp.SetData<uint>(fon);

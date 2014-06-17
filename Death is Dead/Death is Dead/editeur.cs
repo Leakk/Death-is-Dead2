@@ -38,6 +38,7 @@ namespace Death_is_Dead
         Boolean plate;
         Boolean ene;
         Boolean drap;
+        int type = 0;
 
         public editeur()
         {
@@ -69,8 +70,8 @@ namespace Death_is_Dead
             sol2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "sol level 2", Ressources.font);
             sol3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "sol level 3", Ressources.font);
             E1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Ennemi 1", Ressources.font);
-            E2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Ennemi 2", Ressources.font);
-            E3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Ennemi 3", Ressources.font);
+            E2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Bonus  1", Ressources.font);
+            E3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Bonus  2", Ressources.font);
             flagg = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Drapeau", Ressources.font);
 
             gauche = new cButton(Ressources.boutton, Color.White, graphics.GraphicsDevice);
@@ -90,7 +91,10 @@ namespace Death_is_Dead
             x = 0;
             foreach (Mob item in mob)
             {
-                ennemi[x] = new Mob(new Vector2(item.position.X, item.position.Y), item.texture, 100);
+                if (item.type == 0)
+                    ennemi[x] = new Mob(item.position, item.texture, item.life);
+                else
+                    ennemi[x] = new choixbonus(item.position, item.type);
                 x++;
             }
             tab = new uint[curfond.Height * curfond.Width];
@@ -142,7 +146,10 @@ namespace Death_is_Dead
                 for (int i = 0; i < ennemi.Length; i++)
                 {
                     ennemi[i].maj(cont);
-                    ennemi[i] = new Mob(ennemi[i].position, ennemi[i].texture, ennemi[i].life);
+                    if (ennemi[i].type == 0)
+                        ennemi[i] = new Mob(ennemi[i].position, ennemi[i].texture, ennemi[i].life);
+                    else
+                        ennemi[i] = new choixbonus(ennemi[i].position, ennemi[i].type);
                     mob.AddLast(ennemi[i]);
                 }
 
@@ -160,7 +167,10 @@ namespace Death_is_Dead
             x = 0;
             foreach (Mob item in mob)
             {
-                ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, 100);
+                if (item.type == 0)
+                    ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, item.life);
+                else
+                    ennemi[x] = new choixbonus(new Vector2(item.position.X - a, item.position.Y), item.type);
                 x++;
             }
 
@@ -238,20 +248,24 @@ namespace Death_is_Dead
                 ene = true;
                 drap = false;
                 curplate = Ressources.E2;
+                type = 0;
             }
             if (E2.isClicked)
             {
                 plate = false;
                 ene = true;
                 drap = false;
-                curplate = Ressources.E2;
+                curplate = Ressources.Bonus_coeur;
+                type = 1;
+
             }
             if (E3.isClicked)
             {
                 plate = false;
                 ene = true;
                 drap = false;
-                curplate = Ressources.E2;
+                curplate = Ressources.Faux;
+                type = 2;
             }
             #endregion
             if (flagg.isClicked)
@@ -306,7 +320,10 @@ namespace Death_is_Dead
                 x = 0;
                 foreach (Mob item in mob)
                 {
-                    ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, 100);
+                        if (item.type == 0)
+                            ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, item.life);
+                        else
+                            ennemi[x] = new choixbonus(new Vector2(item.position.X - a, item.position.Y), item.type); ;
                     x++;
                 }
                 map = new Obstacle[liste.Count];
@@ -324,7 +341,10 @@ namespace Death_is_Dead
                 x = 0;
                 foreach (Mob item in mob)
                 {
-                    ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, 100);
+                    if (item.type == 0)
+                        ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, item.life);
+                    else
+                        ennemi[x] = new choixbonus(new Vector2(item.position.X - a, item.position.Y), item.type);
                     x++;
                 }
                 map = new Obstacle[liste.Count];
@@ -360,12 +380,18 @@ namespace Death_is_Dead
                 }
                 if (ene)
                 {
-                    mob.AddLast(new Mob(new Vector2((int)Mouse.GetState().X + a, (int)Mouse.GetState().Y), curplate, 100));
+                    if (type == 0)
+                        mob.AddLast(new Mob(new Vector2((int)Mouse.GetState().X + a, (int)Mouse.GetState().Y), curplate, 100));
+                    else
+                        mob.AddLast(new choixbonus(new Vector2((int)Mouse.GetState().X + a, (int)Mouse.GetState().Y), type));
                     ennemi = new Mob[mob.Count];
                     x = 0;
                     foreach (Mob item in mob)
                     {
-                        ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, 100);
+                        if (item.type == 0)
+                            ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, item.life);
+                        else
+                            ennemi[x] = new choixbonus(new Vector2(item.position.X - a, item.position.Y), item.type);
                         x++;
                     }
                 }
@@ -397,7 +423,10 @@ namespace Death_is_Dead
                         x = 0;
                         foreach (Mob item in mob)
                         {
-                            ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, 100);
+                            if (item.type == 0)
+                                ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, item.life);
+                            else
+                                ennemi[x] = new choixbonus(new Vector2(item.position.X - a, item.position.Y), item.type);
                             x++;
                         }
                     }
@@ -409,11 +438,13 @@ namespace Death_is_Dead
 
         public void draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(curfond, new Rectangle((int)-0.25*a, 0, 2400, 600), Color.White);
+            spriteBatch.Draw(curfond, new Rectangle((int)-0.25 * a, 0, 2400, 600), Color.White);
             if (drap)
             {
                 spriteBatch.Draw(curplate, new Rectangle((int)Mouse.GetState().X, (int)Mouse.GetState().Y, 70, 160), Color.White);
             }
+            else if (curplate == Ressources.Bonus_coeur || curplate == Ressources.Faux)
+                spriteBatch.Draw(curplate, new Rectangle((int)Mouse.GetState().X, (int)Mouse.GetState().Y, 50, 50), Color.White);
             else
                 spriteBatch.Draw(curplate, new Rectangle((int)Mouse.GetState().X, (int)Mouse.GetState().Y, curplate.Width, curplate.Height), Color.White);
             foreach (Obstacle item in map)
@@ -421,10 +452,12 @@ namespace Death_is_Dead
                 spriteBatch.Draw(item.texture, item.rectangle, Color.White);
 
             }
-            spriteBatch.Draw(Ressources.Flag_final, new Rectangle((int)flag.X-a, (int)flag.Y, 70, 160), Color.White);
+            spriteBatch.Draw(Ressources.Flag_final, new Rectangle((int)flag.X - a, (int)flag.Y, 70, 160), Color.White);
             foreach (Mob item in ennemi)
             {
-                item.Draw(spriteBatch);
+
+                        item.Draw(spriteBatch);
+
             }
             if (change)
             {
