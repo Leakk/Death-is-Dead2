@@ -19,11 +19,11 @@ namespace Death_is_Dead
             return Math.Abs(player.position.X - mob.position.X);
         }
 
-        public static bool isPlateformNearby(Obstacle[] rect, Mob mob)
+        public static bool isPlateformNearby(Obstacle[] rect, Mob mob, bool flip)
         {
             foreach (Obstacle item in rect)
             {
-                if (item.texture.Width == Ressources.plateforme.Width && item.rectangle.Y > mob.position.Y - 42 && Math.Abs(item.rectangle.Center.X - mob.position.X) < 100 + item.texture.Width / 2 && item.rectangle.X != mob.HitboxB.rect_coll(rect).X)
+                if (item.texture.Width == Ressources.plateforme.Width && item.rectangle.Y > mob.position.Y - 42 && Math.Abs(item.rectangle.Center.X - mob.position.X) < 100 + item.texture.Width / 2 && (flip ? item.rectangle.X < mob.HitboxB.rect_coll(rect).X : item.rectangle.X > mob.HitboxB.rect_coll(rect).X))
                     return true;
             }
 
@@ -34,7 +34,7 @@ namespace Death_is_Dead
         {
             foreach (Obstacle item in rect)
             {
-                if (item.texture.Width == Ressources.sol.Width && Math.Abs(item.rectangle.Center.X - mob.position.X) < Ressources.sol.Width * 1.5 && item.rectangle.X != mob.HitboxB.rect_coll(rect).X && (flip ? (item.rectangle.X > mob.position.X) : (item.rectangle.X < mob.position.X)))
+                if (flip ? item.rectangle.Center.X == mob.HitboxB.rect_coll(rect).Center.X - Ressources.sol.Width : item.rectangle.Center.X == mob.HitboxB.rect_coll(rect).Center.X + Ressources.sol.Width)
                     return true;
             }
 
