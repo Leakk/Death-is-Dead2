@@ -35,6 +35,11 @@ namespace Death_is_Dead
         public Collision HitboxG;
         [NonSerialized]
         public Collision HitboxD;
+        [NonSerialized]
+        public Collision HitboxD_testSol;
+        [NonSerialized]
+        public Collision HitboxG_testSol;
+
 
         public int life;
         [NonSerialized]
@@ -62,7 +67,8 @@ namespace Death_is_Dead
             this.HitboxD = new Collision(new Rectangle(Convert.ToInt32(position.X) + texture.Width - 3, Convert.ToInt32(position.Y)+10, 3, texture.Height - 10));
             this.HitboxH = new Collision(new Rectangle(Convert.ToInt32(position.X), Convert.ToInt32(position.Y), texture.Width, 3));
             this.HitboxB = new Collision(new Rectangle(Convert.ToInt32(position.X), Convert.ToInt32(position.Y) + texture.Height - 3, texture.Width, 10));
-
+            this.HitboxD_testSol = new Collision(new Rectangle(Convert.ToInt32(position.X) + texture.Width + 15, Convert.ToInt32(position.Y) + 50, 3, 2));
+            this.HitboxG_testSol = new Collision(new Rectangle(Convert.ToInt32(position.X) - 15, Convert.ToInt32(position.Y) + 50, 3, 2));
             Tirs = new Projectile[10];
         }
 
@@ -98,6 +104,8 @@ namespace Death_is_Dead
                 HitboxB = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y) + texture.Height - 3, texture.Width, 3));
                 HitboxG = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y)+10, 3, texture.Height-15));
                 HitboxD = new Collision(new Rectangle(Convert.ToInt32(this.position.X) + texture.Width, Convert.ToInt32(this.position.Y)+10, 3, texture.Height-15));
+                HitboxD_testSol = new Collision(new Rectangle(Convert.ToInt32(this.position.X) + texture.Width + 15, Convert.ToInt32(this.position.Y) + 50, 3, 2));
+                HitboxG_testSol = new Collision(new Rectangle(Convert.ToInt32(this.position.X) - 15, Convert.ToInt32(this.position.Y) + 50, 3, 2));
                 this.velocity = physics.apply_gravity(this.velocity);
                 hasJumped = false;
 
@@ -109,6 +117,8 @@ namespace Death_is_Dead
                 HitboxB = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y) + texture.Height, texture.Width, 3));
                 HitboxG = new Collision(new Rectangle(Convert.ToInt32(this.position.X), Convert.ToInt32(this.position.Y)+10, 3, texture.Height-15));
                 HitboxD = new Collision(new Rectangle(Convert.ToInt32(this.position.X) + texture.Width, Convert.ToInt32(this.position.Y)+10, 3, texture.Height-15));
+                HitboxD_testSol = new Collision(new Rectangle(Convert.ToInt32(this.position.X) + texture.Width + 15, Convert.ToInt32(this.position.Y) + 50, 3, 2));
+                HitboxG_testSol = new Collision(new Rectangle(Convert.ToInt32(this.position.X) - 15, Convert.ToInt32(this.position.Y) + 50, 3, 2)); 
                 position.Y = recta.Y - texture.Height;
                 hasJumped = true;
                 velocity.Y = 0f;
