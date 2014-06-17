@@ -858,6 +858,13 @@ namespace Death_is_Dead
                                     item.Tirs[i] = null;
                                 }
 
+                                if (item.Tirs[i] != null)
+                                    if (new Collision(new Rectangle((int)item.Tirs[i].position.X, (int)item.Tirs[i].position.Y, item.Tirs[i].texture.Width, item.Tirs[i].texture.Height)).is_coll(map.obs))
+                                    {
+                                        item.Tirs[i] = null;
+                                        Ressources.impact_tir_mur.Play();
+                                    }
+
                             }
                         }
                     }
