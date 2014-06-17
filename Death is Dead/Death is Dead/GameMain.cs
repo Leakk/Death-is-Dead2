@@ -74,7 +74,6 @@ namespace Death_is_Dead
         int screenWidth = 800, screenHeight = 600;
 
         private Player player1;
-        private Map map1;
         private Map map = new Map(new Obstacle[0], new Mob[0], Ressources.fond,new Vector2 (0,0));
         private Player2 player2;
         private bool songisplayed = false;
@@ -400,7 +399,36 @@ namespace Death_is_Dead
 
                     if (btnMap2.isClicked && count == 0 && level2_enable)
                     {
-                        /* map 2 here */
+                        IFormatter format = new BinaryFormatter();
+
+                        Stream liste2 = new FileStream("lvl2/fond.2", FileMode.Open, FileAccess.Read);
+                        Stream liste3 = new FileStream("lvl2/map.2", FileMode.Open, FileAccess.Read);
+                        Stream liste4 = new FileStream("lvl2/mobs.2", FileMode.Open, FileAccess.Read);
+                        Stream liste5 = new FileStream("lvl2/flag.2", FileMode.Open, FileAccess.Read);
+                        Obstacle[] obs2;
+                        Mob[] mobs2;
+                        uint[] fon = (uint[])format.Deserialize(liste2);
+                        Vector2 fl = (Vector2)format.Deserialize(liste5);
+                        obs2 = (Obstacle[])format.Deserialize(liste3);
+                        mobs2 = (Mob[])format.Deserialize(liste4);
+                        foreach (Obstacle item in obs2)
+                        {
+                            item.maj(Content);
+                        }
+                        for (int a = 0; a < mobs2.Length; a++)
+                        {
+                            mobs2[a].maj(Content);
+                            mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life, mobs2[a].type);
+                        }
+
+                        Texture2D tmp = Ressources.fond;
+                        tmp.SetData<uint>(fon);
+
+                        MediaPlayer.Stop();
+                        MediaPlayer.Play(Game_song_lvl1);
+                        map = new Map(obs2, mobs2, tmp, fl);
+                        count = 10;
+                        button_click.Play();
                         count = 10;
                         button_click.Play();
                     }
@@ -553,7 +581,7 @@ namespace Death_is_Dead
                         button_click.Play();
                         editeur1.j = 20;
                         editeur1.seri();
-                        CurrentGameState = GameState.Editor;
+                        CurrentGameState = GameState.MainMenu;
 
                     }
 
@@ -709,7 +737,7 @@ namespace Death_is_Dead
                                     if (mob.isTouched(player2.Tirs[i]))
                                     {
                                         Ressources.impact_tir_enemi.Play();
-                                        mob.life -= 10;
+                                        mob.life -= 20;
                                         player2.Tirs[i] = null;
                                     }
                                 }
@@ -760,7 +788,7 @@ namespace Death_is_Dead
                                 if (mob.isTouched(player1.Tirs[i]))
                                 {
                                     Ressources.impact_tir_enemi.Play();
-                                    mob.life -= 10;
+                                    mob.life -= 20;
                                     player1.Tirs[i] = null;
                                 }
                             }
@@ -846,7 +874,7 @@ namespace Death_is_Dead
 
                                 if (player1.isTouched(item.Tirs[i]))
                                 {
-                                    //player1.life -= 5;
+                                    player1.life -= 5;
                                     Ressources.impact_tir_player.Play();
                                     item.Tirs[i] = null;
                                 }

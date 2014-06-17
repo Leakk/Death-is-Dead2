@@ -30,7 +30,7 @@ namespace Death_is_Dead
         cButton2 sol3;
         cButton2 E1;
         cButton2 E2;
-        cButton2 E3, flagg;
+        cButton2 E3, flagg, E4;
         cButton gauche, droite;
         Boolean change;
         uint[] tab;
@@ -72,6 +72,7 @@ namespace Death_is_Dead
             E1 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Ennemi 1", Ressources.font);
             E2 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Bonus  1", Ressources.font);
             E3 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Bonus  2", Ressources.font);
+            E4 = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Ennemi 2", Ressources.font);
             flagg = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "Drapeau", Ressources.font);
 
             gauche = new cButton(Ressources.boutton, Color.White, graphics.GraphicsDevice);
@@ -258,6 +259,14 @@ namespace Death_is_Dead
                 curplate = Ressources.Faux;
                 choix = 2;
             }
+            if (E4.isClicked)
+            {
+                plate = false;
+                ene = true;
+                drap = false;
+                curplate = Ressources.E2;
+                choix = 3;
+            }
             #endregion
             if (flagg.isClicked)
             {
@@ -282,6 +291,7 @@ namespace Death_is_Dead
                 E1.setPosition(new Vector2(550, 0));
                 E2.setPosition(new Vector2(550, 50));
                 E3.setPosition(new Vector2(550, 100));
+                E4.setPosition(new Vector2(680, 0));
                 flagg.setPosition(new Vector2(680, 50));
                 fond1.Udapte(Mouse.GetState());
                 fond2.Udapte(Mouse.GetState());
@@ -295,6 +305,7 @@ namespace Death_is_Dead
                 E1.Udapte(Mouse.GetState());
                 E2.Udapte(Mouse.GetState());
                 E3.Udapte(Mouse.GetState());
+                E4.Udapte(Mouse.GetState());
                 flagg.Udapte(Mouse.GetState());
             }
             else
@@ -449,6 +460,7 @@ namespace Death_is_Dead
                 E1.Draw(spriteBatch);
                 E2.Draw(spriteBatch);
                 E3.Draw(spriteBatch);
+                E4.Draw(spriteBatch);
                 flagg.Draw(spriteBatch);
                 spriteBatch.DrawString(Ressources.font, "pause", new Vector2(300, 250), Color.Red, 0, Vector2.Zero, 3, SpriteEffects.None, 0);
                 spriteBatch.DrawString(Ressources.font, "C pour reprendre", new Vector2(300, 350), Color.Blue, 0, Vector2.Zero, 1, SpriteEffects.None, 0);

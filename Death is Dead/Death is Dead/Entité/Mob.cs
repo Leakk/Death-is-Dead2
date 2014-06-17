@@ -394,9 +394,9 @@ namespace Death_is_Dead
                     if (!dead)
                     {
                         if (hasFliped)
-                            sb.Draw(Ressources.EFlip2, new Vector2(position.X, position.Y), Color.Red);
+                            sb.Draw(Ressources.EFlip2, new Vector2(position.X, position.Y), Color.White);
                         else
-                            sb.Draw(Ressources.E2, new Vector2(position.X, position.Y), Color.Red);
+                            sb.Draw(Ressources.E2, new Vector2(position.X, position.Y), Color.White);
                     }
                     break;
 
