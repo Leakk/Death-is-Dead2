@@ -118,24 +118,25 @@ namespace Death_is_Dead
                     #region/*type1*/
                     case 0:
                         {
-                            if (IA.isPlayerNearby(player, this) < IA.isPlayerNearby(p2, this))
+                            float nearby_p1 = IA.isPlayerNearby(player, this);
+                            float nearby_p2 = IA.isPlayerNearby(p2, this);
+                            if (nearby_p1 < nearby_p2)
                             {
-                                float nearby = IA.isPlayerNearby(player, this);
-                                if (nearby < 800)
+                                if (nearby_p1 < 800)
                                 {
                                     pos_X_tmp = (int)position.X;          /* ça c'est parce que il me semble que maxime faisait teleporté les enemies hors de la map lors de leur mort */
                                     pos_Y_tmp = (int)position.Y;         /* donc je retiens leur derniere pos quand ils étaient encore dans l'image, donc quand ils étaient vivants */
 
-                                    if (HitboxD.is_coll(rect) || HitboxG.is_coll(rect))
-                                        velocity.Y = -6f;
+                                    //if (HitboxD.is_coll(rect) || HitboxG.is_coll(rect))
+                                    //    velocity.Y = -6f;
 
-                                    if (nearby > 80)
+                                    if (nearby_p1 > 80 && IA.isGroundNearby(rect, this, hasFliped))
                                     {
                                         Tuple<int, bool> mob_bef = IA.isMobBefore(player, this);
                                         velocity.X = 2 * mob_bef.Item1;
                                         hasFliped = mob_bef.Item2;
                                     }
-                                    else if (nearby < 50)
+                                    else if (nearby_p1 < 50 && (Math.Abs(HitboxB.rect_coll(rect).Center.X - position.X) < Ressources.sol.Width / 2 - 10 || IA.isGroundNearby(rect, this, hasFliped)))
                                     {
                                         Tuple<int, bool> mob_bef = IA.isMobBefore(player, this);
                                         velocity.X = -2 * mob_bef.Item1;
@@ -166,8 +167,7 @@ namespace Death_is_Dead
                             }
                             else
                             {
-                                float nearby = IA.isPlayerNearby(p2, this);
-                                if (nearby < 800)
+                                if (nearby_p2 < 800)
                                 {
                                     pos_X_tmp = (int)position.X;          /* ça c'est parce que il me semble que maxime faisait teleporté les enemies hors de la map lors de leur mort */
                                     pos_Y_tmp = (int)position.Y;         /* donc je retiens leur derniere pos quand ils étaient encore dans l'image, donc quand ils étaient vivants */
@@ -175,13 +175,13 @@ namespace Death_is_Dead
                                     if (HitboxD.is_coll(rect) || HitboxG.is_coll(rect))
                                         velocity.Y = -6f;
 
-                                    if (nearby > 80)
+                                    if (nearby_p2 > 80)
                                     {
                                         Tuple<int, bool> mob_bef = IA.isMobBefore(p2, this);
                                         velocity.X = 2 * mob_bef.Item1;
                                         hasFliped = mob_bef.Item2;
                                     }
-                                    else if (nearby < 50)
+                                    else if (nearby_p2 < 50)
                                     {
                                         Tuple<int, bool> mob_bef = IA.isMobBefore(p2, this);
                                         velocity.X = -2 * mob_bef.Item1;
@@ -224,11 +224,11 @@ namespace Death_is_Dead
         {
             switch (type)
             {
-                case 3 :
+                case 3:
                     /*le draw*/
                     break;
 
-                default :
+                default:
 
                     if (coeur.exist)
                         coeur.Draw(sb);

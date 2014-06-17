@@ -23,8 +23,19 @@ namespace Death_is_Dead
         {
             foreach (Obstacle item in rect)
             {
-                if (item.texture.Width == Ressources.plateforme.Width)
-                    return Math.Abs(item.rectangle.Center.X - mob.position.X) < 50 + item.texture.Width / 2;
+                if (item.texture.Width == Ressources.plateforme.Width && item.rectangle.Y > mob.position.Y - 42 && Math.Abs(item.rectangle.Center.X - mob.position.X) < 100 + item.texture.Width / 2 && item.rectangle.X != mob.HitboxB.rect_coll(rect).X)
+                    return true;
+            }
+
+            return false;
+        }
+
+        public static bool isGroundNearby(Obstacle[] rect, Mob mob, bool flip)
+        {
+            foreach (Obstacle item in rect)
+            {
+                if (item.texture.Width == Ressources.sol.Width && Math.Abs(item.rectangle.Center.X - mob.position.X) < Ressources.sol.Width * 1.5 && item.rectangle.X != mob.HitboxB.rect_coll(rect).X && (flip ? (item.rectangle.X > mob.position.X) : (item.rectangle.X < mob.position.X)))
+                    return true;
             }
 
             return false;
@@ -36,6 +47,11 @@ namespace Death_is_Dead
                 return Tuple.Create(-1, true);
             else
                 return Tuple.Create(1, false);
+        }
+
+        public static bool PlayerAbove(Players player, Mob mob)
+        {
+            return player.position.Y <= mob.position.Y;
         }
     }
 }
