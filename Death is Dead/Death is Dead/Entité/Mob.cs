@@ -209,10 +209,10 @@ namespace Death_is_Dead
                     sb.Draw(Ressources.E2, new Vector2(position.X, position.Y), Color.White);
             }
 
-            //sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);
-            //sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);
-            //sb.Draw(Ressources.plateforme, HitboxG.Rectangle, Color.Red);
-            //sb.Draw(Ressources.plateforme, HitboxH.Rectangle, Color.Red);
+            sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);
+            sb.Draw(Ressources.plateforme, HitboxD.Rectangle, Color.Red);
+            sb.Draw(Ressources.plateforme, HitboxG.Rectangle, Color.Red);
+            sb.Draw(Ressources.plateforme, HitboxH.Rectangle, Color.Red);
         }
 
 
