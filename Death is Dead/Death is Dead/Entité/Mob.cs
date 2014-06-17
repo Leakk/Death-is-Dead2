@@ -33,16 +33,36 @@ namespace Death_is_Dead
 
 
 
-        public Mob(Vector2 position, Texture2D texture, int life)
+
+        public Mob(Vector2 position, Texture2D texture, int life, int type)
             : base(position, texture, life, true)
         {
-            type = 0;
+            this.type = type;
             activer_bonus = true;
             mob_pos = position;
             this.life = life;
             Life = new Life();
             tab = new uint[texture.Height * texture.Width];
             texture.GetData<uint>(tab);
+            if (type == 1 || type == 2)
+            {
+                texture = Ressources.E2;
+                if (type == 1)
+                {
+                    coeur.exist = true;
+                    coeur.x = (int)position.X;
+                    coeur.y = (int)position.Y;
+                }
+                else
+                {
+                    Bonusfaux.exist = true;
+                    Bonusfaux.x = (int)position.X;
+                    Bonusfaux.y = (int)position.Y;
+                }
+                activer_bonus = false;
+                dead = true;
+                this.life = 0;
+            }
         }
 
         public void Update(Obstacle[] rect, Players player, Players p2)
@@ -93,120 +113,140 @@ namespace Death_is_Dead
             }
             else
             {
-                if (IA.isPlayerNearby(player, this) < IA.isPlayerNearby(p2, this))
+                switch (type)
                 {
-                    float nearby = IA.isPlayerNearby(player, this);
-                    if (nearby < 800)
-                    {
-                        pos_X_tmp = (int)position.X;          /* ça c'est parce que il me semble que maxime faisait teleporté les enemies hors de la map lors de leur mort */
-                        pos_Y_tmp = (int)position.Y;         /* donc je retiens leur derniere pos quand ils étaient encore dans l'image, donc quand ils étaient vivants */
-
-                        if (HitboxD.is_coll(rect) || HitboxG.is_coll(rect))
-                            velocity.Y = -6f;
-
-                        if (nearby > 80)
+                    #region/*type1*/
+                    case 0:
                         {
-                            Tuple<int, bool> mob_bef = IA.isMobBefore(player, this);
-                            velocity.X = 2 * mob_bef.Item1;
-                            hasFliped = mob_bef.Item2;
-                        }
-                        else if (nearby < 50 )
-                        {
-                            Tuple<int, bool> mob_bef = IA.isMobBefore(player, this);
-                            velocity.X = -2 * mob_bef.Item1;
-                            hasFliped = mob_bef.Item2;
-                        }
-                        else
-                            velocity.X = 0;
-
-                        if (IA.isPlateformNearby(rect, this)&& velocity.Y==0)
-                            velocity.Y = -6f;
-
-                        if (position.Y >= player.position.Y && position.Y <= player.position.Y + player.texture.Height && latenceTir == 0 && !dead)
-                        {
-                            latenceTir = 40;
-                            for (int i = 0; i < Tirs.Length; i++)
+                            if (IA.isPlayerNearby(player, this) < IA.isPlayerNearby(p2, this))
                             {
-                                if (Tirs[i] == null)
+                                float nearby = IA.isPlayerNearby(player, this);
+                                if (nearby < 800)
                                 {
-                                    Tirs[i] = new Projectile(texture.Bounds.X, 10, this, hasFliped);
-                                    Ressources.tir_son.Play();
-                                    break;
+                                    pos_X_tmp = (int)position.X;          /* ça c'est parce que il me semble que maxime faisait teleporté les enemies hors de la map lors de leur mort */
+                                    pos_Y_tmp = (int)position.Y;         /* donc je retiens leur derniere pos quand ils étaient encore dans l'image, donc quand ils étaient vivants */
+
+                                    if (HitboxD.is_coll(rect) || HitboxG.is_coll(rect))
+                                        velocity.Y = -6f;
+
+                                    if (nearby > 80)
+                                    {
+                                        Tuple<int, bool> mob_bef = IA.isMobBefore(player, this);
+                                        velocity.X = 2 * mob_bef.Item1;
+                                        hasFliped = mob_bef.Item2;
+                                    }
+                                    else if (nearby < 50)
+                                    {
+                                        Tuple<int, bool> mob_bef = IA.isMobBefore(player, this);
+                                        velocity.X = -2 * mob_bef.Item1;
+                                        hasFliped = mob_bef.Item2;
+                                    }
+                                    else
+                                        velocity.X = 0;
+
+                                    if (IA.isPlateformNearby(rect, this) && velocity.Y == 0)
+                                        velocity.Y = -6f;
+
+                                    if (position.Y >= player.position.Y && position.Y <= player.position.Y + player.texture.Height && latenceTir == 0 && !dead)
+                                    {
+                                        latenceTir = 40;
+                                        for (int i = 0; i < Tirs.Length; i++)
+                                        {
+                                            if (Tirs[i] == null)
+                                            {
+                                                Tirs[i] = new Projectile(texture.Bounds.X, 10, this, hasFliped);
+                                                Ressources.tir_son.Play();
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if (latenceTir > 0)
+                                        latenceTir--;
+                                }
+                            }
+                            else
+                            {
+                                float nearby = IA.isPlayerNearby(p2, this);
+                                if (nearby < 800)
+                                {
+                                    pos_X_tmp = (int)position.X;          /* ça c'est parce que il me semble que maxime faisait teleporté les enemies hors de la map lors de leur mort */
+                                    pos_Y_tmp = (int)position.Y;         /* donc je retiens leur derniere pos quand ils étaient encore dans l'image, donc quand ils étaient vivants */
+
+                                    if (HitboxD.is_coll(rect) || HitboxG.is_coll(rect))
+                                        velocity.Y = -6f;
+
+                                    if (nearby > 80)
+                                    {
+                                        Tuple<int, bool> mob_bef = IA.isMobBefore(p2, this);
+                                        velocity.X = 2 * mob_bef.Item1;
+                                        hasFliped = mob_bef.Item2;
+                                    }
+                                    else if (nearby < 50)
+                                    {
+                                        Tuple<int, bool> mob_bef = IA.isMobBefore(p2, this);
+                                        velocity.X = -2 * mob_bef.Item1;
+                                        hasFliped = mob_bef.Item2;
+                                    }
+                                    else
+                                        velocity.X = 0;
+
+                                    if (IA.isPlateformNearby(rect, this))
+                                        velocity.Y = -6f;
+
+                                    if (position.Y >= p2.position.Y && position.Y <= p2.position.Y + p2.texture.Height && latenceTir == 0 && !dead)
+                                    {
+                                        latenceTir = 40;
+                                        for (int i = 0; i < Tirs.Length; i++)
+                                        {
+                                            if (Tirs[i] == null)
+                                            {
+                                                Tirs[i] = new Projectile(texture.Bounds.X, 10, this, hasFliped);
+                                                Ressources.tir_son.Play();
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if (latenceTir > 0)
+                                        latenceTir--;
                                 }
                             }
                         }
-                        if (latenceTir > 0)
-                            latenceTir--;
-                    }
-                }
-                    else
-                {
-                    float nearby = IA.isPlayerNearby(p2, this);
-                    if (nearby < 800)
-                    {
-                        pos_X_tmp = (int)position.X;          /* ça c'est parce que il me semble que maxime faisait teleporté les enemies hors de la map lors de leur mort */
-                        pos_Y_tmp = (int)position.Y;         /* donc je retiens leur derniere pos quand ils étaient encore dans l'image, donc quand ils étaient vivants */
-
-                        if (HitboxD.is_coll(rect) || HitboxG.is_coll(rect))
-                            velocity.Y = -6f;
-
-                        if (nearby > 80 )
-                        {
-                            Tuple<int, bool> mob_bef = IA.isMobBefore(p2, this);
-                            velocity.X = 2 * mob_bef.Item1;
-                            hasFliped = mob_bef.Item2;
-                        }
-                        else if (nearby < 50 )
-                        {
-                            Tuple<int, bool> mob_bef = IA.isMobBefore(p2, this);
-                            velocity.X = -2 * mob_bef.Item1;
-                            hasFliped = mob_bef.Item2;
-                        }
-                        else
-                            velocity.X = 0;
-
-                        if (IA.isPlateformNearby(rect, this))
-                            velocity.Y = -6f;
-
-                        if (position.Y >= p2.position.Y && position.Y <= p2.position.Y + p2.texture.Height && latenceTir == 0 && !dead)
-                        {
-                            latenceTir = 40;
-                            for (int i = 0; i < Tirs.Length; i++)
-                            {
-                                if (Tirs[i] == null)
-                                {
-                                    Tirs[i] = new Projectile(texture.Bounds.X, 10, this, hasFliped);
-                                    Ressources.tir_son.Play();
-                                    break;
-                                }
-                            }
-                        }
-                        if (latenceTir > 0)
-                            latenceTir--;
-                    }
+                        break;
+                    #endregion
+                    case 3:
+                        /*ecrit la pour le mob*/
+                        break;
                 }
             }
         }
 
         public void Draw(SpriteBatch sb)
         {
-
-
-            if (coeur.exist)
-                coeur.Draw(sb);
-            if (Bonusfaux.exist)
+            switch (type)
             {
-                Bonusfaux.Draw(sb);
-            }
+                case 3 :
+                    /*le draw*/
+                    break;
 
-            Life.Draw(sb, (int)position.X, (int)position.Y - 20, 0.5f, 5);
+                default :
 
-            if (!dead)
-            {
-                if (hasFliped)
-                    sb.Draw(Ressources.EFlip2, new Vector2(position.X, position.Y), Color.White);
-                else
-                    sb.Draw(Ressources.E2, new Vector2(position.X, position.Y), Color.White);
+                    if (coeur.exist)
+                        coeur.Draw(sb);
+                    if (Bonusfaux.exist)
+                    {
+                        Bonusfaux.Draw(sb);
+                    }
+
+                    Life.Draw(sb, (int)position.X, (int)position.Y - 20, 0.5f, 5);
+
+                    if (!dead)
+                    {
+                        if (hasFliped)
+                            sb.Draw(Ressources.EFlip2, new Vector2(position.X, position.Y), Color.White);
+                        else
+                            sb.Draw(Ressources.E2, new Vector2(position.X, position.Y), Color.White);
+                    }
+                    break;
             }
 
             //sb.Draw(Ressources.plateforme, HitboxB.Rectangle, Color.Red);

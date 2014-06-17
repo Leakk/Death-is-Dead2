@@ -225,7 +225,6 @@ namespace Death_is_Dead
         {
             level2_enable = true;
             level3_enable = true;
-            map1 = new Map(new Obstacle[21] { new Obstacle(new Rectangle(0, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(300, 360, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(1040, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(1800, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2100, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2540, 380, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(2840, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(3450, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme/*carre*/), new Obstacle(new Rectangle(3850, 450, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4450, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(4850, 350, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(5350, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6600, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(6850, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7250, 300, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(7650, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(7700, 250, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8150, 150, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(8550, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol), new Obstacle(new Rectangle(9550, 400, Ressources.plateforme.Width, Ressources.plateforme.Height), Ressources.plateforme), new Obstacle(new Rectangle(9200, 550, Ressources.sol.Width, Ressources.sol.Height), Ressources.sol) }, new Mob[5] { new Mob(new Vector2(1250, 400), Ressources.Player, 100), new Mob(new Vector2(3370, 400), Ressources.Player, 100), new Mob(new Vector2(5870, 400), Ressources.Player, 100), new Mob(new Vector2(7450, 100), Ressources.Player, 100), new Mob(new Vector2(8700, 400), Ressources.Player, 100) }, Ressources.fond, new Vector2(800, 0));
             MouseState mouse = Mouse.GetState();
 
             #region /*Les GameStates*/
@@ -300,10 +299,7 @@ namespace Death_is_Dead
                             for (int a = 0; a < mobs2.Length; a++)
                             {
                                 mobs2[a].maj(Content);
-                                if (mobs2[a].type == 0)
-                                    mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life);
-                                else
-                                    mobs2[a] = new choixbonus(mobs2[a].position, mobs2[a].type);
+                                    mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life, mobs2[a].type);
                             }
 
                             Vector2 fl = (Vector2)format.Deserialize(liste5);
@@ -389,10 +385,7 @@ namespace Death_is_Dead
                         for (int a = 0; a < mobs2.Length; a++)
                         {
                             mobs2[a].maj(Content);
-                            if (mobs2[a].type == 0)
-                                mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life);
-                            else
-                                mobs2[a] = new choixbonus(mobs2[a].position, mobs2[a].type);
+                                mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life, mobs2[a].type);
                         }
                             
                         Texture2D tmp = Ressources.fond;
@@ -433,10 +426,7 @@ namespace Death_is_Dead
                         for (int a = 0; a < mobs2.Length; a++)
                         {
                             mobs2[a].maj(Content);
-                            if (mobs2[a].type == 0)
-                                mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life);
-                            else
-                                mobs2[a] = new choixbonus(mobs2[a].position, mobs2[a].type);
+                                mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life, mobs2[a].type);
                         }
                         Texture2D tmp = Ressources.fond;
                         tmp.SetData<uint>(fon);
@@ -471,10 +461,7 @@ namespace Death_is_Dead
                         for (int a = 0; a < mobs2.Length; a++)
                         {
                             mobs2[a].maj(Content);
-                            if (mobs2[a].type == 0)
-                                mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life);
-                            else
-                                mobs2[a] = new choixbonus(mobs2[a].position, mobs2[a].type);
+                                mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life, mobs2[a].type);
                         }
                         Texture2D tmp = Ressources.fond;
                         tmp.SetData<uint>(fon);

@@ -38,7 +38,7 @@ namespace Death_is_Dead
         Boolean plate;
         Boolean ene;
         Boolean drap;
-        int type = 0;
+        int choix = 0;
 
         public editeur()
         {
@@ -91,10 +91,7 @@ namespace Death_is_Dead
             x = 0;
             foreach (Mob item in mob)
             {
-                if (item.type == 0)
-                    ennemi[x] = new Mob(item.position, item.texture, item.life);
-                else
-                    ennemi[x] = new choixbonus(item.position, item.type);
+                    ennemi[x] = new Mob(item.position, item.texture, item.life,item.type);
                 x++;
             }
             tab = new uint[curfond.Height * curfond.Width];
@@ -146,10 +143,7 @@ namespace Death_is_Dead
                 for (int i = 0; i < ennemi.Length; i++)
                 {
                     ennemi[i].maj(cont);
-                    if (ennemi[i].type == 0)
-                        ennemi[i] = new Mob(ennemi[i].position, ennemi[i].texture, ennemi[i].life);
-                    else
-                        ennemi[i] = new choixbonus(ennemi[i].position, ennemi[i].type);
+                    ennemi[i] = new Mob(ennemi[i].position, ennemi[i].texture, ennemi[i].life, ennemi[i].type);
                     mob.AddLast(ennemi[i]);
                 }
 
@@ -167,10 +161,7 @@ namespace Death_is_Dead
             x = 0;
             foreach (Mob item in mob)
             {
-                if (item.type == 0)
-                    ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, item.life);
-                else
-                    ennemi[x] = new choixbonus(new Vector2(item.position.X - a, item.position.Y), item.type);
+                ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, item.life,item.type);
                 x++;
             }
 
@@ -248,7 +239,7 @@ namespace Death_is_Dead
                 ene = true;
                 drap = false;
                 curplate = Ressources.E2;
-                type = 0;
+                choix = 0;
             }
             if (E2.isClicked)
             {
@@ -256,7 +247,7 @@ namespace Death_is_Dead
                 ene = true;
                 drap = false;
                 curplate = Ressources.Bonus_coeur;
-                type = 1;
+                choix = 1;
 
             }
             if (E3.isClicked)
@@ -265,7 +256,7 @@ namespace Death_is_Dead
                 ene = true;
                 drap = false;
                 curplate = Ressources.Faux;
-                type = 2;
+                choix = 2;
             }
             #endregion
             if (flagg.isClicked)
@@ -320,10 +311,7 @@ namespace Death_is_Dead
                 x = 0;
                 foreach (Mob item in mob)
                 {
-                        if (item.type == 0)
-                            ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, item.life);
-                        else
-                            ennemi[x] = new choixbonus(new Vector2(item.position.X - a, item.position.Y), item.type); ;
+                            ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, item.life,item.type);
                     x++;
                 }
                 map = new Obstacle[liste.Count];
@@ -341,10 +329,7 @@ namespace Death_is_Dead
                 x = 0;
                 foreach (Mob item in mob)
                 {
-                    if (item.type == 0)
-                        ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, item.life);
-                    else
-                        ennemi[x] = new choixbonus(new Vector2(item.position.X - a, item.position.Y), item.type);
+                        ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, item.life,item.type);
                     x++;
                 }
                 map = new Obstacle[liste.Count];
@@ -380,18 +365,12 @@ namespace Death_is_Dead
                 }
                 if (ene)
                 {
-                    if (type == 0)
-                        mob.AddLast(new Mob(new Vector2((int)Mouse.GetState().X + a, (int)Mouse.GetState().Y), curplate, 100));
-                    else
-                        mob.AddLast(new choixbonus(new Vector2((int)Mouse.GetState().X + a, (int)Mouse.GetState().Y), type));
+                    mob.AddLast(new Mob(new Vector2((int)Mouse.GetState().X + a, (int)Mouse.GetState().Y), curplate, 100, choix));
                     ennemi = new Mob[mob.Count];
                     x = 0;
                     foreach (Mob item in mob)
                     {
-                        if (item.type == 0)
-                            ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, item.life);
-                        else
-                            ennemi[x] = new choixbonus(new Vector2(item.position.X - a, item.position.Y), item.type);
+                            ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, item.life,item.type);
                         x++;
                     }
                 }
@@ -423,10 +402,7 @@ namespace Death_is_Dead
                         x = 0;
                         foreach (Mob item in mob)
                         {
-                            if (item.type == 0)
-                                ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, item.life);
-                            else
-                                ennemi[x] = new choixbonus(new Vector2(item.position.X - a, item.position.Y), item.type);
+                                ennemi[x] = new Mob(new Vector2(item.position.X - a, item.position.Y), item.texture, item.life,item.type);
                             x++;
                         }
                     }
