@@ -816,12 +816,14 @@ namespace Death_is_Dead
                                 if (player1.isTouched(item.Tirs[i]))
                                 {
                                     player1.life -= 5;
+                                    Ressources.impact_tir_player.Play();
                                     item.Tirs[i] = null;
                                 }
 
                                 if (player2.isTouched(item.Tirs[i]))
                                 {
                                     player2.life -= 5;
+                                    Ressources.impact_tir_player.Play();
                                     item.Tirs[i] = null;
                                 }
 

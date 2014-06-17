@@ -40,6 +40,7 @@ namespace Death_is_Dead
         public static SoundEffect Faux_sound;
         public static SoundEffect impact_tir_enemi;
         public static SoundEffect impact_tir_mur;
+        public static SoundEffect impact_tir_player;
         public static SoundEffect son_ramassage_de_bonus;
         public static SoundEffect Faux_impact_on_ennemy;
         public static Song Game_over_song;
@@ -80,6 +81,7 @@ namespace Death_is_Dead
             Faux_sound = content.Load<SoundEffect>("Sound_effects/Faux_sound");
             impact_tir_enemi = content.Load<SoundEffect>("Sound_effects/Game/impact_tir_enemi");
             impact_tir_mur = content.Load<SoundEffect>("Sound_effects/Game/impact_tir_mur");
+            impact_tir_player = content.Load<SoundEffect>("Sound_effects/Game/impact_tir_joueur");
             son_ramassage_de_bonus = content.Load<SoundEffect>("Sound_effects/Game/son_ramassage_de_bonus");
             Faux_impact_on_ennemy = content.Load<SoundEffect>("Sound_effects/Game/Impact_faux_on_ennemy");
             Game_over_song = content.Load<Song>("Sound_effects/gameover");
