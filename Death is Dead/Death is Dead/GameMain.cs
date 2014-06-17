@@ -338,7 +338,8 @@ namespace Death_is_Dead
                     btnMyMaps.Udapte(mouse);
 
                     #region /* chargements des truc commun à tout les bouttons */
-                    if (count == 0 && (btnMap1.isClicked) || (btnMap2.isClicked) || (btnMap3.isClicked) || (btnMyMaps.isClicked)) /* n'importe quel boutton qui charge une map lira ça */
+                    if (count == 0 && (btnMap1.isClicked) || (btnMap2.isClicked)&& level2_enable
+                        || (btnMap3.isClicked)&&level3_enable || (btnMyMaps.isClicked)) /* n'importe quel boutton qui charge une map lira ça */
                     {
                         if (multiplayer)
                         {
@@ -898,8 +899,24 @@ namespace Death_is_Dead
                         spriteBatch.Draw(Content.Load<Texture2D>("sprite/Map_selection/" + lang + "/info"), new Rectangle(200, 0, 250, 80), Color.Red);
                     }
                     btnMap1.Draw(spriteBatch);
-                    btnMap2.Draw(spriteBatch);
-                    btnMap3.Draw(spriteBatch);
+                    if (level2_enable)
+                    {
+                        btnMap2.Draw(spriteBatch);
+                    }
+                    else
+                    {
+                        btnMap2.Draw2(spriteBatch, Color.Gray);
+                    }
+                    if (level3_enable)
+                    {
+                        btnMap3.Draw(spriteBatch);
+                    }
+                    else
+                    {
+                        btnMap3.Draw2(spriteBatch, Color.Gray);
+                    }
+                    
+
                     btnMyMaps.Draw(spriteBatch);
                     btnBack.Draw(spriteBatch);
                     break;

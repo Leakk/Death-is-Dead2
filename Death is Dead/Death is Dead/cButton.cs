@@ -86,5 +86,10 @@ namespace Death_is_Dead
         {
             spriteBatch.Draw(texture, rectangle, colour1);
         }
+
+        public void Draw2(SpriteBatch spriteBatch, Color color)
+        {
+            spriteBatch.Draw(texture, rectangle, color);
+        }
     }
 }
