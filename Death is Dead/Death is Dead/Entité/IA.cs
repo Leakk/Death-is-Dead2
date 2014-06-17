@@ -24,7 +24,7 @@ namespace Death_is_Dead
             foreach (Obstacle item in rect)
             {
                 if (item.texture.Width == Ressources.plateforme.Width)
-                    return Math.Abs(item.rectangle.Center.X - mob.position.X) < 100 + item.texture.Width / 2;
+                    return Math.Abs(item.rectangle.Center.X - mob.position.X) < 50 + item.texture.Width / 2;
             }
 
             return false;

@@ -110,7 +110,7 @@ namespace Death_is_Dead
                             velocity.X = 2 * mob_bef.Item1;
                             hasFliped = mob_bef.Item2;
                         }
-                        else if (nearby < 50)
+                        else if (nearby < 50 )
                         {
                             Tuple<int, bool> mob_bef = IA.isMobBefore(player, this);
                             velocity.X = -2 * mob_bef.Item1;
@@ -119,7 +119,7 @@ namespace Death_is_Dead
                         else
                             velocity.X = 0;
 
-                        if (IA.isPlateformNearby(rect, this))
+                        if (IA.isPlateformNearby(rect, this)&& velocity.Y==0)
                             velocity.Y = -6f;
 
                         if (position.Y >= player.position.Y && position.Y <= player.position.Y + player.texture.Height && latenceTir == 0 && !dead)
@@ -150,13 +150,13 @@ namespace Death_is_Dead
                         if (HitboxD.is_coll(rect) || HitboxG.is_coll(rect))
                             velocity.Y = -6f;
 
-                        if (nearby > 80)
+                        if (nearby > 80 )
                         {
                             Tuple<int, bool> mob_bef = IA.isMobBefore(p2, this);
                             velocity.X = 2 * mob_bef.Item1;
                             hasFliped = mob_bef.Item2;
                         }
-                        else if (nearby < 50)
+                        else if (nearby < 50 )
                         {
                             Tuple<int, bool> mob_bef = IA.isMobBefore(p2, this);
                             velocity.X = -2 * mob_bef.Item1;

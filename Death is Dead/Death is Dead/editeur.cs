@@ -207,28 +207,28 @@ namespace Death_is_Dead
                 plate = true;
                 ene = false;
                 drap = false;
-                curplate = Ressources.plateforme;
+                curplate = Ressources.plateforme2;
             }
             if (sol2.isClicked)
             {
                 plate = true;
                 ene = false;
                 drap = false;
-                curplate = Ressources.sol;
+                curplate = Ressources.sol2;
             }
             if (plate3.isClicked)
             {
                 plate = true;
                 ene = false;
                 drap = false;
-                curplate = Ressources.plateforme;
+                curplate = Ressources.plateforme3;
             }
             if (sol3.isClicked)
             {
                 plate = true;
                 ene = false;
                 drap = false;
-                curplate = Ressources.sol;
+                curplate = Ressources.sol3;
             }
             #endregion
             #region/*ennemis*/
