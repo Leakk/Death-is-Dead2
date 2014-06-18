@@ -74,7 +74,7 @@ namespace Death_is_Dead
         int screenWidth = 800, screenHeight = 600;
 
         private Player player1;
-        private Map map = new Map(new Obstacle[0], new Mob[0], Ressources.fond,new Vector2 (0,0));
+        private Map map = new Map(new Obstacle[0], new Mob[0], Ressources.Fond, new Vector2(0, 0));
         private Player2 player2;
         private bool songisplayed = false;
 
@@ -318,6 +318,12 @@ namespace Death_is_Dead
                     {
                         count = 15;
                         button_click.Play();
+                        IFormatter format = new BinaryFormatter();
+                        Stream liste2 = new FileStream("Content/lvl1/fond", FileMode.Open, FileAccess.Read);
+                        uint[] fon = (uint[])format.Deserialize(liste2);
+                        Texture2D tmp = Ressources.Fond;
+                        tmp.SetData<uint>(fon);
+
                         if (Currentlanguage == language.french)
                             editeur1 = new editeur(1);
 
@@ -393,8 +399,8 @@ namespace Death_is_Dead
                             mobs2[a].maj(Content);
                                 mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life, mobs2[a].type);
                         }
-                            
-                        Texture2D tmp = Ressources.fond;
+
+                        Texture2D tmp = Ressources.Fond; 
                         tmp.SetData<uint>(fon);
 
                         MediaPlayer.Stop();
@@ -428,14 +434,12 @@ namespace Death_is_Dead
                             mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life, mobs2[a].type);
                         }
 
-                        Texture2D tmp = Ressources.fond;
+                        Texture2D tmp = Ressources.Fond;
                         tmp.SetData<uint>(fon);
 
                         MediaPlayer.Stop();
                         MediaPlayer.Play(Game_song_lvl1);
                         map = new Map(obs2, mobs2, tmp, fl);
-                        count = 10;
-                        button_click.Play();
                         count = 10;
                         button_click.Play();
                     }
@@ -463,14 +467,12 @@ namespace Death_is_Dead
                             mobs2[a].maj(Content);
                                 mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life, mobs2[a].type);
                         }
-                        Texture2D tmp = Ressources.fond;
+                        Texture2D tmp = Ressources.Fond;
                         tmp.SetData<uint>(fon);
 
                         MediaPlayer.Stop();
                         MediaPlayer.Play(Game_song_lvl1);
                         map = new Map(obs2, mobs2, tmp, fl);
-                        count = 10;
-                        button_click.Play();
                         count = 10;
                         button_click.Play();
                     }
@@ -498,13 +500,14 @@ namespace Death_is_Dead
                             mobs2[a].maj(Content);
                                 mobs2[a] = new Mob(mobs2[a].position, mobs2[a].texture, mobs2[a].life, mobs2[a].type);
                         }
-                        Texture2D tmp = Ressources.fond;
+                        Texture2D tmp = Ressources.Fond;
                         tmp.SetData<uint>(fon);
 
                         MediaPlayer.Stop();
                         MediaPlayer.Play(Game_song_lvl1);
                         map = new Map(obs2, mobs2, tmp, fl);
                         count = 10;
+
                         button_click.Play();
                     }
 

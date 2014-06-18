@@ -47,7 +47,7 @@ namespace Death_is_Dead
             change = false;
             i = 0;
             j = 0;
-            curfond = Ressources.fond;
+            curfond = Ressources.fond0;
             curplate = Ressources.plateforme;
             liste = new LinkedList<Obstacle>();
             a = 0;
@@ -229,7 +229,7 @@ namespace Death_is_Dead
             #region /*fond*/
             if (fond1.isClicked)
             {
-                curfond = Ressources.fond;
+                curfond = Ressources.Fond;
                 tab = new uint[curfond.Height * curfond.Width];
             }
             if (fond2.isClicked)

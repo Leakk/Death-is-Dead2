@@ -25,7 +25,7 @@ namespace Death_is_Dead
         {
             this.obs = obs;
             this.mobs = mob;
-            fond = fo;
+            this.fond = fo;
             flag = new end_flag((int)fin.X, (int)fin.Y);
         }
 
@@ -39,7 +39,7 @@ namespace Death_is_Dead
 
         public void Draw(SpriteBatch sb, int screenWidth, int screenHeight)
         {
-            sb.Draw(Ressources.fond, moving_background, Color.White);
+            sb.Draw(Ressources.Fond, moving_background, Color.White);
             flag.Draw(sb);
           //  sb.Draw(Ressources.fond, new Rectangle((int)moving_background, 0, 800, 600), Color.White);
             if (moving_background.X <= -1600f)
