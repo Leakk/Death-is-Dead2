@@ -145,7 +145,7 @@ namespace Death_is_Dead
                                         hasFliped = mob_bef.Item2;
                                     }
                                     else
-                                        velocity.X = 0;
+                                        velocity.X = 0.1f;
 
                                     if (IA.isPlateformNearby(rect, this, hasFliped) && velocity.Y == 0)
                                         velocity.Y = -6f;
@@ -190,7 +190,7 @@ namespace Death_is_Dead
                                         hasFliped = mob_bef.Item2;
                                     }
                                     else
-                                        velocity.X = 0;
+                                        velocity.X = 0.1f;
 
                                     if (IA.isPlateformNearby(rect, this, hasFliped))
                                         velocity.Y = -6f;
