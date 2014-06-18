@@ -52,7 +52,7 @@ namespace Death_is_Dead
         public Texture2D curFond;
         public bool multiplayer = false;
         public bool level2_enable = false;
-        public bool level3_enable = false;
+        public bool level3_enable = true;
         public bool current_lvl_is_2 = false;
         private bool game_over_song_activate = false;
         private bool Win_song_activate = false;
@@ -474,7 +474,7 @@ namespace Death_is_Dead
                         tmp.SetData<uint>(fon);
 
                         MediaPlayer.Stop();
-                        MediaPlayer.Play(Game_song_lvl1);
+                        MediaPlayer.Play(Ressources.lvl3_song);
                         map = new Map(obs2, mobs2, tmp, fl);
                         count = 10;
                         button_click.Play();

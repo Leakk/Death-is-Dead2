@@ -33,7 +33,7 @@ namespace Death_is_Dead
             }
             else
             {
-                if (Life < 200)
+                if (Life < 250)
                 {
                     hp = Life;
                     colour.G = (byte)(55 + (2 * 100));
