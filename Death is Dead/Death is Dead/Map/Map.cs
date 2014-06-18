@@ -47,6 +47,7 @@ namespace Death_is_Dead
                 moving_background.X = 0f;
             }
             moving_background.X-=0.25f;
+            //moving_background.X -= 5f;
             foreach (Obstacle item in obs)
             {
                 if (item.rectangle.X + item.texture.Width > 0 || item.rectangle.X < screenWidth || item.rectangle.Y + item.texture.Height > 0 || item.rectangle.Y < screenHeight)

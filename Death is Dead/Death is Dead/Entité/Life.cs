@@ -29,12 +29,25 @@ namespace Death_is_Dead
                 hp = Life;
                 colour.G = (byte)(55 + (2 * Life));
                 colour.R = (byte)(255 - (2 * Life));
+                colour.B = 0;
             }
             else
             {
-                hp = Life;
-                colour.G = (byte)(55 + (2 * 100));
-                colour.R = (byte)(255 - (2 * 100));
+                if (Life < 200)
+                {
+                    hp = Life;
+                    colour.G = (byte)(55 + (2 * 100));
+                    colour.R = (byte)(255 - (2 * 100));
+                    colour.B = 0;
+                }
+                else
+                {
+                    hp = Life;
+                    colour.G = 0;
+                    colour.R =0;
+                    colour.B = 255;
+
+                }
             }
 
 

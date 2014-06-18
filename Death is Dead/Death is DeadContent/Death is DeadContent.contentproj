@@ -826,13 +826,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="sprite\Fond3.jpg">
-      <Name>Fond3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Sound_effects\Game\impact_tir_joueur.mp3">
       <Name>impact_tir_joueur</Name>
       <Importer>Mp3Importer</Importer>
@@ -857,6 +850,13 @@
     </Compile>
     <Compile Include="sprite\Sol3.png">
       <Name>Sol3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="sprite\Fond3.jpg">
+      <Name>Fond3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
