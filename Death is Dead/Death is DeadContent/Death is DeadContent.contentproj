@@ -581,8 +581,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Button.bmp">
-      <Name>Button</Name>
+    <Compile Include="Button_flecheD.bmp">
+      <Name>Button_flecheD</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -857,6 +857,20 @@
   <ItemGroup>
     <Compile Include="sprite\Fond3.jpg">
       <Name>Fond3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Button_flecheG.bmp">
+      <Name>Button_flecheG</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Button.bmp">
+      <Name>Button</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

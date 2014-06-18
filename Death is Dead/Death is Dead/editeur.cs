@@ -129,8 +129,8 @@ namespace Death_is_Dead
                 flagg = new cButton2(Ressources.boutton, graphics.GraphicsDevice, "bandera", Ressources.font);
             }
 
-                gauche = new cButton(Ressources.boutton, Color.White, graphics.GraphicsDevice);
-                droite = new cButton(Ressources.boutton, Color.White, graphics.GraphicsDevice);
+                gauche = new cButton(Ressources.boutton_flecheG, Color.White, graphics.GraphicsDevice);
+                droite = new cButton(Ressources.boutton_flecheD, Color.White, graphics.GraphicsDevice);
         }
 
         public void seri()

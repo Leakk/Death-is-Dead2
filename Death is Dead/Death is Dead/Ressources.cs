@@ -50,8 +50,9 @@ namespace Death_is_Dead
         public static Song Game_over_song;
         public static Song Victory;
 
-
         public static Texture2D boutton;
+        public static Texture2D boutton_flecheD;
+        public static Texture2D boutton_flecheG;
         public static SpriteFont font;
 
         public static void Load(ContentManager content)
@@ -97,7 +98,9 @@ namespace Death_is_Dead
             #endregion
 
             font = content.Load<SpriteFont>("myfont");
-            boutton = content.Load<Texture2D>("button");
+            boutton_flecheD = content.Load<Texture2D>("Button_flecheD");
+            boutton_flecheG = content.Load<Texture2D>("Button_flecheG");
+            boutton = content.Load<Texture2D>("Button");
         }
     }
 }
