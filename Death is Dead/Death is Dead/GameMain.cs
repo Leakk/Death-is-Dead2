@@ -374,10 +374,10 @@ namespace Death_is_Dead
                     {
                         IFormatter format = new BinaryFormatter();
 
-                        Stream liste2 = new FileStream("lvl1/fond.1", FileMode.Open, FileAccess.Read);
-                        Stream liste3 = new FileStream("lvl1/map.1", FileMode.Open, FileAccess.Read);
-                        Stream liste4 = new FileStream("lvl1/mobs.1", FileMode.Open, FileAccess.Read);
-                        Stream liste5 = new FileStream("lvl1/flag.1", FileMode.Open, FileAccess.Read);
+                        Stream liste2 = new FileStream("Content/lvl1/fond", FileMode.Open, FileAccess.Read);
+                        Stream liste3 = new FileStream("Content/lvl1/map", FileMode.Open, FileAccess.Read);
+                        Stream liste4 = new FileStream("Content/lvl1/mobs", FileMode.Open, FileAccess.Read);
+                        Stream liste5 = new FileStream("Content/lvl1/flag", FileMode.Open, FileAccess.Read);
                         Obstacle[] obs2;
                         Mob[] mobs2;
                         uint[] fon = (uint[])format.Deserialize(liste2);
@@ -408,10 +408,10 @@ namespace Death_is_Dead
                     {
                         IFormatter format = new BinaryFormatter();
 
-                        Stream liste2 = new FileStream("lvl2/fond.2", FileMode.Open, FileAccess.Read);
-                        Stream liste3 = new FileStream("lvl2/map.2", FileMode.Open, FileAccess.Read);
-                        Stream liste4 = new FileStream("lvl2/mobs.2", FileMode.Open, FileAccess.Read);
-                        Stream liste5 = new FileStream("lvl2/flag.2", FileMode.Open, FileAccess.Read);
+                        Stream liste2 = new FileStream("Content/lvl2/fond", FileMode.Open, FileAccess.Read);
+                        Stream liste3 = new FileStream("Content/lvl2/map", FileMode.Open, FileAccess.Read);
+                        Stream liste4 = new FileStream("Content/lvl2/mobs", FileMode.Open, FileAccess.Read);
+                        Stream liste5 = new FileStream("Content/lvl2/flag", FileMode.Open, FileAccess.Read);
                         Obstacle[] obs2;
                         Mob[] mobs2;
                         uint[] fon = (uint[])format.Deserialize(liste2);
@@ -444,10 +444,10 @@ namespace Death_is_Dead
                     {
                         IFormatter format = new BinaryFormatter();
 
-                        Stream liste2 = new FileStream("lvl3/fond.3", FileMode.Open, FileAccess.Read);
-                        Stream liste3 = new FileStream("lvl3/map.3", FileMode.Open, FileAccess.Read);
-                        Stream liste4 = new FileStream("lvl3/mobs.3", FileMode.Open, FileAccess.Read);
-                        Stream liste5 = new FileStream("lvl3/flag.3", FileMode.Open, FileAccess.Read);
+                        Stream liste2 = new FileStream("Content/lvl3/fond", FileMode.Open, FileAccess.Read);
+                        Stream liste3 = new FileStream("Content/lvl3/map", FileMode.Open, FileAccess.Read);
+                        Stream liste4 = new FileStream("Content/lvl3/mobs", FileMode.Open, FileAccess.Read);
+                        Stream liste5 = new FileStream("Content/lvl3/flag", FileMode.Open, FileAccess.Read);
                         Obstacle[] obs2;
                         Mob[] mobs2;
                         uint[] fon = (uint[])format.Deserialize(liste2);
@@ -479,10 +479,10 @@ namespace Death_is_Dead
                     {
                         IFormatter format = new BinaryFormatter();
 
-                        Stream liste2 = new FileStream("Editeur/fond.edi", FileMode.Open, FileAccess.Read);
-                        Stream liste3 = new FileStream("Editeur/map.edi", FileMode.Open, FileAccess.Read);
-                        Stream liste4 = new FileStream("Editeur/mob.edi", FileMode.Open, FileAccess.Read);
-                        Stream liste5 = new FileStream("Editeur/flag.edi", FileMode.Open, FileAccess.Read);
+                        Stream liste2 = new FileStream("Content/Editeur/fond", FileMode.Open, FileAccess.Read);
+                        Stream liste3 = new FileStream("Content/Editeur/map", FileMode.Open, FileAccess.Read);
+                        Stream liste4 = new FileStream("Content/Editeur/mob", FileMode.Open, FileAccess.Read);
+                        Stream liste5 = new FileStream("Content/Editeur/flag", FileMode.Open, FileAccess.Read);
                         Obstacle[] obs2;
                         Mob[] mobs2;
                         uint[] fon = (uint[])format.Deserialize(liste2);
@@ -540,11 +540,11 @@ namespace Death_is_Dead
                         button_click.Play();
 
                         IFormatter format = new BinaryFormatter();
-                        Stream liste = new FileStream("Sauvegarde/p1.save", FileMode.Create, FileAccess.Write);
-                        Stream liste2 = new FileStream("Sauvegarde/p2.save", FileMode.Create, FileAccess.Write);
-                        Stream liste3 = new FileStream("Sauvegarde/map.save", FileMode.Create, FileAccess.Write);
-                        Stream liste4 = new FileStream("Sauvegarde/mobs.save", FileMode.Create, FileAccess.Write);
-                        Stream liste5 = new FileStream("Sauvegarde/flag.save", FileMode.Create, FileAccess.Write);
+                        Stream liste = new FileStream("Content/Sauvegarde/p1", FileMode.Create, FileAccess.Write);
+                        Stream liste2 = new FileStream("Content/Sauvegarde/p2", FileMode.Create, FileAccess.Write);
+                        Stream liste3 = new FileStream("Content/Sauvegarde/map", FileMode.Create, FileAccess.Write);
+                        Stream liste4 = new FileStream("Content/Sauvegarde/mobs", FileMode.Create, FileAccess.Write);
+                        Stream liste5 = new FileStream("Content/Sauvegarde/flag", FileMode.Create, FileAccess.Write);
                         format.Serialize(liste, player1);
                         format.Serialize(liste2, player2);
                         format.Serialize(liste3, map.obs);

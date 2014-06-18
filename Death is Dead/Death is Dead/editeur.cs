@@ -152,10 +152,10 @@ namespace Death_is_Dead
             tab = new uint[curfond.Height * curfond.Width];
             curfond.GetData<uint>(tab);
             IFormatter format = new BinaryFormatter();
-            Stream liste1 = new FileStream("Editeur/map.edi", FileMode.Create, FileAccess.Write);
-            Stream liste2 = new FileStream("Editeur/fond.edi", FileMode.Create, FileAccess.Write);
-            Stream liste3 = new FileStream("Editeur/mob.edi", FileMode.Create, FileAccess.Write);
-            Stream liste4 = new FileStream("Editeur/flag.edi", FileMode.Create, FileAccess.Write);
+            Stream liste1 = new FileStream("Content/Editeur/map", FileMode.Create, FileAccess.Write);
+            Stream liste2 = new FileStream("Content/Editeur/fond", FileMode.Create, FileAccess.Write);
+            Stream liste3 = new FileStream("Content/Editeur/mob", FileMode.Create, FileAccess.Write);
+            Stream liste4 = new FileStream("Content/Editeur/flag", FileMode.Create, FileAccess.Write);
             format.Serialize(liste1, map);
             format.Serialize(liste2, tab);
             format.Serialize(liste3, ennemi);
@@ -173,12 +173,12 @@ namespace Death_is_Dead
 
             try
             {
-                Stream liste1 = new FileStream("Editeur/map.edi", FileMode.Open, FileAccess.Read);
+                Stream liste1 = new FileStream("Content/Editeur/map", FileMode.Open, FileAccess.Read);
 
 
-                Stream liste2 = new FileStream("Editeur/fond.edi", FileMode.Open, FileAccess.Read);
-                Stream liste3 = new FileStream("Editeur/mob.edi", FileMode.Open, FileAccess.Read);
-                Stream liste4 = new FileStream("Editeur/flag.edi", FileMode.Open, FileAccess.Read);
+                Stream liste2 = new FileStream("Content/Editeur/fond", FileMode.Open, FileAccess.Read);
+                Stream liste3 = new FileStream("Content/Editeur/mob", FileMode.Open, FileAccess.Read);
+                Stream liste4 = new FileStream("Content/Editeur/flag", FileMode.Open, FileAccess.Read);
 
                 ennemi = (Mob[])format.Deserialize(liste3);
                 map = (Obstacle[])format.Deserialize(liste1);
