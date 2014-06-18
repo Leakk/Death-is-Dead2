@@ -53,6 +53,7 @@ namespace Death_is_Dead
         public bool multiplayer = false;
         public bool level2_enable = false;
         public bool level3_enable = false;
+        public bool current_lvl_is_2 = false;
         private bool game_over_song_activate = false;
         private bool Win_song_activate = false;
 
@@ -222,8 +223,7 @@ namespace Death_is_Dead
 
         protected override void Update(GameTime gameTime)
         {
-            level2_enable = true;
-            level3_enable = true;
+           
             MouseState mouse = Mouse.GetState();
 
             #region /*Les GameStates*/
@@ -236,6 +236,7 @@ namespace Death_is_Dead
                         MediaPlayer.Play(Menu_song);
                         songisplayed = true;
                     }
+                    current_lvl_is_2 = false;
                     btnPlay.Udapte(mouse);
                     btnLoad.Udapte(mouse);
                     btnMultiplayer.Udapte(mouse);
@@ -409,9 +410,11 @@ namespace Death_is_Dead
                         count = 10;
                         button_click.Play();
                     }
-
+                   
                     if (btnMap2.isClicked && count == 0 && level2_enable)
-                    {
+                    { 
+                        
+                        current_lvl_is_2 = true;
                         IFormatter format = new BinaryFormatter();
 
                         Stream liste2 = new FileStream("Content/lvl2/fond", FileMode.Open, FileAccess.Read);
@@ -438,7 +441,7 @@ namespace Death_is_Dead
                         tmp.SetData<uint>(fon);
 
                         MediaPlayer.Stop();
-                        MediaPlayer.Play(Game_song_lvl1);
+                        MediaPlayer.Play(Ressources.lvl2_song);
                         map = new Map(obs2, mobs2, tmp, fl);
                         count = 10;
                         button_click.Play();
@@ -707,7 +710,7 @@ namespace Death_is_Dead
                     {
                         button_click.Play();
                         CurrentGameState = GameState.MainMenu;
-                        if (level2_enable == true)
+                        if (level2_enable == true &&current_lvl_is_2)
                         {
                             level3_enable = true;
                         }

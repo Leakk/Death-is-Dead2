@@ -54,6 +54,7 @@ namespace Death_is_Dead
         public static SoundEffect Faux_impact_on_ennemy;
         public static Song Game_over_song;
         public static Song Victory;
+        public static Song lvl2_song;
 
         public static Texture2D boutton;
         public static Texture2D boutton_flecheD;
@@ -101,6 +102,7 @@ namespace Death_is_Dead
             Faux_impact_on_ennemy = content.Load<SoundEffect>("Sound_effects/Game/Impact_faux_on_ennemy");
             Game_over_song = content.Load<Song>("Sound_effects/gameover");
             Victory = content.Load<Song>("Sound_effects/victoire");
+            lvl2_song = content.Load<Song>("Sound_effects/Game/lvl2_song");
             #endregion
 
             font = content.Load<SpriteFont>("myfont");
