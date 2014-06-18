@@ -145,7 +145,11 @@ namespace Death_is_Dead
                                         hasFliped = mob_bef.Item2;
                                     }
                                     else
+                                    {
                                         velocity.X = 0.1f;
+                                        if (!(Math.Abs(HitboxB.rect_coll(rect).Center.X - position.X) < Ressources.sol.Width / 2 - 10 || IA.isGroundNearby(rect, this, hasFliped)) && Ressources.random_number.Next(0, 10) == 5)
+                                            velocity.Y = -3f;
+                                    }
 
                                     if (IA.isPlateformNearby(rect, this, hasFliped) && velocity.Y == 0)
                                         velocity.Y = -6f;
