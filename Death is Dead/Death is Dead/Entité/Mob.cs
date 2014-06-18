@@ -220,7 +220,7 @@ namespace Death_is_Dead
 
                         float nearby1 = IA.isPlayerNearby(player, this);
                         float nearby2 = IA.isPlayerNearby(p2, this);
-                        if (nearby1 < 800)
+                        if (nearby1 < 1200)
                         {
                             if (hasFliped)
                             {
@@ -230,13 +230,20 @@ namespace Death_is_Dead
                             {
                                 velocity.X = 2;
                             }
+
                             pos_X_tmp = (int)position.X;          /* ça c'est parce que il me semble que maxime faisait teleporté les enemies hors de la map lors de leur mort */
                             pos_Y_tmp = (int)position.Y;         /* donc je retiens leur derniere pos quand ils étaient encore dans l'image, donc quand ils étaient vivants */
 
-                            if ((HitboxD.is_coll(rect) || HitboxG.is_coll(rect)) && latenceflip == 0)
+
+                            if ((HitboxD.is_coll(rect) && latenceflip == 0))
                             {
                                 latenceflip = 5;
-                                hasFliped = !hasFliped;
+                                hasFliped = true;
+                            }
+                            if ((HitboxG.is_coll(rect) && latenceflip == 0))
+                            {
+                                latenceflip = 5;
+                                hasFliped = false;
                             }
 
                             if (!HitboxD_testSol.is_coll(rect) & (!HitboxG_testSol.is_coll(rect)))
@@ -248,118 +255,120 @@ namespace Death_is_Dead
                                 if ((!HitboxD_testSol.is_coll(rect)) && latenceflip == 0)
                                 {
                                     latenceflip = 5;
-                                    hasFliped = !hasFliped;
+                                    hasFliped = true;
+
                                 }
 
                                 if ((!HitboxG_testSol.is_coll(rect)) && latenceflip == 0)
                                 {
                                     latenceflip = 5;
-                                    hasFliped = !hasFliped;
+                                    hasFliped = false;
+
                                 }
                             }
-
-
-
                             if (hasFliped)
                             {
-                                if (position.Y >= player.position.Y && position.Y <= player.position.Y + player.texture.Height && latenceTir == 0 && !dead && player.position.X < position.X)
+                                if (position.Y >= player.position.Y && position.Y <= player.position.Y + player.texture.Height && !dead && player.position.X < position.X)
                                 {
-                                    if (nearby1 < 80)
+
+                                    if (nearby1 < 250)
                                     {
                                         velocity.X = 0;
                                     }
-                                    if (nearby1 < 50)
-                                    {
-                                        velocity.X = 1;
-                                    }
 
 
-                                    latenceTir = 60;
-                                    for (int i = 0; i < Tirs.Length; i++)
+
+                                    if (latenceTir == 0)
                                     {
-                                        if (Tirs[i] == null)
+                                        latenceTir = 60;
+                                        for (int i = 0; i < Tirs.Length; i++)
                                         {
-                                            Tirs[i] = new Projectile(texture.Bounds.X, 10, this, hasFliped);
-                                            Ressources.tir_son.Play();
-                                            break;
+                                            if (Tirs[i] == null)
+                                            {
+                                                Tirs[i] = new Projectile(texture.Bounds.X, 10, this, hasFliped);
+                                                Ressources.tir_son.Play();
+                                                break;
+                                            }
                                         }
                                     }
                                 }
                             }
                             else
                             {
-                                if (position.Y >= player.position.Y && position.Y <= player.position.Y + player.texture.Height && latenceTir == 0 && !dead && player.position.X > position.X)
+                                if (position.Y >= player.position.Y && position.Y <= player.position.Y + player.texture.Height && !dead && player.position.X > position.X)
                                 {
-                                    if (nearby1 < 80)
+
+                                    if (nearby1 < 250)
                                     {
                                         velocity.X = 0;
                                     }
-                                    if (nearby1 < 50)
-                                    {
-                                        velocity.X = -1;
-                                    }
 
 
-                                    latenceTir = 60;
-                                    for (int i = 0; i < Tirs.Length; i++)
+
+                                    if (latenceTir == 0)
                                     {
-                                        if (Tirs[i] == null)
+                                        latenceTir = 60;
+                                        for (int i = 0; i < Tirs.Length; i++)
                                         {
-                                            Tirs[i] = new Projectile(texture.Bounds.X, 10, this, !hasFliped);
-                                            Ressources.tir_son.Play();
-                                            break;
+                                            if (Tirs[i] == null)
+                                            {
+                                                Tirs[i] = new Projectile(texture.Bounds.X, 10, this, !hasFliped);
+                                                Ressources.tir_son.Play();
+                                                break;
+                                            }
                                         }
                                     }
                                 }
                             }
                             if (hasFliped)
                             {
-                                if (position.Y >= p2.position.Y && position.Y <= p2.position.Y + p2.texture.Height && latenceTir == 0 && !dead && p2.position.X < position.X)
+                                if (position.Y >= p2.position.Y && position.Y <= p2.position.Y + p2.texture.Height && !dead && p2.position.X < position.X)
                                 {
-                                    if (nearby2 < 80)
+
+                                    if (nearby2 < 250)
                                     {
                                         velocity.X = 0;
                                     }
-                                    if (nearby2 < 50)
-                                    {
-                                        velocity.X = 1;
-                                    }
 
 
-                                    latenceTir = 60;
-                                    for (int i = 0; i < Tirs.Length; i++)
+                                    if (latenceTir == 0)
                                     {
-                                        if (Tirs[i] == null)
+                                        latenceTir = 60;
+                                        for (int i = 0; i < Tirs.Length; i++)
                                         {
-                                            Tirs[i] = new Projectile(texture.Bounds.X, 10, this, hasFliped);
-                                            Ressources.tir_son.Play();
-                                            break;
+                                            if (Tirs[i] == null)
+                                            {
+                                                Tirs[i] = new Projectile(texture.Bounds.X, 10, this, hasFliped);
+                                                Ressources.tir_son.Play();
+                                                break;
+                                            }
                                         }
                                     }
                                 }
                             }
                             else
                             {
-                                if (position.Y >= p2.position.Y && position.Y <= p2.position.Y + p2.texture.Height && latenceTir == 0 && !dead && p2.position.X > position.X)
+                                if (position.Y >= p2.position.Y && position.Y <= p2.position.Y + p2.texture.Height && !dead && p2.position.X > position.X)
                                 {
-                                    if (nearby2 < 80)
+
+                                    if (nearby2 < 250)
                                     {
                                         velocity.X = 0;
                                     }
-                                    if (nearby2 < 50)
-                                    {
-                                        velocity.X = -1;
-                                    }
 
 
-                                    latenceTir = 60;
-                                    for (int i = 0; i < Tirs.Length; i++)
+
+                                    if (latenceTir == 0)
                                     {
-                                        if (Tirs[i] == null)
+                                        latenceTir = 60;
+                                        for (int i = 0; i < Tirs.Length; i++)
                                         {
-                                            Tirs[i] = new Projectile(texture.Bounds.X, 10, this, !hasFliped);
-                                            Ressources.tir_son.Play();
-                                            break;
+                                            if (Tirs[i] == null)
+                                            {
+                                                Tirs[i] = new Projectile(texture.Bounds.X, 10, this, !hasFliped);
+                                                Ressources.tir_son.Play();
+                                                break;
+                                            }
                                         }
                                     }
                                 }
@@ -370,6 +379,10 @@ namespace Death_is_Dead
                                 latenceTir--;
                             if (latenceflip > 0)
                                 latenceflip--;
+                        }
+                        else
+                        {
+                            velocity.X = 0;
                         }
                         break;
                     #endregion
